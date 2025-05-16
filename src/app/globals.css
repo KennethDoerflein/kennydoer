@@ -1,0 +1,232 @@
+/* GENERAL UTILITIES */
+:root {
+  --alert-bg: #ffc107;
+  --alert-color: #000;
+  --card-bg: #1e1e1e;
+  --card-hover-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+  --card-img-hover-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
+  --card-header-bg: #2182d1;
+  --card-header-hover-bg: #1778a1;
+  --modal-bg: #121212;
+  --close-btn-bg: #ffffff;
+  --close-btn-hover-bg: rgba(255, 255, 255, 0.3);
+  --btn-info-bg: #0dcaf0;
+  --btn-info-hover-bg: #31d2f2;
+  --scroll-btn-bg: var(--card-header-bg);
+  --scroll-btn-hover-bg: var(--card-header-hover-bg);
+}
+
+/* ALERT STYLES */
+.compact-alert {
+  padding: 8px 12px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+/* CARD STYLING */
+.card {
+  max-width: 700px;
+  margin: 30px auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--card-bg);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.card img {
+  border-bottom: 1px solid #333;
+  border-radius: 0;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card img:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+  filter: brightness(1.15);
+  box-shadow: var(--card-img-hover-shadow);
+}
+@media (max-width: 768px) {
+  .card img:hover {
+    transform: none;
+    pointer-events: none;
+  }
+}
+
+.card-header {
+  padding: 0.75rem 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  background-color: var(--card-header-bg);
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.card-header:hover {
+  background-color: var(--card-header-hover-bg);
+}
+
+.card-body,
+.card-footer {
+  padding: 20px;
+}
+
+.card-body {
+  color: #f1f1f1;
+}
+
+.card-footer {
+  font-size: 0.9rem;
+  background-color: #222;
+  color: #ccc;
+}
+
+/* MODAL & IMAGE */
+.modal-content {
+  background: var(--modal-bg);
+  border: none;
+  border-radius: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+#modalImage {
+  max-height: 90vh;
+  border-radius: 8px;
+}
+
+/* CLOSE BUTTON */
+.btn-close {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  z-index: 1050;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  color: #000;
+  background-color: var(--close-btn-bg);
+  opacity: 0.95;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-close:hover {
+  background-color: var(--close-btn-hover-bg);
+  transform: scale(1.1);
+}
+
+/* BADGES & BUTTONS */
+.badge {
+  margin: 3px 3px 6px 0;
+  padding: 0.45em 0.65em;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.badge:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-info {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #000;
+  background-color: var(--btn-info-bg);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-info:hover {
+  background-color: var(--btn-info-hover-bg);
+  transform: scale(1.05);
+}
+
+/* FADE-IN ANIMATIONS */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* SCROLL TO TOP BUTTON */
+#scrollToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1050;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: var(--scroll-btn-bg);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+#scrollToTop:hover {
+  background-color: var(--scroll-btn-hover-bg);
+  cursor: pointer;
+}
+
+#scrollToTop i {
+  margin: 0;
+}
+
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #333;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #777;
+}
