@@ -59,7 +59,7 @@ const projects = [
     img: "/assets/sgeHome.png",
     alt: "Sporting Goods Emporium site image",
     tech: ["HTML", "CSS", "JavaScript", "PHP", "SQL", "Bootstrap"],
-    description: `Sporting Goods Emporium is a sporting goods store with a fully functional customer registration and sign-in system. It includes a shopping cart, mock checkout, order history, and a product search bar or category selection. Additionally, it has an admin login for managing products and orders. The admin can add, edit, and delete products, as well as view and search orders. An admin can also add new admin users.`,
+    description: `Sporting Goods Emporium is a full-featured online sporting goods store. Customers can register, sign in, browse products by category or search, add items to a shopping cart, and complete a mock checkout. After ordering, they can view their order history. Admins have a separate login that lets them manage everything behind the scenes. They can add, edit, or remove products; view and search orders; and create new admin accounts.`,
     demo: "https://sge.kennydoer.com",
     creds: [
       { label: "User", email: "test@test.com", password: "password" },
