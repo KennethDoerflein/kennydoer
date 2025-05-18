@@ -186,7 +186,7 @@
 }
 
 /* SCROLL TO TOP BUTTON */
-#scrollToTop {
+#goToBtn {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -204,12 +204,12 @@
   transition: background-color 0.3s ease;
 }
 
-#scrollToTop:hover {
+#goToBtn:hover {
   background-color: var(--scroll-btn-hover-bg);
   cursor: pointer;
 }
 
-#scrollToTop i {
+#goToBtn i {
   margin: 0;
 }
 
