@@ -7,6 +7,7 @@ import { Alert, Container, Row, Col, Button } from "react-bootstrap";
 import ProjectCard from "./components/ProjectCard";
 import ImageModal from "./components/ImageModal";
 import ScrollToTopButton from "./components/ScrollToTopButton";
+import appInfo from "../../package.json";
 
 const projects = [
   {
@@ -109,6 +110,7 @@ const HomePage: NextPage = () => {
           rel="noopener noreferrer">
           <i className="bi bi-github"></i>
         </Button>
+        <Container className="text-center pb-2">Site Version: {appInfo.version}</Container>
       </footer>
     </>
   );
