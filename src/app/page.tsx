@@ -10,18 +10,6 @@ import ScrollToTopButton from "./components/ScrollToTopButton";
 
 const projects = [
   {
-    title: "Banking System",
-    img: "/assets/bankingSystemHome.png",
-    alt: "Banking System site image",
-    tech: ["HTML", "CSS", "PHP", "SQL"],
-    description: `MKJJ banking system is the first project I worked on using HTML, CSS, PHP, and SQL. It is a simple banking system that allows users to create an account, log in, and perform simulated banking operations such as creating or deleting accounts, checking their balance, depositing money, withdrawing money, and transferring money. The system also includes a transaction history feature that allows users to view their past transactions. The admin can view account transactions, approve or deny account creation/deletion requests, add transactions to accounts, and search for specific accounts and transactions.`,
-    demo: "https://bankingsystem.kennydoer.com",
-    creds: [
-      { label: "User", username: "test", password: "password" },
-      { label: "Admin", username: "admin", password: "password" },
-    ],
-  },
-  {
     title: "Computer Store",
     img: "/assets/computerStoreHome.png",
     alt: "Computer Store site image",
@@ -47,12 +35,16 @@ const projects = [
     demo: "https://blackjack.kennydoer.com",
   },
   {
-    title: "Tic-Tac-Toe",
-    img: "/assets/tictactoeHome.png",
-    alt: "tic-tac-toe site image",
-    tech: ["React", "HTML", "CSS", "JavaScript", "React-Bootstrap"],
-    description: `A React-based Tic-Tac-Toe game with three difficulties: hard (minimax algorithm), medium (50% random), and easy (80% random). Features include a reset button, score tracking (wins, losses, ties) per difficulty, and a user-friendly interface.`,
-    demo: "https://tictactoe.kennydoer.com",
+    title: "Banking System",
+    img: "/assets/bankingSystemHome.png",
+    alt: "Banking System site image",
+    tech: ["HTML", "CSS", "PHP", "SQL"],
+    description: `MKJJ banking system is the first project I worked on using HTML, CSS, PHP, and SQL. It is a simple banking system that allows users to create an account, log in, and perform simulated banking operations such as creating or deleting accounts, checking their balance, depositing money, withdrawing money, and transferring money. The system also includes a transaction history feature that allows users to view their past transactions. The admin can view account transactions, approve or deny account creation/deletion requests, add transactions to accounts, and search for specific accounts and transactions.`,
+    demo: "https://bankingsystem.kennydoer.com",
+    creds: [
+      { label: "User", username: "test", password: "password" },
+      { label: "Admin", username: "admin", password: "password" },
+    ],
   },
   {
     title: "Sporting Goods Emporium",
@@ -65,6 +57,14 @@ const projects = [
       { label: "User", email: "test@test.com", password: "password" },
       { label: "Admin", username: "admin@sge.com", password: "password" },
     ],
+  },
+  {
+    title: "Tic-Tac-Toe",
+    img: "/assets/tictactoeHome.png",
+    alt: "tic-tac-toe site image",
+    tech: ["React", "HTML", "CSS", "JavaScript", "React-Bootstrap"],
+    description: `A React-based Tic-Tac-Toe game with three difficulties: hard (minimax algorithm), medium (50% random), and easy (80% random). Features include a reset button, score tracking (wins, losses, ties) per difficulty, and a user-friendly interface.`,
+    demo: "https://tictactoe.kennydoer.com",
   },
 ];
 
