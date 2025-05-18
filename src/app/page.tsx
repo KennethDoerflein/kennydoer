@@ -14,14 +14,7 @@ const projects = [
     img: "/assets/bankingSystemHome.png",
     alt: "Banking System site image",
     tech: ["HTML", "CSS", "PHP", "SQL"],
-    description: `MKJJ banking system is the first project I worked on using HTML, CSS, PHP, and SQL. It
-is a simple banking system that allows users to create an account, log in, and perform
-simulated banking operations such as creating or deleting accounts, checking their
-balance, depositing money, withdrawing money, and transferring money. The system also
-includes a transaction history feature that allows users to view their past
-transactions. The admin can view account transactions, approve or deny account
-creation/deletion requests, add transactions to accounts, and search for specific
-accounts and transactions.`,
+    description: `MKJJ banking system is the first project I worked on using HTML, CSS, PHP, and SQL. It is a simple banking system that allows users to create an account, log in, and perform simulated banking operations such as creating or deleting accounts, checking their balance, depositing money, withdrawing money, and transferring money. The system also includes a transaction history feature that allows users to view their past transactions. The admin can view account transactions, approve or deny account creation/deletion requests, add transactions to accounts, and search for specific accounts and transactions.`,
     demo: "https://bankingsystem.kennydoer.com",
     creds: [
       { label: "User", username: "test", password: "password" },
@@ -33,10 +26,7 @@ accounts and transactions.`,
     img: "/assets/computerStoreHome.png",
     alt: "Computer Store site image",
     tech: ["HTML", "CSS", "JavaScript", "PHP", "SQL", "Bootstrap"],
-    description: `Newark IT is a computer store with a fully functional customer registration and sign-in
-system. It includes a shopping cart, mock checkout, order history, and management of
-saved cards and addresses. Additionally, it features order filtering and analytics based
-on a selected date range.`,
+    description: `Newark IT is a computer store with a fully functional customer registration and sign-in system. It includes a shopping cart, mock checkout, order history, and management of saved cards and addresses. Additionally, it features order filtering and analytics based on a selected date range.`,
     demo: "https://computerstore.kennydoer.com",
     creds: [{ label: "Test", email: "test@test.com", password: "password" }],
   },
@@ -45,9 +35,7 @@ on a selected date range.`,
     img: "/assets/ngnHome.png",
     alt: "Job Posting Site image",
     tech: ["HTML", "CSS", "JavaScript", "PHP", "SQL", "Bootstrap", "jQuery", "Select2"],
-    description: `New Grad Nomad is a job posting site where users can browse and post job listings. This
-site includes a page for companies to post job listings and a checkout page with stripe
-integration.`,
+    description: `New Grad Nomad is a job posting site where users can browse and post job listings. This site includes a page for companies to post job listings and a checkout page with stripe integration.`,
     demo: "https://ngn.kennydoer.com",
   },
   {
@@ -55,12 +43,7 @@ integration.`,
     img: "/assets/blackjackHome.png",
     alt: "Blackjack site image",
     tech: ["React", "HTML", "CSS", "JavaScript", "React-Bootstrap"],
-    description: `This is a comprehensive Blackjack simulator built with React, offering a full suite of
-gameplay features. Players can place wagers and execute actions such as hitting,
-standing, doubling down, and splitting. The simulator includes configurable modifiers,
-such as whether the dealer should hit on a soft 17 and whether splits are determined by
-rank. Additionally, players can perform an unlimited number of splits, provided they
-have sufficient points to do so.`,
+    description: `This is a comprehensive Blackjack simulator built with React, offering a full suite of gameplay features. Players can place wagers and execute actions such as hitting, standing, doubling down, and splitting. The simulator includes configurable modifiers, such as whether the dealer should hit on a soft 17 and whether splits are determined by rank. Additionally, players can perform an unlimited number of splits, provided they have sufficient points to do so.`,
     demo: "https://blackjack.kennydoer.com",
   },
   {
@@ -68,10 +51,20 @@ have sufficient points to do so.`,
     img: "/assets/tictactoeHome.png",
     alt: "tic-tac-toe site image",
     tech: ["React", "HTML", "CSS", "JavaScript", "React-Bootstrap"],
-    description: `A React-based Tic-Tac-Toe game with three difficulties: hard (minimax algorithm), medium
-(50% random), and easy (80% random). Features include a reset button, score tracking
-(wins, losses, ties) per difficulty, and a user-friendly interface.`,
+    description: `A React-based Tic-Tac-Toe game with three difficulties: hard (minimax algorithm), medium (50% random), and easy (80% random). Features include a reset button, score tracking (wins, losses, ties) per difficulty, and a user-friendly interface.`,
     demo: "https://tictactoe.kennydoer.com",
+  },
+  {
+    title: "Sporting Goods Emporium",
+    img: "/assets/sgeHome.png",
+    alt: "Sporting Goods Emporium site image",
+    tech: ["HTML", "CSS", "JavaScript", "PHP", "SQL", "Bootstrap"],
+    description: `Sporting Goods Emporium is a sporting goods store with a fully functional customer registration and sign-in system. It includes a shopping cart, mock checkout, order history, and a product search bar or category selection. Additionally, it has an admin login for managing products and orders. The admin can add, edit, and delete products, as well as view and search orders. An admin can also add new admin users.`,
+    demo: "https://sge.kennydoer.com",
+    creds: [
+      { label: "User", email: "test@test.com", password: "password" },
+      { label: "Admin", username: "admin@sge.com", password: "password" },
+    ],
   },
 ];
 
