@@ -24,7 +24,7 @@ const ImageModal = ({ show, onHide, src }: { show: boolean; onHide: () => void; 
             alt="Expanded"
             fill
             style={{ objectFit: "contain" }}
-            onLoadingComplete={() => setLoading(false)}
+            onLoad={() => setLoading(false)}
           />
         </div>
       </Modal.Body>

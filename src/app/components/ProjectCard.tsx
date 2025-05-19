@@ -1,4 +1,6 @@
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Spinner } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import TechBadges from "./TechBadges";
 import Credentials from "./Credentials";
 
@@ -29,31 +31,75 @@ const ProjectCard = ({
   demo,
   creds,
   onImageClick,
-}: Project) => (
-  <Card className="fade-in-up" style={{ maxWidth: "700px" }}>
-    <Card.Header className="text-center">{title}</Card.Header>
-    <Card.Img
-      variant="top"
-      src={img}
-      alt={alt}
-      className="clickable-image"
-      onClick={() => onImageClick(img)}
-      style={{ cursor: "pointer" }}
-    />
-    <Card.Body>
-      <Card.Title>Tech Stack:</Card.Title>
-      <div className="mb-3">
-        <TechBadges tech={tech} />
+}: Project) => {
+  const [loading, setLoading] = useState(true);
+  const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(null);
+  const defaultHeight = "32vh";
+
+  useEffect(() => {
+    const tempImg = new window.Image();
+    tempImg.src = img;
+
+    tempImg.onload = () => {
+      setDimensions({ width: tempImg.naturalWidth, height: tempImg.naturalHeight });
+      setLoading(false);
+    };
+  }, [img]);
+
+  return (
+    <Card className="fade-in-up" style={{ maxWidth: "700px" }}>
+      <Card.Header className="text-center">{title}</Card.Header>
+
+      <div
+        style={{
+          position: "relative",
+          height: loading ? defaultHeight : "auto",
+        }}>
+        {loading && (
+          <div className="position-absolute top-50 start-50 translate-middle z-1">
+            <Spinner animation="border" variant="primary" />
+          </div>
+        )}
+        {dimensions && (
+          <Image
+            src={img}
+            alt={alt}
+            width={dimensions.width}
+            height={dimensions.height}
+            style={{
+              width: "100%",
+              height: "auto",
+              opacity: loading ? 0 : 1,
+              transition: "opacity 0.3s ease-in-out",
+              cursor: "pointer",
+            }}
+            priority
+            onClick={() => onImageClick(img)}
+          />
+        )}
       </div>
-      <Card.Text style={{ whiteSpace: "pre-line" }}>{description}</Card.Text>
-    </Card.Body>
-    <Card.Footer className="text-center">
-      <Button variant="info" href={demo} target="_blank" rel="noopener noreferrer" className="me-2">
-        View Demo Site
-      </Button>
-      {creds && <Credentials creds={creds} />}
-    </Card.Footer>
-  </Card>
-);
+
+      <Card.Body>
+        <Card.Title>Tech Stack:</Card.Title>
+        <div className="mb-3">
+          <TechBadges tech={tech} />
+        </div>
+        <Card.Text style={{ whiteSpace: "pre-line" }}>{description}</Card.Text>
+      </Card.Body>
+
+      <Card.Footer className="text-center">
+        <Button
+          variant="info"
+          href={demo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="me-2">
+          View Demo Site
+        </Button>
+        {creds && <Credentials creds={creds} />}
+      </Card.Footer>
+    </Card>
+  );
+};
 
 export default ProjectCard;
