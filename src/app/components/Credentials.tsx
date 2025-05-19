@@ -1,11 +1,11 @@
-interface Credential {
-  label: string;
-  password: string;
-  username?: string;
-  email?: string;
+// src/app/components/Credentials.tsx
+import { Credential } from "../types"; // adjust path
+
+interface CredentialsProps {
+  creds: Credential[];
 }
 
-const Credentials = ({ creds }: { creds: Credential[] }) => (
+const Credentials = ({ creds }: CredentialsProps) => (
   <>
     {creds.map((c, idx) => (
       <div key={idx} className="mt-3">

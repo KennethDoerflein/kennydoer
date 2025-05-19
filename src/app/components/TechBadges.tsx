@@ -1,8 +1,5 @@
 import { Badge } from "react-bootstrap";
-
-interface TechBadgesProps {
-  tech: string[];
-}
+import { TechBadgesProps } from "../types";
 
 const TechBadges = ({ tech }: TechBadgesProps) => {
   const colors = ["primary", "secondary", "success", "danger", "warning", "info", "light"];

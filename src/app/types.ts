@@ -1,0 +1,22 @@
+// src/app/types.ts
+export interface Credential {
+  label: string;
+  password: string;
+  username?: string;
+  email?: string;
+}
+
+export interface Project {
+  title: string;
+  img: string;
+  alt: string;
+  tech: string[];
+  description: string;
+  demo: string;
+  creds?: Credential[];
+  onImageClick: (src: string) => void;
+}
+
+export interface TechBadgesProps {
+  tech: string[];
+}

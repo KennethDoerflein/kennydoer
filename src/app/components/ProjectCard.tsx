@@ -1,26 +1,9 @@
-import { Card, Button, Spinner } from "react-bootstrap";
-import { useState, useEffect } from "react";
 import Image from "next/image";
-import TechBadges from "./TechBadges";
+import { useEffect, useState } from "react";
+import { Button, Card, Spinner } from "react-bootstrap";
+import { Project } from "../types";
 import Credentials from "./Credentials";
-
-interface Credential {
-  label: string;
-  password: string;
-  username?: string;
-  email?: string;
-}
-
-interface Project {
-  title: string;
-  img: string;
-  alt: string;
-  tech: string[];
-  description: string;
-  demo: string;
-  creds?: Credential[];
-  onImageClick: (src: string) => void;
-}
+import TechBadges from "./TechBadges";
 
 const ProjectCard = ({
   title,
