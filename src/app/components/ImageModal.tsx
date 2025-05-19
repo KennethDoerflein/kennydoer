@@ -13,7 +13,7 @@ const ImageModal = ({ show, onHide, src }: { show: boolean; onHide: () => void; 
     <Modal show={show} onHide={onHide} fullscreen>
       <Modal.Header closeButton className="py-0" />
       <Modal.Body className="bg-dark p-0 d-flex justify-content-center align-items-center">
-        <div>
+        <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
           {loading && (
             <div className="position-absolute top-50 start-50 translate-middle">
               <Spinner animation="border" variant="light" />
@@ -21,7 +21,7 @@ const ImageModal = ({ show, onHide, src }: { show: boolean; onHide: () => void; 
           )}
           <Image
             src={src}
-            alt="Expanded"
+            alt="Expanded view"
             fill
             style={{ objectFit: "contain" }}
             onLoad={() => setLoading(false)}

@@ -17,14 +17,13 @@ const ProjectCard = ({
 }: Project) => {
   const [loading, setLoading] = useState(true);
   const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(null);
-  const defaultHeight = "32vh";
 
+  // load to get intrinsic size
   useEffect(() => {
-    const tempImg = new window.Image();
-    tempImg.src = img;
-
-    tempImg.onload = () => {
-      setDimensions({ width: tempImg.naturalWidth, height: tempImg.naturalHeight });
+    const tmp = new window.Image();
+    tmp.src = img;
+    tmp.onload = () => {
+      setDimensions({ width: tmp.naturalWidth, height: tmp.naturalHeight });
       setLoading(false);
     };
   }, [img]);
@@ -34,10 +33,12 @@ const ProjectCard = ({
       <Card.Header className="text-center">{title}</Card.Header>
 
       <div
+        className="position-relative w-100"
         style={{
-          position: "relative",
-          height: loading ? defaultHeight : "auto",
+          aspectRatio: dimensions ? `${dimensions.width} / ${dimensions.height}` : "2.1 / 1",
+          backgroundColor: "#f0f0f0",
         }}>
+        {" "}
         {loading && (
           <div className="position-absolute top-50 start-50 translate-middle z-1">
             <Spinner animation="border" variant="primary" />
@@ -49,6 +50,8 @@ const ProjectCard = ({
             alt={alt}
             width={dimensions.width}
             height={dimensions.height}
+            onClick={() => onImageClick(img)}
+            onLoad={() => setLoading(false)} // ← use onLoad
             style={{
               width: "100%",
               height: "auto",
@@ -57,7 +60,6 @@ const ProjectCard = ({
               cursor: "pointer",
             }}
             priority
-            onClick={() => onImageClick(img)}
           />
         )}
       </div>
