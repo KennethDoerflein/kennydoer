@@ -58,6 +58,7 @@
   .card img:hover {
     transform: none;
     pointer-events: none;
+    filter: none;
   }
 }
 
