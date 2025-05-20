@@ -63,7 +63,7 @@ const projects = [
     title: "Tic-Tac-Toe",
     img: "/assets/tictactoeHome.png",
     alt: "tic-tac-toe site image",
-    tech: ["React", "HTML", "CSS", "JavaScript", "React-Bootstrap"],
+    tech: ["React", "HTML", "CSS", "TypeScript", "React-Bootstrap"],
     description: `A React-based Tic-Tac-Toe game with three difficulties: hard (minimax algorithm), medium (50% random), and easy (80% random). Features include a reset button, score tracking (wins, losses, ties) per difficulty, and a user-friendly interface.`,
     demo: "https://tictactoe.kennydoer.com",
   },
