@@ -110,7 +110,9 @@ const HomePage: NextPage = () => {
           rel="noopener noreferrer">
           <i className="bi bi-github"></i>
         </Button>
-        <Container className="text-center pb-2">Site Version: {appInfo.version}</Container>
+        <Container className="text-center pb-2 text-body-secondary">
+          Site Version: {appInfo.version}
+        </Container>
       </footer>
     </>
   );
