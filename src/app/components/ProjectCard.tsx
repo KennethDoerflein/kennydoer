@@ -78,7 +78,7 @@ const ProjectCard = ({
           href={demo}
           target="_blank"
           rel="noopener noreferrer"
-          className="me-2">
+          className="mx-auto">
           View Demo Site
         </Button>
         {creds && <Credentials creds={creds} />}
