@@ -33,7 +33,7 @@ const Credentials = ({ creds }: CredentialsProps) => {
           <div
             key={idx}
             className={`card bg-dark text-light border-0 w-100 shadow-sm ${
-              idx < creds.length - 1 ? "mb-1" : ""
+              idx < creds.length - 1 ? "mb-0" : "mb-3"
             }`}
             style={{
               maxWidth: "200px",
