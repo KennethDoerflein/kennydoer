@@ -20,6 +20,15 @@ const projects = [
     creds: [{ label: "Test", email: "test@test.com", password: "password" }],
   },
   {
+    title: "Sporting Goods Store",
+    img: "/assets/jsgHome.png",
+    alt: "Sporting Goods Store image",
+    tech: ["HTML", "CSS", "JavaScript", "Python", "Django", "Bootstrap"],
+    description: `Johnson's Sporting Goods is a online sporting goods store. Customers can register, sign in, browse products, add items to a shopping cart, and complete a mock checkout.`,
+    demo: "https://jsg.kennydoer.com",
+    creds: [{ label: "Test", email: "test", password: "mypassword123" }],
+  },
+  {
     title: "Job Posting Site",
     img: "/assets/ngnHome.png",
     alt: "Job Posting Site image",
