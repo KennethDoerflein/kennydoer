@@ -35,7 +35,9 @@ const Credentials = ({ creds }: CredentialsProps) => {
             className={`card bg-dark text-light border-0 w-100 shadow-sm ${
               idx < creds.length - 1 ? "mb-1" : ""
             }`}
-            style={{ maxWidth: "320px" }}>
+            style={{
+              maxWidth: "200px",
+            }}>
             <button
               type="button"
               onClick={() => toggleOpen(idx)}
@@ -43,10 +45,10 @@ const Credentials = ({ creds }: CredentialsProps) => {
               aria-expanded={isOpen}
               aria-controls={`collapse-body-${idx}`}
               style={{
-                // full rounding when closed, square bottom when open
                 borderRadius: isOpen ? "1rem 1rem 0 0" : "1rem",
+                transition: "border-radius 0.5s ease",
               }}>
-              <span>{formatLabel(c.label)} Credentials</span>
+              <span style={{ fontSize: "0.9rem" }}>{formatLabel(c.label)} Credentials</span>
               <span
                 aria-hidden="true"
                 style={{
