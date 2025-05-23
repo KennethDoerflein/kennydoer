@@ -20,20 +20,28 @@ const isEmailFormat = (value?: string | null): boolean =>
 
 const Credentials = ({ creds }: CredentialsProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-  const [copiedField, setCopiedField] = useState<"id" | "password" | null>(null);
+  const [copiedStates, setCopiedStates] = useState<Set<string>>(new Set());
 
   const toggleOpen = (idx: number) => setOpenIndex((cur) => (cur === idx ? null : idx));
 
   const handleCopy = (text: string, index: number, field: "id" | "password") => {
     navigator.clipboard.writeText(text).then(() => {
-      setCopiedIndex(index);
-      setCopiedField(field);
+      const copiedKey = `${index}-${field}`;
+
+      setCopiedStates((prevStates) => new Set(prevStates).add(copiedKey));
+
       setTimeout(() => {
-        setCopiedIndex(null);
-        setCopiedField(null);
-      }, 1500);
+        setCopiedStates((prevStates) => {
+          const newSet = new Set(prevStates);
+          newSet.delete(copiedKey);
+          return newSet;
+        });
+      }, 500);
     });
+  };
+
+  const isCopied = (index: number, field: "id" | "password"): boolean => {
+    return copiedStates.has(`${index}-${field}`);
   };
 
   return (
@@ -109,7 +117,7 @@ const Credentials = ({ creds }: CredentialsProps) => {
                         variant="outline-info"
                         onClick={() => handleCopy(id!, idx, "id")}
                         style={{ fontSize: "0.85rem" }}>
-                        {copiedIndex === idx && copiedField === "id" ? "Copied!" : "Copy"}
+                        {isCopied(idx, "id") ? "Copied!" : "Copy"}
                       </Button>
                     </InputGroup>
                   </div>
@@ -129,7 +137,7 @@ const Credentials = ({ creds }: CredentialsProps) => {
                         variant="outline-info"
                         onClick={() => handleCopy(c.password, idx, "password")}
                         style={{ fontSize: "0.85rem" }}>
-                        {copiedIndex === idx && copiedField === "password" ? "Copied!" : "Copy"}
+                        {isCopied(idx, "password") ? "Copied!" : "Copy"}
                       </Button>
                     </InputGroup>
                   </div>
