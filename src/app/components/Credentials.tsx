@@ -1,6 +1,6 @@
 // src/app/components/Credentials.tsx
 import React, { useState } from "react";
-import { Collapse } from "react-bootstrap";
+import { Collapse, InputGroup, Button, FormControl } from "react-bootstrap";
 import { Credential } from "../types";
 
 interface CredentialsProps {
@@ -20,7 +20,21 @@ const isEmailFormat = (value?: string | null): boolean =>
 
 const Credentials = ({ creds }: CredentialsProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+  const [copiedField, setCopiedField] = useState<"id" | "password" | null>(null);
+
   const toggleOpen = (idx: number) => setOpenIndex((cur) => (cur === idx ? null : idx));
+
+  const handleCopy = (text: string, index: number, field: "id" | "password") => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopiedIndex(index);
+      setCopiedField(field);
+      setTimeout(() => {
+        setCopiedIndex(null);
+        setCopiedField(null);
+      }, 1500);
+    });
+  };
 
   return (
     <div className="d-flex flex-column align-items-start gap-0">
@@ -36,16 +50,17 @@ const Credentials = ({ creds }: CredentialsProps) => {
               idx < creds.length - 1 ? "mb-0" : "mb-3"
             }`}
             style={{
-              maxWidth: "200px",
+              maxWidth: "220px",
             }}>
             <button
               type="button"
               onClick={() => toggleOpen(idx)}
-              className="card-header border-info bg-dark text-primary d-flex justify-content-between align-items-center"
+              className="card-header bg-dark text-primary d-flex justify-content-between align-items-center"
               aria-expanded={isOpen}
               aria-controls={`collapse-body-${idx}`}
               style={{
-                borderRadius: isOpen ? "1rem 1rem 0 0" : "1rem",
+                border: "1.5px solid #0dcaf0",
+                borderRadius: isOpen ? "1rem 1rem 0 0" : "1.3rem",
                 transition: "border-radius 0.5s ease",
               }}>
               <span style={{ fontSize: "0.9rem" }}>{formatLabel(c.label)} Credentials</span>
@@ -56,7 +71,14 @@ const Credentials = ({ creds }: CredentialsProps) => {
                   transition: "transform 0.3s ease",
                   transform: isOpen ? "rotate(90deg)" : undefined,
                 }}>
-                ▶
+                <i
+                  className={`bi bi-chevron-right`}
+                  style={{
+                    transition: "transform 0.3s ease",
+                    transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
+                  }}
+                  aria-hidden="true"
+                />
               </span>
             </button>
 
@@ -70,17 +92,46 @@ const Credentials = ({ creds }: CredentialsProps) => {
                 }}>
                 <div
                   className="card-body p-3"
-                  style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.05)",
-                    marginTop: "-1px",
-                  }}>
+                  style={{ backgroundColor: "rgba(255, 255, 255, 0.03)" }}>
                   <div className="mb-2">
-                    <div className="text-muted small">{isEmail ? "Email" : "Username"}</div>
-                    <div className="fw-semibold">{id}</div>
+                    <div className="text-muted small mb-1">{isEmail ? "Email" : "Username"}</div>
+
+                    <InputGroup size="sm">
+                      <FormControl
+                        disabled
+                        value={id}
+                        title={id}
+                        style={{ fontWeight: 650, userSelect: "text", textAlign: "center" }}
+                        aria-label={isEmail ? "Email" : "Username"}
+                      />
+
+                      <Button
+                        variant="outline-info"
+                        onClick={() => handleCopy(id!, idx, "id")}
+                        style={{ fontSize: "0.85rem" }}>
+                        {copiedIndex === idx && copiedField === "id" ? "Copied!" : "Copy"}
+                      </Button>
+                    </InputGroup>
                   </div>
                   <div>
-                    <div className="text-muted small">Password</div>
-                    <div className="fw-semibold">{c.password}</div>
+                    <div className="text-muted small mb-1">Password</div>
+
+                    <InputGroup size="sm">
+                      <FormControl
+                        disabled
+                        value={c.password}
+                        title={c.password}
+                        style={{ fontWeight: 650, userSelect: "text", textAlign: "center" }}
+                        aria-label="Password"
+                      />
+
+                      <Button
+                        variant="outline-info"
+                        onClick={() => handleCopy(c.password, idx, "password")}
+                        style={{ fontSize: "0.85rem" }}>
+                        {copiedIndex === idx && copiedField === "password" ? "Copied!" : "Copy"}
+                      </Button>
+                    </InputGroup>
                   </div>
                 </div>
               </div>
