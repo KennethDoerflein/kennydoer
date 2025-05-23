@@ -6,6 +6,10 @@ export interface Credential {
   email?: string;
 }
 
+export interface CredentialsProps {
+  creds: Credential[];
+}
+
 export interface Project {
   title: string;
   img: string;

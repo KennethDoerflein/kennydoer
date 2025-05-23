@@ -1,11 +1,7 @@
 // src/app/components/Credentials.tsx
 import React, { useState } from "react";
 import { Collapse, InputGroup, Button, FormControl } from "react-bootstrap";
-import { Credential } from "../types";
-
-interface CredentialsProps {
-  creds: Credential[];
-}
+import { CredentialsProps } from "../types";
 
 const formatLabel = (label: string) =>
   label
