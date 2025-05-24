@@ -55,6 +55,8 @@ const Credentials = ({ creds }: CredentialsProps) => {
             }`}
             style={{
               maxWidth: "220px",
+              borderRadius: isOpen ? "1rem 1rem 0 0" : "1.3rem",
+              transition: "border-radius 0.5s ease",
             }}>
             <button
               type="button"
@@ -63,7 +65,7 @@ const Credentials = ({ creds }: CredentialsProps) => {
               aria-expanded={isOpen}
               aria-controls={`collapse-body-${idx}`}
               style={{
-                border: "1.5px solid #0dcaf0",
+                border: "3px solid #0dcaf0",
                 borderRadius: isOpen ? "1rem 1rem 0 0" : "1.3rem",
                 transition: "border-radius 0.5s ease",
               }}>
@@ -92,7 +94,7 @@ const Credentials = ({ creds }: CredentialsProps) => {
                 className="p-0 m-0"
                 style={{
                   overflow: "hidden",
-                  borderRadius: "0 0 0.75rem 0.75rem",
+                  borderRadius: "0 0 1rem 1rem",
                 }}>
                 <div
                   className="card-body p-3"
