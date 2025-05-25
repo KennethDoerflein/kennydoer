@@ -78,8 +78,7 @@ const ProjectCard = ({
           href={demo}
           target="_blank"
           rel="noopener noreferrer"
-          className={`gradientButton mx-auto`}
-        >
+          className={`gradientButton mx-auto`}>
           View Demo Site
         </Button>
         {creds && <Credentials creds={creds} />}
