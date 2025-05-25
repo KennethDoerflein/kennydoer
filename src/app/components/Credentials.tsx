@@ -41,111 +41,113 @@ const Credentials = ({ creds }: CredentialsProps) => {
   };
 
   return (
-    <div className="d-flex flex-column align-items-start gap-0">
-      {creds.map((c, idx) => {
-        const id = c.username ?? c.email;
-        const isEmail = isEmailFormat(id);
-        const isOpen = openIndex === idx;
+    <>
+      <div className="d-flex flex-column align-items-start gap-0 mt-0 border-0">
+        {creds.map((c, idx) => {
+          const id = c.username ?? c.email;
+          const isEmail = isEmailFormat(id);
+          const isOpen = openIndex === idx;
 
-        return (
-          <div
-            key={idx}
-            className={`card bg-dark text-light border-0 w-100 shadow-sm ${
-              idx < creds.length - 1 ? "mb-0" : "mb-3"
-            }`}
-            style={{
-              maxWidth: "220px",
-              borderRadius: isOpen ? "1rem 1rem 0 0" : "1.3rem",
-              transition: "border-radius 0.5s ease",
-            }}>
-            <button
-              type="button"
-              onClick={() => toggleOpen(idx)}
-              className="card-header bg-dark text-primary d-flex justify-content-between align-items-center"
-              aria-expanded={isOpen}
-              aria-controls={`collapse-body-${idx}`}
+          return (
+            <div
+              key={idx}
+              className={`card bg-dark text-light border-0 w-100 shadow-sm ${
+                idx < creds.length - 1 ? "mb-0" : "mb-3"
+              }`}
               style={{
-                border: "3px solid #0dcaf0",
+                maxWidth: "220px",
                 borderRadius: isOpen ? "1rem 1rem 0 0" : "1.3rem",
                 transition: "border-radius 0.5s ease",
               }}>
-              <span style={{ fontSize: "0.9rem" }}>{formatLabel(c.label)} Credentials</span>
-              <span
-                aria-hidden="true"
+              <button
+                onClick={() => toggleOpen(idx)}
+                className="card-header text-light d-flex justify-content-between align-items-center border-0"
+                aria-expanded={isOpen}
+                aria-controls={`collapse-body-${idx}`}
                 style={{
-                  display: "inline-block",
-                  transition: "transform 0.3s ease",
-                  transform: isOpen ? "rotate(90deg)" : undefined,
+                  borderRadius: isOpen ? "1rem 1rem 0 0" : "1.3rem",
+                  transition: "border-radius 0.5s ease",
+                  backgroundColor: "#5c4685",
+                  fontWeight: 600,
                 }}>
-                <i
-                  className={`bi bi-chevron-right`}
-                  style={{
-                    transition: "transform 0.3s ease",
-                    transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
-                  }}
+                <span style={{ fontSize: "0.9rem" }}>{formatLabel(c.label)} Credentials</span>
+                <span
                   aria-hidden="true"
-                />
-              </span>
-            </button>
+                  style={{
+                    display: "inline-block",
+                    transition: "transform 0.3s ease",
+                    transform: isOpen ? "rotate(90deg)" : undefined,
+                  }}>
+                  <i
+                    className={`bi bi-chevron-right`}
+                    style={{
+                      transition: "transform 0.3s ease",
+                      transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
+                    }}
+                    aria-hidden="true"
+                  />
+                </span>
+              </button>
 
-            <Collapse in={isOpen} unmountOnExit>
-              <div
-                id={`collapse-body-${idx}`}
-                className="p-0 m-0"
-                style={{
-                  overflow: "hidden",
-                  borderRadius: "0 0 1rem 1rem",
-                }}>
+              <Collapse in={isOpen} unmountOnExit>
                 <div
-                  className="card-body p-3"
-                  style={{ backgroundColor: "rgba(255, 255, 255, 0.03)" }}>
-                  <div className="mb-2">
-                    <div className="text-muted small mb-1">{isEmail ? "Email" : "Username"}</div>
+                  id={`collapse-body-${idx}`}
+                  className="p-0 m-0"
+                  style={{
+                    overflow: "hidden",
+                    borderRadius: "0 0 1rem 1rem",
+                  }}>
+                  <div
+                    className="card-body p-3 border-0"
+                    style={{ backgroundColor: "rgba(255, 255, 255, 0.03)" }}>
+                    <div className="mb-2">
+                      <div className="text-muted small mb-1">{isEmail ? "Email" : "Username"}</div>
 
-                    <InputGroup size="sm">
-                      <FormControl
-                        disabled
-                        value={id}
-                        title={id}
-                        style={{ fontWeight: 650, userSelect: "text", textAlign: "center" }}
-                        aria-label={isEmail ? "Email" : "Username"}
-                      />
+                      <InputGroup size="sm">
+                        <FormControl
+                          disabled
+                          value={id}
+                          title={id}
+                          style={{ fontWeight: 650, userSelect: "text", textAlign: "center" }}
+                          aria-label={isEmail ? "Email" : "Username"}
+                        />
 
-                      <Button
-                        variant="outline-info"
-                        onClick={() => handleCopy(id!, idx, "id")}
-                        style={{ fontSize: "0.85rem" }}>
-                        {isCopied(idx, "id") ? "Copied!" : "Copy"}
-                      </Button>
-                    </InputGroup>
-                  </div>
-                  <div>
-                    <div className="text-muted small mb-1">Password</div>
+                        <Button
+                          variant="outline-info"
+                          onClick={() => handleCopy(id!, idx, "id")}
+                          style={{ fontSize: "0.85rem" }}>
+                          {isCopied(idx, "id") ? "Copied!" : "Copy"}
+                        </Button>
+                      </InputGroup>
+                    </div>
+                    <div>
+                      <div className="text-muted small mb-1">Password</div>
 
-                    <InputGroup size="sm">
-                      <FormControl
-                        disabled
-                        value={c.password}
-                        title={c.password}
-                        style={{ fontWeight: 650, userSelect: "text", textAlign: "center" }}
-                        aria-label="Password"
-                      />
+                      <InputGroup size="sm">
+                        <FormControl
+                          disabled
+                          value={c.password}
+                          title={c.password}
+                          style={{ fontWeight: 650, userSelect: "text", textAlign: "center" }}
+                          aria-label="Password"
+                        />
 
-                      <Button
-                        variant="outline-info"
-                        onClick={() => handleCopy(c.password, idx, "password")}
-                        style={{ fontSize: "0.85rem" }}>
-                        {isCopied(idx, "password") ? "Copied!" : "Copy"}
-                      </Button>
-                    </InputGroup>
+                        <Button
+                          variant="outline-info"
+                          onClick={() => handleCopy(c.password, idx, "password")}
+                          style={{ fontSize: "0.85rem" }}>
+                          {isCopied(idx, "password") ? "Copied!" : "Copy"}
+                        </Button>
+                      </InputGroup>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Collapse>
-          </div>
-        );
-      })}
-    </div>
+              </Collapse>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 };
 

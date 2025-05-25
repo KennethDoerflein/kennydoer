@@ -30,7 +30,9 @@ const ProjectCard = ({
 
   return (
     <Card className="fade-in-up" style={{ maxWidth: "700px" }}>
-      <Card.Header className="text-center">{title}</Card.Header>
+      <Card.Header className="text-center" style={{ backgroundColor: "#0F172A" }}>
+        {title}
+      </Card.Header>
 
       <div
         className="position-relative w-100"
@@ -71,14 +73,13 @@ const ProjectCard = ({
         </div>
         <Card.Text style={{ whiteSpace: "pre-line" }}>{description}</Card.Text>
       </Card.Body>
-
       <Card.Footer className="text-center">
         <Button
-          variant="info"
           href={demo}
           target="_blank"
           rel="noopener noreferrer"
-          className="mx-auto">
+          className={`gradientButton mx-auto`}
+        >
           View Demo Site
         </Button>
         {creds && <Credentials creds={creds} />}
