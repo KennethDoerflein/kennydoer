@@ -46,7 +46,7 @@ const CredentialCard = ({
         }}>
         <span style={{ fontSize: "0.9rem" }}>{formatLabel(credential.label)} Credentials</span>
         <i
-          className="bi bi-chevron-right"
+          className={`bi bi-chevron-right ${!isOpen ? "chevron-wiggle" : ""}`}
           style={{
             transition: "transform 0.3s ease",
             transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",

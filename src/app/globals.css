@@ -309,3 +309,32 @@
   transform: translateY(-2px) scale(0.99);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
 }
+
+@keyframes chevronWiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  2% {
+    transform: rotate(20deg);
+  }
+  4% {
+    transform: rotate(-15deg);
+  }
+  6% {
+    transform: rotate(10deg);
+  }
+  8% {
+    transform: rotate(-5deg);
+  }
+  10% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.chevron-wiggle {
+  animation: chevronWiggle 5s ease-in-out infinite;
+  display: inline-block;
+}
