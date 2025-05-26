@@ -232,84 +232,56 @@
   background-color: #777;
 }
 
-/* GRADIENT BUTTON
-
-/* Fade animations for ping-pong effect */
-@keyframes pingPongFade {
-  0%,
-  100% {
-    opacity: 1;
+@keyframes gradientMorph {
+  0% {
+    background-position: 0% 0%;
   }
   50% {
-    opacity: 0;
+    background-position: 100% 100%;
   }
-}
-
-@keyframes pingPongFadeInverse {
-  0%,
   100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
+    background-position: 0% 0%;
   }
 }
 
 .gradientButton {
-  position: relative;
   display: inline-block;
   font-weight: 600;
   padding: 12px 28px;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1.05rem;
   border: none;
   color: #fff;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   overflow: hidden;
 
-  /* Force GPU compositing in Safari */
+  background: linear-gradient(135deg, #6a11cb, #4525fc, #003cff, #6a11cb);
+  background-size: 400% 400%;
+  background-position: 0% 0%;
+  animation: gradientMorph 6s ease-in-out infinite;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* Safari-safe GPU hints */
   transform: translateZ(0);
-  will-change: transform, opacity;
+  will-change: background-position, transform;
   backface-visibility: hidden;
 
-  /* Smooth hover transition */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
 }
 
-/* Two gradient layers behind the button text */
-.gradientButton::before,
-.gradientButton::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 8px;
-  z-index: -1;
-
-  /* No background-position animation or sizing – full-cover gradients */
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  /* Only opacity animates */
-  animation-duration: 3s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-/* Layer A: purple → blue → purple */
-.gradientButton::before {
-  background-image: linear-gradient(270deg, #6a11cb, #0056b3, #6a11cb);
-  animation-name: pingPongFade;
-}
-
-/* Layer B: blue → purple → blue */
-.gradientButton::after {
-  background-image: linear-gradient(270deg, #0056b3, #6a11cb, #0056b3);
-  animation-name: pingPongFadeInverse;
-}
-
-/* Hover lift effect */
 .gradientButton:hover {
-  transform: translateY(-5px) translateZ(0);
-  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.gradientButton:focus,
+.gradientButton:active {
+  outline: none;
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
