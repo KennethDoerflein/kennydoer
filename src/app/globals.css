@@ -250,29 +250,28 @@
 
 @keyframes organicSwirl {
   0% {
-    background-position: 20% 80%;
-    background-size: 400% 400%;
-    filter: brightness(1) saturate(1);
+    background-position: 50% 50%;
+    filter: brightness(1) saturate(1.05);
   }
-  25% {
-    background-position: 45% 55%;
-    background-size: 450% 380%;
-    filter: brightness(1.03) saturate(1.05);
+  20% {
+    background-position: 60% 40%;
+    filter: brightness(1.08) saturate(1.1);
   }
-  50% {
-    background-position: 70% 30%;
-    background-size: 420% 420%;
-    filter: brightness(0.98) saturate(1.02);
+  40% {
+    background-position: 70% 60%;
+    filter: brightness(1.04) saturate(1.12);
   }
-  75% {
-    background-position: 55% 45%;
-    background-size: 380% 450%;
-    filter: brightness(1.02) saturate(0.98);
+  60% {
+    background-position: 40% 70%;
+    filter: brightness(0.98) saturate(1.08);
+  }
+  80% {
+    background-position: 30% 40%;
+    filter: brightness(1.02) saturate(1.1);
   }
   100% {
-    background-position: 20% 80%;
-    background-size: 400% 400%;
-    filter: brightness(1) saturate(1);
+    background-position: 50% 50%;
+    filter: brightness(1) saturate(1.05);
   }
 }
 
@@ -287,10 +286,10 @@
   cursor: pointer;
   letter-spacing: 0.05em;
   overflow: hidden;
-  background: linear-gradient(135deg, #003f5c, #005f73, #0a9396, #003f5c);
-  background-size: 400% 400%;
-  background-position: 20% 80%;
-  animation: organicSwirl 15s ease-in-out infinite;
+  background: linear-gradient(120deg, #23235b 0%, #3a3a7c 30%, #6c4cff 70%, #3a3a7c 100%);
+  background-size: 300% 300%;
+  background-position: 50% 50%;
+  animation: organicSwirl 10s cubic-bezier(0.77, 0, 0.175, 1) infinite;
   transition: transform var(--transition-duration-normal) var(--timing-function-ease),
     box-shadow var(--transition-duration-normal) var(--timing-function-ease),
     filter 1.2s cubic-bezier(0.77, 0, 0.175, 1);
