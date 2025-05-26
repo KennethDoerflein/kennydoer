@@ -1,4 +1,3 @@
-/* GENERAL UTILITIES */
 :root {
   --alert-bg: #ffc107;
   --alert-color: #000;
@@ -14,9 +13,13 @@
   --btn-info-hover-bg: #31d2f2;
   --scroll-btn-bg: var(--card-header-bg);
   --scroll-btn-hover-bg: var(--card-header-hover-bg);
+  --transition-duration-fast: 0.2s;
+  --transition-duration-normal: 0.3s;
+  --transition-duration-slow: 0.5s;
+  --timing-function-ease: ease;
+  --timing-function-ease-in-out: ease-in-out;
 }
 
-/* ALERT STYLES */
 .compact-alert {
   padding: 8px 12px;
   margin-bottom: 15px;
@@ -26,7 +29,6 @@
   width: fit-content;
 }
 
-/* CARD STYLING */
 .card {
   max-width: 700px;
   margin: 30px auto;
@@ -34,7 +36,8 @@
   overflow: hidden;
   background-color: var(--card-bg);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.5s ease, box-shadow 0.3s ease !important;
+  transition: transform var(--transition-duration-slow) var(--timing-function-ease),
+    box-shadow var(--transition-duration-normal) var(--timing-function-ease) !important;
 }
 
 .card:hover {
@@ -45,7 +48,9 @@
 .card img {
   border-bottom: 1px solid #333;
   border-radius: 0;
-  transition: transform 0.5s ease, filter 0.5s ease, box-shadow 0.5s ease !important;
+  transition: transform var(--transition-duration-slow) var(--timing-function-ease),
+    filter var(--transition-duration-slow) var(--timing-function-ease),
+    box-shadow var(--transition-duration-slow) var(--timing-function-ease) !important;
 }
 
 .card img:hover {
@@ -54,6 +59,7 @@
   filter: brightness(1.15);
   box-shadow: var(--card-img-hover-shadow);
 }
+
 @media (max-width: 768px) {
   .card img:hover {
     transform: none;
@@ -69,11 +75,15 @@
   text-align: center;
   background-color: var(--card-header-bg);
   color: #fff;
-  transition: background-color 0.3s ease;
+  transition: background-color var(--transition-duration-normal) var(--timing-function-ease),
+    background-position 0.6s var(--timing-function-ease-in-out);
+  background-size: 200% 200%;
+  background-position: center;
 }
 
 .card-header:hover {
   background-color: var(--card-header-hover-bg);
+  background-position: right bottom;
 }
 
 .card-body,
@@ -91,12 +101,11 @@
   color: #ccc;
 }
 
-/* MODAL & IMAGE */
 .modal-content {
   background: var(--modal-bg);
   border: none;
   border-radius: 10px;
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn var(--transition-duration-normal) var(--timing-function-ease);
 }
 
 #modalImage {
@@ -104,7 +113,6 @@
   border-radius: 8px;
 }
 
-/* CLOSE BUTTON */
 .btn-close {
   position: absolute;
   top: 1rem;
@@ -123,7 +131,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color var(--transition-duration-normal) var(--timing-function-ease),
+    transform var(--transition-duration-fast) var(--timing-function-ease);
 }
 
 .btn-close:hover {
@@ -131,13 +140,13 @@
   transform: scale(1.1);
 }
 
-/* BADGES & BUTTONS */
 .badge {
   margin: 3px 3px 6px 0;
   padding: 0.45em 0.65em;
   font-size: 0.8rem;
   border-radius: 6px;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  transition: transform var(--transition-duration-fast) var(--timing-function-ease),
+    box-shadow var(--transition-duration-normal) var(--timing-function-ease);
 }
 
 .badge:hover {
@@ -153,19 +162,23 @@
   font-size: 1rem;
   color: #000;
   background-color: var(--btn-info-bg);
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  background-size: 200% 200%;
+  background-position: center;
+  transition: transform var(--transition-duration-fast) var(--timing-function-ease),
+    background-color var(--transition-duration-fast) var(--timing-function-ease),
+    background-position 0.6s var(--timing-function-ease-in-out);
 }
 
 .btn-info:hover {
   background-color: var(--btn-info-hover-bg);
+  background-position: right bottom;
   transform: scale(1.05);
 }
 
-/* FADE-IN ANIMATIONS */
 .fade-in-up {
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeInUp 0.6s ease forwards;
+  animation: fadeInUp 0.6s var(--timing-function-ease) forwards;
 }
 
 @keyframes fadeInUp {
@@ -186,7 +199,6 @@
   }
 }
 
-/* SCROLL TO TOP BUTTON */
 #goToBtn {
   position: fixed;
   bottom: 20px;
@@ -202,11 +214,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease;
+  transition: background-color var(--transition-duration-normal) var(--timing-function-ease),
+    transform var(--transition-duration-normal) var(--timing-function-ease),
+    box-shadow var(--transition-duration-normal) var(--timing-function-ease);
 }
 
 #goToBtn:hover {
   background-color: var(--scroll-btn-hover-bg);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
 
@@ -214,7 +230,6 @@
   margin: 0;
 }
 
-/* CUSTOM SCROLLBAR */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -226,62 +241,71 @@
 ::-webkit-scrollbar-thumb {
   background-color: #555;
   border-radius: 10px;
+  transition: background-color var(--transition-duration-normal) var(--timing-function-ease);
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #777;
 }
 
-@keyframes gradientMorph {
+@keyframes organicSwirl {
   0% {
-    background-position: 0% 0%;
+    background-position: 5% 95%;
   }
-  50% {
-    background-position: 100% 100%;
+  18% {
+    background-position: 85% 15%;
+  }
+  34% {
+    background-position: 25% 75%;
+  }
+  51% {
+    background-position: 90% 30%;
+  }
+  68% {
+    background-position: 40% 80%;
+  }
+  82% {
+    background-position: 70% 20%;
   }
   100% {
-    background-position: 0% 0%;
+    background-position: 5% 95%;
   }
 }
 
 .gradientButton {
   display: inline-block;
+  padding: 14px 36px;
+  font-size: 1.1rem;
   font-weight: 600;
-  padding: 12px 28px;
-  border-radius: 10px;
-  font-size: 1.05rem;
   border: none;
-  color: #fff;
+  border-radius: 12px;
+  color: #ffffff;
   cursor: pointer;
+  letter-spacing: 0.05em;
   overflow: hidden;
-
-  background: linear-gradient(135deg, #6a11cb, #4525fc, #003cff, #6a11cb);
-  background-size: 400% 400%;
-  background-position: 0% 0%;
-  animation: gradientMorph 6s ease-in-out infinite;
-
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  /* Safari-safe GPU hints */
+  background: linear-gradient(135deg, #003f5c, #005f73, #0a9396, #001d3d, #003f5c);
+  background-size: 600% 600%;
+  background-position: 12% 88%;
+  animation: organicSwirl 10s var(--timing-function-ease-in-out) infinite;
+  transition: transform var(--transition-duration-normal) var(--timing-function-ease),
+    box-shadow var(--transition-duration-normal) var(--timing-function-ease);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   transform: translateZ(0);
   will-change: background-position, transform;
   backface-visibility: hidden;
-
   -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   box-sizing: border-box;
 }
 
 .gradientButton:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
-.gradientButton:focus,
-.gradientButton:active {
+.gradientButton:active,
+.gradientButton:focus {
   outline: none;
-  transform: translateY(0);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px) scale(0.99);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
 }
