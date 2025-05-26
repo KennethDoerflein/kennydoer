@@ -232,80 +232,84 @@
   background-color: #777;
 }
 
-/* GRADIENT BUTTON */
-@property --gradientButton1 {
-  syntax: "<color>";
-  initial-value: #6a11cb; /* Original rich purple */
-  inherits: false;
-}
+/* GRADIENT BUTTON
 
-@property --gradientButton2 {
-  syntax: "<color>";
-  initial-value: #0056b3; /* Deep, vibrant blue */
-  inherits: false;
-}
-
-@keyframes gradientPingPong {
-  0% {
-    --gradientButton1: #6a11cb; /* Purple */
-    --gradientButton2: #0056b3; /* Blue */
+/* Fade animations for ping-pong effect */
+@keyframes pingPongFade {
+  0%,
+  100% {
+    opacity: 1;
   }
   50% {
-    --gradientButton1: #0056b3; /* Blue */
-    --gradientButton2: #6a11cb; /* Purple */
-  }
-  100% {
-    --gradientButton1: #6a11cb; /* Purple */
-    --gradientButton2: #0056b3; /* Blue */
+    opacity: 0;
   }
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
+@keyframes pingPongFadeInverse {
+  0%,
+  100% {
+    opacity: 0;
   }
   50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
+    opacity: 1;
   }
 }
 
 .gradientButton {
+  position: relative;
+  display: inline-block;
   font-weight: 600;
   padding: 12px 28px;
   border-radius: 8px;
   font-size: 1.05rem;
   border: none;
-  color: #ffffff;
-  background: linear-gradient(
-    270deg,
-    var(--gradientButton1),
-    var(--gradientButton2),
-    var(--gradientButton1)
-  );
-  background-size: 200% 100%;
-  background-position: 0% 50%;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: background-position 0.5s ease-in-out, transform 0.3s ease, box-shadow 0.3s ease;
-  animation: gradientPingPong 3s ease-in-out infinite;
+  color: #fff;
   cursor: pointer;
-
-  -webkit-tap-highlight-color: transparent;
-}
-
-.gradientButton:hover {
-  background-position: 100% 50%;
-  animation: gradientPingPong 3s ease-in-out infinite, gradientShift 3s linear infinite;
-  transform: translateY(-5px);
-  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
-}
-
-.gradientButton:active,
-.gradientButton:focus {
-  outline: none;
-  border: none;
-  transform: translateY(0);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+
+  /* Force GPU compositing in Safari */
+  transform: translateZ(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+
+  /* Smooth hover transition */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Two gradient layers behind the button text */
+.gradientButton::before,
+.gradientButton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  z-index: -1;
+
+  /* No background-position animation or sizing – full-cover gradients */
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* Only opacity animates */
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+/* Layer A: purple → blue → purple */
+.gradientButton::before {
+  background-image: linear-gradient(270deg, #6a11cb, #0056b3, #6a11cb);
+  animation-name: pingPongFade;
+}
+
+/* Layer B: blue → purple → blue */
+.gradientButton::after {
+  background-image: linear-gradient(270deg, #0056b3, #6a11cb, #0056b3);
+  animation-name: pingPongFadeInverse;
+}
+
+/* Hover lift effect */
+.gradientButton:hover {
+  transform: translateY(-5px) translateZ(0);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
 }
