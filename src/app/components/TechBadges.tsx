@@ -1,3 +1,5 @@
+// src/app/components/TechBadges.tsx
+
 import { Badge } from "react-bootstrap";
 import { TechBadgesProps } from "../types";
 

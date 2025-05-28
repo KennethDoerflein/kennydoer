@@ -1,6 +1,8 @@
+// src/app/components/ProjectCard.tsx
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Button, Card, Spinner, Tooltip, OverlayTrigger } from "react-bootstrap";
+import { Button, Card, OverlayTrigger, Spinner, Tooltip } from "react-bootstrap";
 import { Project } from "../types";
 import Credentials from "./Credentials";
 import TechBadges from "./TechBadges";

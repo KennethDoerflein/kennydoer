@@ -1,3 +1,5 @@
+// src/app/components/CopyableField.tsx
+
 import React from "react";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 

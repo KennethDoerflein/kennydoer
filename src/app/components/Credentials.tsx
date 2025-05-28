@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+// src/app/components/Credentials.tsx
+
+import { useState } from "react";
 import { CredentialsProps } from "../types";
 import CredentialCard from "./CredentialCard";
 

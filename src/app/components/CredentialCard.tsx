@@ -1,3 +1,5 @@
+// src/app/components/CredentialCard.tsx
+
 import { AnimationControls, motion, useAnimationControls } from "framer-motion";
 import { useEffect } from "react";
 import { Collapse, OverlayTrigger, Tooltip } from "react-bootstrap";
