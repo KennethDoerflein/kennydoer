@@ -1,13 +1,14 @@
 // src/app/page.tsx
 "use client";
 
-import { useState } from "react";
 import type { NextPage } from "next";
-import { Alert, Container, Row, Col, Button } from "react-bootstrap";
-import ProjectCard from "./components/ProjectCard";
-import ImageModal from "./components/ImageModal";
-import ScrollToTopButton from "./components/ScrollToTopButton";
+import { useState } from "react";
+import { Alert, Col, Container, Row } from "react-bootstrap";
 import appInfo from "../../package.json";
+import Footer from "./components/Footer";
+import ImageModal from "./components/ImageModal";
+import ProjectCard from "./components/ProjectCard";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 
 const projects = [
   {
@@ -110,19 +111,7 @@ const HomePage: NextPage = () => {
 
       <ImageModal show={show} onHide={() => setShow(false)} src={modalSrc} />
 
-      <footer className="text-center py-4">
-        <Button
-          variant="dark"
-          size="lg"
-          href="https://github.com/KennethDoerflein"
-          target="_blank"
-          rel="noopener noreferrer">
-          <i className="bi bi-github"></i>
-        </Button>
-        <Container className="text-center pb-2 text-body-secondary">
-          Site Version: {appInfo.version}
-        </Container>
-      </footer>
+      <Footer appInfo={appInfo} />
     </>
   );
 };
