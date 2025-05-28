@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Button, Card, Spinner } from "react-bootstrap";
+import { Button, Card, Spinner, Tooltip, OverlayTrigger } from "react-bootstrap";
 import { Project } from "../types";
 import Credentials from "./Credentials";
 import TechBadges from "./TechBadges";
@@ -33,38 +33,39 @@ const ProjectCard = ({
       <Card.Header className="text-center" style={{ backgroundColor: "#0F172A" }}>
         {title}
       </Card.Header>
-
-      <div
-        className="position-relative w-100"
-        style={{
-          aspectRatio: dimensions ? `${dimensions.width} / ${dimensions.height}` : "2.1 / 1",
-          backgroundColor: "#f0f0f0",
-        }}>
-        {" "}
-        {loading && (
-          <div className="position-absolute top-50 start-50 translate-middle z-1">
-            <Spinner animation="border" variant="primary" />
-          </div>
-        )}
-        {dimensions && (
-          <Image
-            src={img}
-            alt={alt}
-            width={dimensions.width}
-            height={dimensions.height}
-            onClick={() => onImageClick(img)}
-            onLoad={() => setLoading(false)} // ← use onLoad
-            style={{
-              width: "100%",
-              height: "auto",
-              opacity: loading ? 0 : 1,
-              transition: "opacity 0.3s ease-in-out",
-              cursor: "pointer",
-            }}
-            priority
-          />
-        )}
-      </div>
+      <OverlayTrigger
+        placement="right"
+        overlay={<Tooltip id="expand-tooltip">Click image to enlarge</Tooltip>}>
+        <div
+          className="position-relative w-100"
+          style={{
+            aspectRatio: dimensions ? `${dimensions.width} / ${dimensions.height}` : "2.1 / 1",
+            backgroundColor: "#f0f0f0",
+          }}
+          onClick={() => onImageClick(img)}>
+          {loading && (
+            <div className="position-absolute top-50 start-50 translate-middle z-1">
+              <Spinner animation="border" variant="primary" />
+            </div>
+          )}
+          {dimensions && (
+            <Image
+              src={img}
+              alt={alt}
+              width={dimensions.width}
+              height={dimensions.height}
+              onLoad={() => setLoading(false)}
+              style={{
+                width: "100%",
+                height: "auto",
+                opacity: loading ? 0 : 1,
+                transition: "opacity 0.3s ease-in-out",
+              }}
+              priority
+            />
+          )}
+        </div>
+      </OverlayTrigger>
 
       <Card.Body>
         <Card.Title>Tech Stack:</Card.Title>

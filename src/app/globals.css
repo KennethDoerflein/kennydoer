@@ -55,7 +55,7 @@
 
 .card img:hover {
   cursor: pointer;
-  transform: scale(1.05);
+  /* transform: scale(1.05); */
   filter: brightness(1.1) saturate(1.05);
 }
 
@@ -299,11 +299,10 @@
 }
 
 .tooltip-inner {
-  background-color: #333 !important;
-  color: #fff !important;
   padding: 8px 12px !important;
   border-radius: 6px !important;
-  font-size: 0.9rem !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
 }
 
 /* Media query for mobile devices - disable hover animations */
