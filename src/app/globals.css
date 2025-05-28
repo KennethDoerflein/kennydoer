@@ -307,6 +307,10 @@
 
 /* Media query for mobile devices - disable hover animations */
 @media (max-width: 768px) {
+  .tooltip-inner {
+    display: none !important; /* Disable tooltips on mobile */
+  }
+
   .card:hover {
     transform: none; /* Disable card lift */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Revert to base card shadow */
