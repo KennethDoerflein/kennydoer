@@ -1,8 +1,9 @@
-import React from "react";
-import { Collapse } from "react-bootstrap";
-import CopyableField from "./CopyableField";
-import { isEmailFormat, formatLabel } from "../utils";
+import { AnimationControls, motion, useAnimationControls } from "framer-motion";
+import { useEffect } from "react";
+import { Collapse, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Credential } from "../types";
+import { formatLabel, isEmailFormat } from "../utils";
+import CopyableField from "./CopyableField";
 
 interface Props {
   credential: Credential;
@@ -26,33 +27,73 @@ const CredentialCard = ({
   const id = credential.username ?? credential.email;
   const isEmail = isEmailFormat(id);
 
+  const controls: AnimationControls = useAnimationControls();
+  const chevronVariants = {
+    closed: {
+      rotate: 0,
+      transition: { duration: 0.3 },
+    },
+    open: {
+      rotate: 90,
+      transition: { duration: 0.3 },
+    },
+    wiggle: {
+      rotate: [0, 20, -15, 10, -5, 0],
+      transition: { duration: 0.6, ease: "easeInOut" },
+    },
+  };
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (isOpen) {
+      // Snap to 90° rotation when open
+      controls.start("open");
+    } else {
+      // Snap to 0° and start wiggle loop
+      controls.start("closed");
+      interval = setInterval(() => {
+        controls.start("wiggle");
+      }, 4000);
+    }
+
+    return () => clearInterval(interval);
+  }, [isOpen, controls]);
+
   return (
     <div
       className={`card bg-dark text-light border-0 w-100 shadow-sm ${!isLast ? "mb-0" : "mb-3"}`}
       style={{
         maxWidth: "220px",
-        borderRadius: isOpen ? "1rem 1rem 0 0" : "1.3rem",
-        transition: "border-radius 0.5s ease",
+        borderRadius: "1.3rem",
       }}>
-      <button
-        onClick={toggleOpen}
-        className="card-header text-light d-flex justify-content-between align-items-center border-0"
-        aria-expanded={isOpen}
-        style={{
-          borderRadius: isOpen ? "1rem 1rem 0 0" : "1.3rem",
-          transition: "border-radius 0.5s ease",
-          backgroundColor: "#5c4685",
-          fontWeight: 600,
-        }}>
-        <span style={{ fontSize: "0.9rem" }}>{formatLabel(credential.label)} Credentials</span>
-        <i
-          className={`bi bi-chevron-right ${!isOpen ? "chevron-wiggle" : ""}`}
+      <OverlayTrigger
+        placement="top"
+        overlay={
+          <Tooltip id={index + "-tooltip"}>
+            {isOpen ? "Click to collapse" : "Click to expand"}
+          </Tooltip>
+        }>
+        <button
+          onClick={toggleOpen}
+          className="card-header text-light d-flex justify-content-between align-items-center border-0"
+          aria-expanded={isOpen}
           style={{
-            transition: "transform 0.3s ease",
-            transform: isOpen ? "rotate(90deg)" : "rotate(0deg)",
-          }}
-        />
-      </button>
+            borderRadius: isOpen ? "1rem 1rem 0 0" : "1.3rem",
+            transition: "border-radius 0.1s ease",
+            transitionDelay: isOpen ? "0s" : "0.5s",
+            backgroundColor: "#5c4685",
+            fontWeight: 600,
+          }}>
+          <span style={{ fontSize: "1.2rem" }}>{formatLabel(credential.label)} Credentials</span>
+          <motion.i
+            className="bi bi-chevron-right"
+            animate={controls}
+            variants={chevronVariants}
+            style={{ display: "inline-block" }}
+          />
+        </button>
+      </OverlayTrigger>
 
       <Collapse in={isOpen} unmountOnExit>
         <div className="p-0 m-0" style={{ borderRadius: "0 0 1rem 1rem", overflow: "hidden" }}>
