@@ -115,20 +115,33 @@
   border: none;
   border-radius: 50%;
   font-size: 1.25rem;
-  color: #000;
-  background-color: var(--close-btn-bg);
+
+  background-color: rgba(0, 0, 0, 0.4);
+
+  color: #fff;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+
   opacity: 0.95;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   transition: background-color var(--transition-duration-normal) var(--timing-function-ease),
-    transform var(--transition-duration-fast) var(--timing-function-ease);
+    transform var(--transition-duration-fast) var(--timing-function-ease),
+    color var(--transition-duration-normal) var(--timing-function-ease);
+  cursor: pointer;
 }
 
 .btn-close:hover {
-  background-color: var(--close-btn-hover-bg);
+  /* brighten background on hover for clarity */
+  background-color: rgba(0, 0, 0, 0.6);
   transform: scale(1.1);
+
+  /* Add a subtle glow on hover */
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
 }
 
 .badge {
