@@ -3,7 +3,7 @@
   --alert-color: #000;
   --card-bg: #1e1e1e;
   --card-hover-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
-  --card-img-hover-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
+  --hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); /* Used by #goToBtn:hover and .gradientButton:hover */
   --card-header-bg: #2182d1;
   --card-header-hover-bg: #1778a1;
   --modal-bg: #121212;
@@ -55,17 +55,8 @@
 
 .card img:hover {
   cursor: pointer;
-  transform: scale(1.03);
-  filter: brightness(1.15);
-  box-shadow: var(--card-img-hover-shadow);
-}
-
-@media (max-width: 768px) {
-  .card img:hover {
-    transform: none;
-    pointer-events: none;
-    filter: none;
-  }
+  transform: scale(1.05);
+  filter: brightness(1.1) saturate(1.05);
 }
 
 .card-header {
@@ -222,7 +213,7 @@
 #goToBtn:hover {
   background-color: var(--scroll-btn-hover-bg);
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--hover-shadow); /* 0 8px 24px rgba(0,0,0,0.3) */
   cursor: pointer;
 }
 
@@ -304,7 +295,7 @@
 
 .gradientButton:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--hover-shadow); /* 0 8px 24px rgba(0,0,0,0.3) */
 }
 
 .tooltip-inner {
@@ -313,4 +304,50 @@
   padding: 8px 12px !important;
   border-radius: 6px !important;
   font-size: 0.9rem !important;
+}
+
+/* Media query for mobile devices - disable hover animations */
+@media (max-width: 768px) {
+  .card:hover {
+    transform: none; /* Disable card lift */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Revert to base card shadow */
+  }
+
+  .card img:hover {
+    transform: none; /* Disable image scale */
+    filter: none; /* Disable image filter changes */
+    /* pointer-events: none; was removed to allow clicks/taps if any */
+  }
+
+  .card-header:hover {
+    background-color: var(--card-header-bg); /* Revert background color */
+    background-position: center; /* Revert background position */
+  }
+
+  .btn-close:hover {
+    background-color: var(--close-btn-bg); /* Revert background color */
+    transform: none; /* Disable button scale */
+  }
+
+  .badge:hover {
+    transform: none; /* Disable badge lift */
+    box-shadow: none; /* Remove hover shadow (base badge has no shadow) */
+  }
+
+  .btn-info:hover {
+    background-color: var(--btn-info-bg); /* Revert background color */
+    background-position: center; /* Revert background position */
+    transform: none; /* Disable button scale */
+  }
+
+  #goToBtn:hover {
+    background-color: var(--scroll-btn-bg); /* Revert background color */
+    transform: none; /* Disable button lift and scale */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Revert to base button shadow */
+  }
+
+  .gradientButton:hover {
+    transform: none; /* Disable button lift and scale */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Revert to base button shadow */
+  }
 }
