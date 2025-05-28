@@ -307,7 +307,7 @@
 
 /* Media query for mobile devices - disable hover animations */
 @media (max-width: 768px) {
-  .tooltip-inner {
+  .tooltip {
     display: none !important; /* Disable tooltips on mobile */
   }
 
