@@ -278,7 +278,7 @@
 .gradientButton {
   display: inline-block;
   padding: 14px 36px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
   border: none;
   border-radius: 12px;
@@ -302,28 +302,9 @@
   box-sizing: border-box;
 }
 
-@keyframes chevronWiggle {
-  0% {
-    transform: rotate(0deg);
-  }
-  2% {
-    transform: rotate(20deg);
-  }
-  4% {
-    transform: rotate(-15deg);
-  }
-  6% {
-    transform: rotate(10deg);
-  }
-  8% {
-    transform: rotate(-5deg);
-  }
-  10% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
+.gradientButton:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .chevron-wiggle {
