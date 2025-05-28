@@ -11,15 +11,6 @@ import appInfo from "../../package.json";
 
 const projects = [
   {
-    title: "Computer Store",
-    img: "/assets/computerStoreHome.png",
-    alt: "Computer Store site image",
-    tech: ["HTML", "CSS", "JavaScript", "PHP", "SQL", "Bootstrap"],
-    description: `Newark IT is a computer store with a fully functional customer registration and sign-in system. It includes a shopping cart, mock checkout, order history, and management of saved cards and addresses. Additionally, it features order filtering and analytics based on a selected date range.`,
-    demo: "https://computerstore.kennydoer.com",
-    creds: [{ label: "Test", email: "test@test.com", password: "password" }],
-  },
-  {
     title: "Sporting Goods Store",
     img: "/assets/jsgHome.png",
     alt: "Sporting Goods Store image",
@@ -35,6 +26,15 @@ const projects = [
     tech: ["HTML", "CSS", "JavaScript", "PHP", "SQL", "Bootstrap", "jQuery", "Select2"],
     description: `New Grad Nomad is a job posting site where users can browse and post job listings. This site includes a page for companies to post job listings and a checkout page with stripe integration.`,
     demo: "https://ngn.kennydoer.com",
+  },
+  {
+    title: "Computer Store",
+    img: "/assets/computerStoreHome.png",
+    alt: "Computer Store site image",
+    tech: ["HTML", "CSS", "JavaScript", "PHP", "SQL", "Bootstrap"],
+    description: `Newark IT is a computer store with a fully functional customer registration and sign-in system. It includes a shopping cart, mock checkout, order history, and management of saved cards and addresses. Additionally, it features order filtering and analytics based on a selected date range.`,
+    demo: "https://computerstore.kennydoer.com",
+    creds: [{ label: "Test", email: "test@test.com", password: "password" }],
   },
   {
     title: "Blackjack",
