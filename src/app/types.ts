@@ -19,6 +19,7 @@ export interface Project {
   demo: string;
   creds?: Credential[];
   onImageClick: (src: string) => void;
+  isFirst?: boolean; // Optional prop to indicate if it's the first card
 }
 
 export interface TechBadgesProps {

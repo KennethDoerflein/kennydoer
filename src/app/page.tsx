@@ -99,9 +99,9 @@ const HomePage: NextPage = () => {
 
       <Container>
         <Row xs={1} md={1} className="g-4">
-          {projects.map((p) => (
+          {projects.map((p, index) => (
             <Col key={p.title} className="d-flex justify-content-center">
-              <ProjectCard {...p} onImageClick={openModal} />
+              <ProjectCard {...p} onImageClick={openModal} isFirst={index === 0} />
             </Col>
           ))}
         </Row>

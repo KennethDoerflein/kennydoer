@@ -71,6 +71,7 @@ const CredentialCard = ({
       }}>
       <OverlayTrigger
         placement="top"
+        delay={{ show: 500, hide: 200 }}
         overlay={
           <Tooltip id={index + "-tooltip"}>
             {isOpen ? "Click to collapse" : "Click to expand"}

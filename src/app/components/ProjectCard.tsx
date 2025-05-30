@@ -16,6 +16,7 @@ const ProjectCard = ({
   demo,
   creds,
   onImageClick,
+  isFirst = false, // <- add this
 }: Project) => {
   const [loading, setLoading] = useState(true);
   const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(null);
@@ -37,6 +38,7 @@ const ProjectCard = ({
       </Card.Header>
       <OverlayTrigger
         placement="right"
+        delay={{ show: 700, hide: 200 }}
         overlay={<Tooltip id="expand-tooltip">Click image to enlarge</Tooltip>}>
         <div
           className="position-relative w-100"
@@ -63,7 +65,7 @@ const ProjectCard = ({
                 opacity: loading ? 0 : 1,
                 transition: "opacity 0.3s ease-in-out",
               }}
-              priority
+              priority={isFirst}
             />
           )}
         </div>
