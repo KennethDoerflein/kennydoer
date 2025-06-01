@@ -1,7 +1,8 @@
 // src/app/components/ProjectCard.tsx
 
 import Image from "next/image";
-import { Button, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Button, Card, OverlayTrigger, Spinner, Tooltip } from "react-bootstrap";
 import { Project } from "../types";
 import Credentials from "./Credentials";
 import TechBadges from "./TechBadges";
@@ -20,6 +21,11 @@ const ProjectCard = ({
   intrinsicHeight,
 }: Project) => {
   const aspectRatio = `${intrinsicWidth} / ${intrinsicHeight}`;
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+  }, [img]);
 
   return (
     <Card className="fade-in-up" style={{ maxWidth: "700px" }}>
@@ -31,12 +37,16 @@ const ProjectCard = ({
         delay={{ show: 700, hide: 200 }}
         overlay={<Tooltip id="expand-tooltip">Click image to enlarge</Tooltip>}>
         <div
-          className="position-relative w-100"
+          className="bg-dark position-relative w-100"
           style={{
             aspectRatio: aspectRatio,
-            backgroundColor: "#f0f0f0",
           }}
           onClick={() => onImageClick(img)}>
+          {loading && (
+            <div className="position-absolute top-50 start-50 translate-middle z-1">
+              <Spinner animation="border" variant="primary" />
+            </div>
+          )}
           <Image
             src={img}
             alt={alt}
@@ -47,9 +57,11 @@ const ProjectCard = ({
               width: "100%",
               height: "auto",
               objectFit: "cover",
+              opacity: loading ? 0.5 : 1,
               transition: "opacity 0.3s ease-in-out",
             }}
             priority={isFirst} // Load first card image immediately
+            onLoad={() => setLoading(false)}
           />
         </div>
       </OverlayTrigger>
