@@ -1,8 +1,8 @@
-// src/app/components/ImageModal.tsx
-
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Modal, Spinner } from "react-bootstrap";
+import { BsXLg } from "react-icons/bs";
+
 const ImageModal = ({ show, onHide, src }: { show: boolean; onHide: () => void; src: string }) => {
   const [loading, setLoading] = useState(true);
 
@@ -12,7 +12,11 @@ const ImageModal = ({ show, onHide, src }: { show: boolean; onHide: () => void; 
 
   return (
     <Modal show={show} onHide={onHide} fullscreen>
-      <Modal.Header closeButton className="py-0" />
+      <Modal.Header className="py-0" closeButton={false}>
+        <button type="button" className="close-btn" onClick={onHide} aria-label="Close">
+          <BsXLg />
+        </button>
+      </Modal.Header>
       <Modal.Body
         className="bg-dark p-0 d-flex justify-content-center align-items-center"
         onClick={onHide}

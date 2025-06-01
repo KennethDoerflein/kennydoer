@@ -2,8 +2,8 @@
   --alert-bg: #ffc107;
   --alert-color: #000;
   --card-bg: #1e1e1e;
-  --card-hover-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
-  --hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); /* Used by #goToBtn:hover and .gradientButton:hover */
+  --card-hover-shadow: 0 0 25px #00ffff1a;
+  --hover-shadow: 0 8px 24px #0000004d; /* Used by #goToBtn:hover and .gradientButton:hover */
   --card-header-bg: #2182d1;
   --card-header-hover-bg: #1778a1;
   --modal-bg: #121212;
@@ -107,7 +107,7 @@
   border-radius: 8px;
 }
 
-.btn-close {
+.close-btn {
   position: absolute;
   top: 1rem;
   right: 2rem;
@@ -117,35 +117,31 @@
   padding: 0;
   border: none;
   border-radius: 50%;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: #b22222;
+  color: #ffffff;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
 
-  color: #fff;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+  opacity: 0.98;
 
-  opacity: 0.95;
-
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   transition:
-    background-color var(--transition-duration-normal) var(--timing-function-ease),
-    transform var(--transition-duration-fast) var(--timing-function-ease),
-    color var(--transition-duration-normal) var(--timing-function-ease);
+    background-color var(--transition-duration-normal, 0.3s) ease,
+    transform var(--transition-duration-fast, 0.2s) ease,
+    color var(--transition-duration-normal, 0.3s) ease;
   cursor: pointer;
 }
 
-.btn-close:hover {
-  /* brighten background on hover for clarity */
-  background-color: rgba(0, 0, 0, 0.6);
+.close-btn:hover {
+  background-color: #ff4d4d;
   transform: scale(1.1);
-
-  /* Add a subtle glow on hover */
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
 }
 
 .badge {
