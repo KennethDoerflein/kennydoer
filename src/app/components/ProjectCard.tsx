@@ -1,8 +1,7 @@
 // src/app/components/ProjectCard.tsx
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { Button, Card, OverlayTrigger, Spinner, Tooltip } from "react-bootstrap";
+import { Button, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Project } from "../types";
 import Credentials from "./Credentials";
 import TechBadges from "./TechBadges";
@@ -16,20 +15,11 @@ const ProjectCard = ({
   demo,
   creds,
   onImageClick,
-  isFirst = false, // <- add this
+  isFirst = false,
+  intrinsicWidth,
+  intrinsicHeight,
 }: Project) => {
-  const [loading, setLoading] = useState(true);
-  const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(null);
-
-  // load to get intrinsic size
-  useEffect(() => {
-    const tmp = new window.Image();
-    tmp.src = img;
-    tmp.onload = () => {
-      setDimensions({ width: tmp.naturalWidth, height: tmp.naturalHeight });
-      setLoading(false);
-    };
-  }, [img]);
+  const aspectRatio = `${intrinsicWidth} / ${intrinsicHeight}`;
 
   return (
     <Card className="fade-in-up" style={{ maxWidth: "700px" }}>
@@ -43,31 +33,24 @@ const ProjectCard = ({
         <div
           className="position-relative w-100"
           style={{
-            aspectRatio: dimensions ? `${dimensions.width} / ${dimensions.height}` : "2.1 / 1",
+            aspectRatio: aspectRatio,
             backgroundColor: "#f0f0f0",
           }}
           onClick={() => onImageClick(img)}>
-          {loading && (
-            <div className="position-absolute top-50 start-50 translate-middle z-1">
-              <Spinner animation="border" variant="primary" />
-            </div>
-          )}
-          {dimensions && (
-            <Image
-              src={img}
-              alt={alt}
-              width={dimensions.width}
-              height={dimensions.height}
-              onLoad={() => setLoading(false)}
-              style={{
-                width: "100%",
-                height: "auto",
-                opacity: loading ? 0 : 1,
-                transition: "opacity 0.3s ease-in-out",
-              }}
-              priority={isFirst}
-            />
-          )}
+          <Image
+            src={img}
+            alt={alt}
+            width={intrinsicWidth}
+            height={intrinsicHeight}
+            style={{
+              display: "block",
+              width: "100%",
+              height: "auto",
+              objectFit: "cover",
+              transition: "opacity 0.3s ease-in-out",
+            }}
+            priority={isFirst} // Load first card image immediately
+          />
         </div>
       </OverlayTrigger>
 
