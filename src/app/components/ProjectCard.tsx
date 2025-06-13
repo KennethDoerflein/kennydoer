@@ -33,14 +33,12 @@ const ProjectCard = ({
         {title}
       </Card.Header>
       <OverlayTrigger
-        placement="right"
-        delay={{ show: 700, hide: 200 }}
+        placement="bottom"
+        delay={{ show: 850, hide: 0 }}
         overlay={<Tooltip id="expand-tooltip">Click image to enlarge</Tooltip>}>
         <div
           className="bg-dark position-relative w-100"
-          style={{
-            aspectRatio: aspectRatio,
-          }}
+          style={{ aspectRatio: aspectRatio }}
           onClick={() => onImageClick(img)}>
           {loading && (
             <div className="position-absolute top-50 start-50 translate-middle z-1">
@@ -60,7 +58,7 @@ const ProjectCard = ({
               opacity: loading ? 0.5 : 1,
               transition: "opacity 0.3s ease-in-out",
             }}
-            priority={isFirst} // Load first card image immediately
+            priority={isFirst}
             onLoad={() => setLoading(false)}
           />
         </div>
