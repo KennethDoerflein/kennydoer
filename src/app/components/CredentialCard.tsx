@@ -1,6 +1,6 @@
 // src/app/components/CredentialCard.tsx
 
-import { AnimationControls, motion, useAnimationControls } from "framer-motion";
+import { motion, useAnimationControls, easeInOut } from "framer-motion";
 import { useEffect } from "react";
 import { Collapse, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Credential } from "../types";
@@ -29,7 +29,7 @@ const CredentialCard = ({
   const id = credential.username ?? credential.email;
   const isEmail = isEmailFormat(id);
 
-  const controls: AnimationControls = useAnimationControls();
+  const controls = useAnimationControls();
   const chevronVariants = {
     closed: {
       rotate: 0,
@@ -41,7 +41,7 @@ const CredentialCard = ({
     },
     wiggle: {
       rotate: [0, 20, -15, 10, -5, 0],
-      transition: { duration: 0.6, ease: "easeInOut" },
+      transition: { duration: 0.6, ease: easeInOut },
     },
   };
 
