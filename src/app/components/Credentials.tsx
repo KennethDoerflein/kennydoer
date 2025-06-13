@@ -39,6 +39,7 @@ const Credentials = ({ creds }: CredentialsProps) => {
           isCopied={isCopied}
           handleCopy={handleCopy}
           isLast={idx === creds.length - 1}
+          anyOpen={openIndex !== null} // Pass if any card is open
         />
       ))}
     </div>

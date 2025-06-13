@@ -27,3 +27,14 @@ export interface Project {
 export interface TechBadgesProps {
   tech: string[];
 }
+
+export interface CredentialCardProps {
+  credential: Credential;
+  index: number;
+  isOpen: boolean;
+  toggleOpen: () => void;
+  isCopied: (index: number, field: "id" | "password") => boolean;
+  handleCopy: (text: string, index: number, field: "id" | "password") => void;
+  isLast: boolean;
+  anyOpen: boolean;
+}

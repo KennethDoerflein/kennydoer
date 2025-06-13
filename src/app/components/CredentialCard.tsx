@@ -1,21 +1,11 @@
 // src/app/components/CredentialCard.tsx
 
-import { motion, useAnimationControls, easeInOut } from "framer-motion";
+import { easeInOut, motion, useAnimationControls } from "framer-motion";
 import { useEffect } from "react";
 import { Collapse, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Credential } from "../types";
+import { CredentialCardProps } from "../types";
 import { formatLabel, isEmailFormat } from "../utils";
 import CopyableField from "./CopyableField";
-
-interface Props {
-  credential: Credential;
-  index: number;
-  isOpen: boolean;
-  toggleOpen: () => void;
-  isCopied: (index: number, field: "id" | "password") => boolean;
-  handleCopy: (text: string, index: number, field: "id" | "password") => void;
-  isLast: boolean;
-}
 
 const CredentialCard = ({
   credential,
@@ -25,7 +15,8 @@ const CredentialCard = ({
   isCopied,
   handleCopy,
   isLast,
-}: Props) => {
+  anyOpen,
+}: CredentialCardProps) => {
   const id = credential.username ?? credential.email;
   const isEmail = isEmailFormat(id);
 
@@ -49,18 +40,18 @@ const CredentialCard = ({
     let interval: NodeJS.Timeout;
 
     if (isOpen) {
-      // Snap to 90° rotation when open
       controls.start("open");
-    } else {
-      // Snap to 0° and start wiggle loop
+    } else if (!anyOpen) {
       controls.start("closed");
       interval = setInterval(() => {
         controls.start("wiggle");
       }, 4000);
+    } else {
+      controls.start("closed"); // Pause wiggle if any card is open
     }
 
     return () => clearInterval(interval);
-  }, [isOpen, controls]);
+  }, [isOpen, controls, anyOpen]);
 
   return (
     <div
