@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Button, Card, OverlayTrigger, Spinner, Tooltip } from "react-bootstrap";
+import { Button, Card, Spinner } from "react-bootstrap";
+import { useTooltip } from "../hooks/useTooltip";
 import { Project } from "../types";
 import Credentials from "./Credentials";
 import TechBadges from "./TechBadges";
@@ -25,6 +26,8 @@ const ProjectCard = ({
   const aspectRatio = `${intrinsicWidth} / ${intrinsicHeight}`;
   const [loading, setLoading] = useState(true);
 
+  const { isVisible: isTooltipVisible, triggerProps, tooltipStyle } = useTooltip();
+
   useEffect(() => {
     setLoading(true);
   }, [img]);
@@ -39,37 +42,40 @@ const ProjectCard = ({
           </small>
         )}
       </Card.Header>
-      <OverlayTrigger
-        placement="bottom"
-        delay={{ show: 850, hide: 0 }}
-        overlay={<Tooltip id="expand-tooltip">Click image to enlarge</Tooltip>}>
-        <div
-          className="bg-dark position-relative w-100"
-          style={{ aspectRatio: aspectRatio }}
-          onClick={() => onImageClick(img)}>
-          {loading && (
-            <div className="position-absolute top-50 start-50 translate-middle z-1">
-              <Spinner animation="border" variant="primary" />
-            </div>
-          )}
-          <Image
-            src={img}
-            alt={alt}
-            width={intrinsicWidth}
-            height={intrinsicHeight}
-            style={{
-              display: "block",
-              width: "100%",
-              height: "auto",
-              objectFit: "cover",
-              opacity: loading ? 0.5 : 1,
-              transition: "opacity 0.3s ease-in-out",
-            }}
-            priority={isFirst}
-            onLoad={() => setLoading(false)}
-          />
-        </div>
-      </OverlayTrigger>
+
+      <div
+        className="bg-dark position-relative w-100"
+        style={{ aspectRatio: aspectRatio }}
+        onClick={() => onImageClick(img)}
+        {...triggerProps}>
+        {isTooltipVisible && (
+          <div className="fw-bold rounded-2 px-2 py-1 bg-secondary text-white" style={tooltipStyle}>
+            Click image to enlarge
+          </div>
+        )}
+
+        {loading && (
+          <div className="position-absolute top-50 start-50 translate-middle z-1">
+            <Spinner animation="border" variant="primary" />
+          </div>
+        )}
+        <Image
+          src={img}
+          alt={alt}
+          width={intrinsicWidth}
+          height={intrinsicHeight}
+          style={{
+            display: "block",
+            width: "100%",
+            height: "auto",
+            objectFit: "cover",
+            opacity: loading ? 0.5 : 1,
+            transition: "opacity 0.3s ease-in-out",
+          }}
+          priority={isFirst}
+          onLoad={() => setLoading(false)}
+        />
+      </div>
 
       <Card.Body>
         <Card.Title>Tech Stack:</Card.Title>
