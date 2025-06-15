@@ -19,9 +19,11 @@ export interface Project {
   tech: string[];
   description: string;
   demo: string;
-  creds?: Credential[];
+  creds?: Credential[]; // Optional credentials field
   onImageClick: (src: string) => void;
   isFirst?: boolean; // Optional prop to indicate if it's the first card
+  note?: string; // Optional note field
+  completionTime?: string; // Optional completion time field
 }
 
 export interface TechBadgesProps {

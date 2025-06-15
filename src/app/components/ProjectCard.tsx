@@ -19,6 +19,8 @@ const ProjectCard = ({
   isFirst = false,
   intrinsicWidth,
   intrinsicHeight,
+  note,
+  completionTime,
 }: Project) => {
   const aspectRatio = `${intrinsicWidth} / ${intrinsicHeight}`;
   const [loading, setLoading] = useState(true);
@@ -30,7 +32,12 @@ const ProjectCard = ({
   return (
     <Card className="fade-in-up" style={{ maxWidth: "700px" }}>
       <Card.Header className="text-center" style={{ backgroundColor: "#0F172A" }}>
-        {title}
+        <div>{title}</div>
+        {completionTime && (
+          <small className="text-muted" style={{ fontSize: "0.8em" }}>
+            ⏱️ Time to Completion: ~{completionTime}
+          </small>
+        )}
       </Card.Header>
       <OverlayTrigger
         placement="bottom"
@@ -72,6 +79,11 @@ const ProjectCard = ({
         <Card.Text style={{ whiteSpace: "pre-line" }}>{description}</Card.Text>
       </Card.Body>
       <Card.Footer className="text-center">
+        {note && (
+          <div className="mb-3 text-muted">
+            <strong>Note:</strong> {note}
+          </div>
+        )}
         <Button
           href={demo}
           target="_blank"

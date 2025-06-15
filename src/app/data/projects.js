@@ -9,6 +9,7 @@ export const projects = [
     creds: [{ label: "Test", email: "test", password: "mypassword123" }],
     intrinsicWidth: 1900,
     intrinsicHeight: 945,
+    //completionTime: "20 Hours",
   },
   {
     title: "Job Posting Site",
@@ -30,6 +31,7 @@ export const projects = [
     creds: [{ label: "Test", email: "test@test.com", password: "password" }],
     intrinsicWidth: 1917,
     intrinsicHeight: 913,
+    //completionTime: "40 Hours",
   },
   {
     title: "Blackjack",
@@ -54,6 +56,7 @@ export const projects = [
     ],
     intrinsicWidth: 1904,
     intrinsicHeight: 916,
+    //completionTime: "60 Hours",
   },
   {
     title: "Sporting Goods Emporium",
@@ -68,6 +71,8 @@ export const projects = [
     ],
     intrinsicWidth: 1918,
     intrinsicHeight: 915,
+    note: "All code related to product image uploads has been removed for this public demo.",
+    //completionTime: "40 Hours",
   },
   {
     title: "Tic-Tac-Toe",
