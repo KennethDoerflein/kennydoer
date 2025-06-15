@@ -34,7 +34,7 @@ const HomePage: NextPage = () => {
         </Alert>
       )}
 
-      <Alert variant="warning" className="text-center mx-auto compact-alert px-3 mb-1">
+      <Alert variant="warning" className="text-center mx-auto compact-alert px-3 mb-0">
         <strong>Note: </strong>⚠️ All databases automatically reset to a known state every 30
         minutes (e.g., 10:00, 10:30, 11:00...).
       </Alert>
