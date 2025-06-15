@@ -9,6 +9,7 @@ export const projects = [
     creds: [{ label: "Test", email: "test", password: "mypassword123" }],
     intrinsicWidth: 1900,
     intrinsicHeight: 945,
+    isFirst: true,
     //completionTime: "20 Hours",
   },
   {
