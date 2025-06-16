@@ -56,21 +56,23 @@ export const useTooltip = (delay = 850) => {
       y: e.clientY - rect.top,
     });
 
-    // Check against the viewport width to dynamically set the transform
+    // Use a fixed max width of 700px for tooltip positioning logic, centered in the viewport
+    const maxWidth = 700;
     const viewportWidth = window.innerWidth;
+    const contentLeft = viewportWidth > maxWidth ? (viewportWidth - maxWidth) / 2 : 0;
+    const relativeX = e.clientX - contentLeft;
+    const effectiveWidth = Math.min(viewportWidth, maxWidth);
+    const percent = relativeX / effectiveWidth;
 
-    // If cursor is in the right 30% of the viewport, anchor tooltip to the right
-    if (e.clientX > viewportWidth * 0.7) {
-      setTransform("translate(-100%, 24px)");
+    let translateX = -50; // default center
+    if (percent < 0.2) {
+      // Interpolate from -50% to 0% as cursor moves from 30% to 0%
+      translateX = -50 + (50 * (0.2 - percent)) / 0.2;
+    } else if (percent > 0.8) {
+      // Interpolate from -50% to -100% as cursor moves from 70% to 100%
+      translateX = -50 - (50 * (percent - 0.8)) / 0.2;
     }
-    // If cursor is in the left 30% of the viewport, anchor tooltip to the left
-    else if (e.clientX < viewportWidth * 0.3) {
-      setTransform("translate(0, 24px)");
-    }
-    // Otherwise, use the default centering
-    else {
-      setTransform("translate(-50%, 24px)");
-    }
+    setTransform(`translate(${translateX}%, 24px)`);
   }, []);
 
   // If on mobile, always hide tooltip and return no-op handlers
