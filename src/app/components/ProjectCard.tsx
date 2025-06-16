@@ -49,7 +49,7 @@ const ProjectCard = ({
         onClick={() => onImageClick(img)}
         {...triggerProps}>
         {isTooltipVisible && (
-          <div className="fw-bold rounded-2 px-2 py-1 bg-secondary text-white" style={tooltipStyle}>
+          <div className="fw-bold rounded-2 px-2 py-1 alert alert-info" style={tooltipStyle}>
             Click image to enlarge
           </div>
         )}

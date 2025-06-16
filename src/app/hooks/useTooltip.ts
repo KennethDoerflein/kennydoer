@@ -43,6 +43,7 @@ export const useTooltip = (delay = 850) => {
   const handleMouseLeave = useCallback(() => {
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null; // Prevent potential leaks or stale logic
     }
     setIsVisible(false);
   }, []);
@@ -66,11 +67,11 @@ export const useTooltip = (delay = 850) => {
 
     let translateX = -50; // default center
     if (percent < 0.2) {
-      // Interpolate from -50% to 0% as cursor moves from 30% to 0%
-      translateX = -50 + (50 * (0.2 - percent)) / 0.2;
+      // Interpolate from -50% to +2% as cursor moves from 50% to 0%
+      translateX = -50 + (52 * (0.2 - percent)) / 0.2;
     } else if (percent > 0.8) {
-      // Interpolate from -50% to -100% as cursor moves from 70% to 100%
-      translateX = -50 - (50 * (percent - 0.8)) / 0.2;
+      // Interpolate from -50% to -105% as cursor moves from 80% to 100%
+      translateX = -50 - (55 * (percent - 0.8)) / 0.2;
     }
     setTransform(`translate(${translateX}%, 24px)`);
   }, []);
@@ -103,7 +104,6 @@ export const useTooltip = (delay = 850) => {
     transform: transform, // Use the dynamic transform
     zIndex: 1000,
     pointerEvents: "none",
-    transition: "opacity 0.2s ease-in-out",
     // Add nowrap to prevent the text from wrapping
     whiteSpace: "nowrap",
   };
