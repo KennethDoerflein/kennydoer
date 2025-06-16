@@ -37,8 +37,8 @@ const ProjectCard = ({
       <Card.Header className="text-center" style={{ backgroundColor: "#0F172A" }}>
         <div>{title}</div>
         {completionTime && (
-          <small className="text-muted" style={{ fontSize: "0.8em" }}>
-            ⏱️ Time to Completion: ~{completionTime}
+          <small className="text-muted" style={{ fontSize: "0.65em" }}>
+            ⏱️ Estimated Completion Time: ~{completionTime}
           </small>
         )}
       </Card.Header>

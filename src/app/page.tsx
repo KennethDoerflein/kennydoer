@@ -28,13 +28,12 @@ const HomePage: NextPage = () => {
   return (
     <>
       {isDevVersion && (
-        <Alert variant="danger" className="text-center mx-auto compact-alert px-3 my-0">
+        <Alert variant="danger" className="text-center mx-auto compact-alert px-3 mb-2 m-1">
           <strong>Development Version: </strong>
           You are currently on the development site. Features may be unstable.
           <div className="mt-2">
             <a
               href="https://kennydoer.com"
-              target="_blank"
               rel="noopener noreferrer"
               className="btn btn-dark btn-sm">
               Go to Main Site
