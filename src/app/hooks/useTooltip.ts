@@ -57,21 +57,18 @@ export const useTooltip = (delay = 850) => {
       y: e.clientY - rect.top,
     });
 
-    // Use a fixed max width of 700px for tooltip positioning logic, centered in the viewport
-    const maxWidth = 700;
-    const viewportWidth = window.innerWidth;
-    const contentLeft = viewportWidth > maxWidth ? (viewportWidth - maxWidth) / 2 : 0;
-    const relativeX = e.clientX - contentLeft;
-    const effectiveWidth = Math.min(viewportWidth, maxWidth);
-    const percent = relativeX / effectiveWidth;
+    // Use the hovered element's width for tooltip positioning logic
+    const elementWidth = rect.width;
+    const relativeX = e.clientX - rect.left;
+    const percent = relativeX / elementWidth;
 
     let translateX = -50; // default center
     if (percent < 0.2) {
-      // Interpolate from -50% to +2% as cursor moves from 50% to 0%
+      // Interpolate from -50% to +2% as cursor moves from 20% to 0%
       translateX = -50 + (52 * (0.2 - percent)) / 0.2;
     } else if (percent > 0.8) {
-      // Interpolate from -50% to -105% as cursor moves from 80% to 100%
-      translateX = -50 - (55 * (percent - 0.8)) / 0.2;
+      // Interpolate from -50% to -102% as cursor moves from 80% to 100%
+      translateX = -50 - (52 * (percent - 0.8)) / 0.2;
     }
     setTransform(`translate(${translateX}%, 24px)`);
   }, []);
