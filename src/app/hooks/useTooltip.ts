@@ -1,6 +1,9 @@
 import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
 
-export const useTooltip = (delay = 850) => {
+export const useTooltip = (
+  delay = 850,
+  options?: { disableInterpolation?: boolean; disableMovement?: boolean }
+) => {
   // Detect mobile/touch device
   const isTouchDevice =
     typeof window !== "undefined" &&
@@ -48,29 +51,67 @@ export const useTooltip = (delay = 850) => {
     setIsVisible(false);
   }, []);
 
-  const handleMouseMove = useCallback((e: MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
+  const handleMouseMove = useCallback(
+    (e: MouseEvent<HTMLElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
 
-    // Update the raw position
-    setPosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+      // Update the raw position
+      setPosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
 
-    // Use the hovered element's width for tooltip positioning logic
-    const elementWidth = rect.width;
-    const relativeX = e.clientX - rect.left;
-    const percent = relativeX / elementWidth;
+      if (options?.disableMovement) {
+        setTransform("translate(-50%, 24px)");
+        return;
+      }
 
-    let translateX = -50; // default center
-    if (percent < 0.2) {
-      // Interpolate from -50% to +2% as cursor moves from 20% to 0%
-      translateX = -50 + (52 * (0.2 - percent)) / 0.2;
-    } else if (percent > 0.8) {
-      // Interpolate from -50% to -102% as cursor moves from 80% to 100%
-      translateX = -50 - (52 * (percent - 0.8)) / 0.2;
+      // Use the hovered element's width for tooltip positioning logic
+      const elementWidth = rect.width;
+      const relativeX = e.clientX - rect.left;
+      const percent = relativeX / elementWidth;
+
+      let translateX = -50; // default center
+      if (options?.disableInterpolation) {
+        // Snap to left, center, or right
+        if (percent < 0.2) {
+          translateX = 0;
+        } else if (percent > 0.8) {
+          translateX = -100;
+        } else {
+          translateX = -50;
+        }
+      } else {
+        // Interpolated movement
+        if (percent < 0.2) {
+          // Interpolate from -50% to +2% as cursor moves from 20% to 0%
+          translateX = -50 + (52 * (0.2 - percent)) / 0.2;
+        } else if (percent > 0.8) {
+          // Interpolate from -50% to -102% as cursor moves from 80% to 100%
+          translateX = -50 - (52 * (percent - 0.8)) / 0.2;
+        }
+      }
+      setTransform(`translate(${translateX}%, 24px)`);
+    },
+    [options?.disableInterpolation, options?.disableMovement]
+  );
+
+  // Hide tooltip and clear timeout
+  const hideTooltip = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
     }
-    setTransform(`translate(${translateX}%, 24px)`);
+    setIsVisible(false);
+  }, []);
+
+  // Reset tooltip logic (clears timeout, does not show tooltip)
+  const resetTooltip = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    setIsVisible(false);
   }, []);
 
   // If on mobile, always hide tooltip and return no-op handlers
@@ -83,6 +124,8 @@ export const useTooltip = (delay = 850) => {
         onMouseMove: () => {},
       },
       tooltipStyle: {},
+      hideTooltip,
+      resetTooltip,
     };
   }
 
@@ -103,7 +146,10 @@ export const useTooltip = (delay = 850) => {
     pointerEvents: "none",
     // Add nowrap to prevent the text from wrapping
     whiteSpace: "nowrap",
+    overflow: "visible",
+    fontSize: "1rem",
+    fontWeight: "bolder",
   };
 
-  return { isVisible, triggerProps, tooltipStyle };
+  return { isVisible, triggerProps, tooltipStyle, hideTooltip, resetTooltip };
 };
