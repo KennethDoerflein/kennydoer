@@ -2,7 +2,8 @@
 
 import { easeInOut, motion, useAnimationControls } from "framer-motion";
 import { useEffect } from "react";
-import { Collapse, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Collapse } from "react-bootstrap";
+import { useTooltip } from "../hooks/useTooltip";
 import { CredentialCardProps } from "../types";
 import { formatLabel, isEmailFormat } from "../utils";
 import CopyableField from "./CopyableField";
@@ -19,6 +20,12 @@ const CredentialCard = ({
 }: CredentialCardProps) => {
   const id = credential.username ?? credential.email;
   const isEmail = isEmailFormat(id);
+  const {
+    isVisible: isTooltipVisible,
+    triggerProps,
+    tooltipStyle,
+    resetTooltip,
+  } = useTooltip(850, { disableMovement: true });
 
   const controls = useAnimationControls();
   const chevronVariants = {
@@ -46,12 +53,13 @@ const CredentialCard = ({
       interval = setInterval(() => {
         controls.start("wiggle");
       }, 4000);
+      resetTooltip(); // Reset tooltip logic after closing
     } else {
       controls.start("closed"); // Pause wiggle if any card is open
     }
 
     return () => clearInterval(interval);
-  }, [isOpen, controls, anyOpen]);
+  }, [isOpen, controls, anyOpen, resetTooltip]);
 
   return (
     <div
@@ -59,35 +67,33 @@ const CredentialCard = ({
       style={{
         maxWidth: "220px",
         borderRadius: "1.3rem",
+        overflow: "visible",
       }}>
-      <OverlayTrigger
-        placement="top"
-        delay={{ show: 500, hide: 200 }}
-        overlay={
-          <Tooltip id={index + "-tooltip"}>
+      <button
+        onClick={toggleOpen}
+        className="card-header text-light d-flex justify-content-between align-items-center border-0"
+        aria-expanded={isOpen}
+        style={{
+          borderRadius: isOpen ? "1rem 1rem 0 0" : "1.3rem",
+          transition: "border-radius 0.1s ease",
+          transitionDelay: isOpen ? "0s" : "0.25s",
+          backgroundColor: "#5c4685",
+          fontWeight: 600,
+        }}
+        {...triggerProps}>
+        {isTooltipVisible && (
+          <div className="fw-bold rounded-2 px-2 py-1 alert alert-info" style={tooltipStyle}>
             {isOpen ? "Click to collapse" : "Click to expand"}
-          </Tooltip>
-        }>
-        <button
-          onClick={toggleOpen}
-          className="card-header text-light d-flex justify-content-between align-items-center border-0"
-          aria-expanded={isOpen}
-          style={{
-            borderRadius: isOpen ? "1rem 1rem 0 0" : "1.3rem",
-            transition: "border-radius 0.1s ease",
-            transitionDelay: isOpen ? "0s" : "0.5s",
-            backgroundColor: "#5c4685",
-            fontWeight: 600,
-          }}>
-          <span style={{ fontSize: "1.2rem" }}>{formatLabel(credential.label)} Credentials</span>
-          <motion.i
-            className="bi bi-chevron-right"
-            animate={controls}
-            variants={chevronVariants}
-            style={{ display: "inline-block" }}
-          />
-        </button>
-      </OverlayTrigger>
+          </div>
+        )}
+        <span style={{ fontSize: "1.2rem" }}>{formatLabel(credential.label)} Credentials</span>
+        <motion.i
+          className="bi bi-chevron-right"
+          animate={controls}
+          variants={chevronVariants}
+          style={{ display: "inline-block" }}
+        />
+      </button>
 
       <Collapse in={isOpen} unmountOnExit>
         <div className="p-0 m-0" style={{ borderRadius: "0 0 1rem 1rem", overflow: "hidden" }}>
