@@ -147,8 +147,8 @@ export const useTooltip = (
     // Add nowrap to prevent the text from wrapping
     whiteSpace: "nowrap",
     overflow: "visible",
-    fontSize: "1rem",
-    fontWeight: "bolder",
+    fontSize: "0.6rem",
+    fontWeight: "bold",
   };
 
   return { isVisible, triggerProps, tooltipStyle, hideTooltip, resetTooltip };
