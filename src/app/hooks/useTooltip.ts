@@ -156,8 +156,15 @@ export const useTooltip = (
     // Add nowrap to prevent the text from wrapping
     whiteSpace: "nowrap",
     overflow: "visible",
-    fontSize: "0.6rem",
+    fontSize: "0.8rem",
     fontWeight: "bold",
+    transition: "opacity 0.2s ease, transform 0.1s ease",
+    willChange: "transform",
+    userSelect: "none", // Prevent text selection
+    backgroundColor: "#1bb1d6",
+    color: "rgb(41, 7, 63)",
+    padding: "2px 6px",
+    borderRadius: "10px",
   };
 
   return { isVisible, triggerProps, tooltipStyle, hideTooltip, resetTooltip };

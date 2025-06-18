@@ -82,9 +82,7 @@ const CredentialCard = ({
         }}
         {...triggerProps}>
         {isTooltipVisible && (
-          <div className="fw-bold rounded-2 px-2 py-1 alert alert-info" style={tooltipStyle}>
-            {isOpen ? "Click to collapse" : "Click to expand"}
-          </div>
+          <div style={tooltipStyle}>{isOpen ? "Click to collapse" : "Click to expand"}</div>
         )}
         <span style={{ fontSize: "1.2rem" }}>{formatLabel(credential.label)} Credentials</span>
         <motion.i

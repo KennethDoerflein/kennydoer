@@ -48,11 +48,7 @@ const ProjectCard = ({
         style={{ aspectRatio: aspectRatio }}
         onClick={() => onImageClick(img)}
         {...triggerProps}>
-        {isTooltipVisible && (
-          <div className="fw-bold rounded-2 px-2 py-1 alert alert-info" style={tooltipStyle}>
-            Click image to enlarge
-          </div>
-        )}
+        {isTooltipVisible && <div style={tooltipStyle}>Click image to enlarge</div>}
 
         {loading && (
           <div className="position-absolute top-50 start-50 translate-middle z-1">
