@@ -25,7 +25,7 @@ const CredentialCard = ({
     triggerProps,
     tooltipStyle,
     resetTooltip,
-  } = useTooltip(850, { disableMovement: true });
+  } = useTooltip(1000, { disableMovement: true, location: "top" });
 
   const controls = useAnimationControls();
   const chevronVariants = {
