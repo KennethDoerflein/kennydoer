@@ -96,17 +96,14 @@ const ProjectCard = ({
             View Demo Site
           </Button>
           {github && (
-            <a
+            <Button
               href={github}
               target="_blank"
               rel="noopener noreferrer"
-              className="github-btn mx-auto"
-              style={{ textDecoration: "none" }}>
-              <span className="github-nice-btn">
-                <i className="bi bi-github me-2"></i>
-                View on Github
-              </span>
-            </a>
+              className="github-btn mx-auto">
+              <i className="bi bi-github me-2"></i>
+              View on Github
+            </Button>
           )}
         </div>
         {creds && <Credentials creds={creds} />}
