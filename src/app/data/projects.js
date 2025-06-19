@@ -49,7 +49,7 @@ export const projects = [
     img: "/assets/bankingSystemHome.png",
     alt: "Banking System site image",
     tech: ["HTML", "CSS", "PHP", "SQL"],
-    description: `MKJJ banking system is the first project I worked on using HTML, CSS, PHP, and SQL. It is a simple banking system that allows users to create an account, log in, and perform simulated banking operations such as creating or deleting accounts, checking their balance, depositing money, withdrawing money, and transferring money. The system also includes a transaction history feature that allows users to view their past transactions. The admin can view account transactions, approve or deny account creation/deletion requests, add transactions to accounts, and search for specific accounts and transactions.`,
+    description: `MKJJ banking system is the first web development project I worked on. It uses HTML, CSS, PHP, and SQL. It is a simple banking system that allows users to create an account, log in, and perform simulated banking operations such as creating or deleting accounts, checking their balance, depositing money, withdrawing money, and transferring money. The system also includes a transaction history feature that allows users to view their past transactions. The admin can view account transactions, approve or deny account creation/deletion requests, add transactions to accounts, and search for specific accounts and transactions.`,
     demo: "https://bankingsystem.kennydoer.com",
     creds: [
       { label: "User", username: "test", password: "password" },
