@@ -11,6 +11,7 @@ export const projects = [
     intrinsicHeight: 945,
     isFirst: true,
     completionTime: "20 Hours",
+    github: "https://github.com/KennethDoerflein/JohnsonsSportingGoods",
   },
   {
     title: "Job Posting Site",
@@ -19,6 +20,7 @@ export const projects = [
     tech: ["HTML", "CSS", "JavaScript", "PHP", "SQL", "Bootstrap", "jQuery", "Select2"],
     description: `New Grad Nomad is a job posting site where users can browse and post job listings. This site includes a page for companies to post job listings and a checkout page with stripe integration.`,
     demo: "https://ngn.kennydoer.com",
+    github: "https://github.com/KennethDoerflein/newgradnomad.com-HTML",
     intrinsicWidth: 1900,
     intrinsicHeight: 911,
   },
@@ -41,6 +43,7 @@ export const projects = [
     tech: ["React", "HTML", "CSS", "JavaScript", "React-Bootstrap"],
     description: `This is a comprehensive Blackjack simulator built with React, offering a full suite of gameplay features. Players can place wagers and execute actions such as hitting, standing, doubling down, and splitting. The simulator includes configurable modifiers, such as whether the dealer should hit on a soft 17 and whether splits are determined by rank. Additionally, players can perform an unlimited number of splits, provided they have sufficient points to do so.`,
     demo: "https://blackjack.kennydoer.com",
+    github: "https://github.com/KennethDoerflein/Blackjack-React",
     intrinsicWidth: 1916,
     intrinsicHeight: 911,
   },
@@ -51,6 +54,7 @@ export const projects = [
     tech: ["HTML", "CSS", "PHP", "SQL"],
     description: `MKJJ banking system is the first web development project I worked on. It uses HTML, CSS, PHP, and SQL. It is a simple banking system that allows users to create an account, log in, and perform simulated banking operations such as creating or deleting accounts, checking their balance, depositing money, withdrawing money, and transferring money. The system also includes a transaction history feature that allows users to view their past transactions. The admin can view account transactions, approve or deny account creation/deletion requests, add transactions to accounts, and search for specific accounts and transactions.`,
     demo: "https://bankingsystem.kennydoer.com",
+    github: "https://github.com/KennethDoerflein/BankingSystem",
     creds: [
       { label: "User", username: "test", password: "password" },
       { label: "Admin", username: "admin", password: "password" },
@@ -66,6 +70,7 @@ export const projects = [
     tech: ["HTML", "CSS", "JavaScript", "PHP", "SQL", "Bootstrap"],
     description: `Sporting Goods Emporium is a full-featured online sporting goods store. Customers can register, sign in, browse products by category or search, add items to a shopping cart, and complete a mock checkout. After ordering, they can view their order history. Admins have a separate login that lets them manage everything behind the scenes. They can add, edit, or remove products; view and search orders; and create new admin accounts.`,
     demo: "https://sge.kennydoer.com",
+    github: "https://github.com/KennethDoerflein/SportingGoodsEmporium",
     creds: [
       { label: "User", email: "test@test.com", password: "password" },
       { label: "Admin", username: "admin@sge.com", password: "password" },
@@ -82,6 +87,7 @@ export const projects = [
     tech: ["React", "HTML", "CSS", "TypeScript", "React-Bootstrap"],
     description: `A React-based Tic-Tac-Toe game with three difficulties: hard (minimax algorithm), medium (50% random), and easy (80% random). Features include a reset button, score tracking (wins, losses, ties) per difficulty, and a user-friendly interface.`,
     demo: "https://tictactoe.kennydoer.com",
+    github: "https://github.com/KennethDoerflein/Tic-Tac-Toe-React",
     intrinsicWidth: 953,
     intrinsicHeight: 628,
   },

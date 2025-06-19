@@ -24,6 +24,7 @@ export interface Project {
   isFirst?: boolean; // Optional prop to indicate if it's the first card
   note?: string; // Optional note field
   completionTime?: string; // Optional completion time field
+  github?: string; // Optional GitHub repo URL
 }
 
 export interface TechBadgesProps {
