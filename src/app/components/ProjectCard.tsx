@@ -15,7 +15,7 @@ const ProjectCard = ({
   tech,
   description,
   demo,
-  creds,
+  credentials,
   onImageClick,
   isFirst = false,
   intrinsicWidth,
@@ -108,7 +108,7 @@ const ProjectCard = ({
             </Button>
           )}
         </div>
-        {creds && <Credentials creds={creds} />}
+        {credentials && <Credentials credentials={credentials} />}
       </Card.Footer>
     </Card>
   );

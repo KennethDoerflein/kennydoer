@@ -6,7 +6,7 @@ export const projects = [
     tech: ["HTML", "CSS", "JavaScript", "Python", "Django", "Bootstrap"],
     description: `Johnson's Sporting Goods is a online sporting goods store. Customers can register, sign in, browse products, add items to a shopping cart, and complete a mock checkout.`,
     demo: "https://jsg.kennydoer.com",
-    creds: [{ label: "Test", email: "test", password: "mypassword123" }],
+    credentials: [{ label: "Test", email: "test", password: "mypassword123" }],
     intrinsicWidth: 1900,
     intrinsicHeight: 945,
     isFirst: true,
@@ -31,7 +31,7 @@ export const projects = [
     tech: ["HTML", "CSS", "JavaScript", "PHP", "SQL", "Bootstrap"],
     description: `Newark IT is a computer store with a fully functional customer registration and sign-in system. It includes a shopping cart, mock checkout, order history, and management of saved cards and addresses. Additionally, it features order filtering and analytics based on a selected date range.`,
     demo: "https://computerstore.kennydoer.com",
-    creds: [{ label: "Test", email: "test@test.com", password: "password" }],
+    credentials: [{ label: "Test", email: "test@test.com", password: "password" }],
     intrinsicWidth: 1917,
     intrinsicHeight: 913,
     completionTime: "40 Hours",
@@ -55,7 +55,7 @@ export const projects = [
     description: `MKJJ banking system is the first web development project I worked on. It uses HTML, CSS, PHP, and SQL. It is a simple banking system that allows users to create an account, log in, and perform simulated banking operations such as creating or deleting accounts, checking their balance, depositing money, withdrawing money, and transferring money. The system also includes a transaction history feature that allows users to view their past transactions. The admin can view account transactions, approve or deny account creation/deletion requests, add transactions to accounts, and search for specific accounts and transactions.`,
     demo: "https://bankingsystem.kennydoer.com",
     github: "https://github.com/KennethDoerflein/BankingSystem",
-    creds: [
+    credentials: [
       { label: "User", username: "test", password: "password" },
       { label: "Admin", username: "admin", password: "password" },
     ],
@@ -71,7 +71,7 @@ export const projects = [
     description: `Sporting Goods Emporium is a full-featured online sporting goods store. Customers can register, sign in, browse products by category or search, add items to a shopping cart, and complete a mock checkout. After ordering, they can view their order history. Admins have a separate login that lets them manage everything behind the scenes. They can add, edit, or remove products; view and search orders; and create new admin accounts.`,
     demo: "https://sge.kennydoer.com",
     github: "https://github.com/KennethDoerflein/SportingGoodsEmporium",
-    creds: [
+    credentials: [
       { label: "User", email: "test@test.com", password: "password" },
       { label: "Admin", username: "admin@sge.com", password: "password" },
     ],

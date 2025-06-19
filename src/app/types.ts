@@ -7,7 +7,7 @@ export interface Credential {
 }
 
 export interface CredentialsProps {
-  creds: Credential[];
+  credentials: Credential[];
 }
 
 export interface Project {
@@ -19,7 +19,7 @@ export interface Project {
   tech: string[];
   description: string;
   demo?: string; // Optional
-  creds?: Credential[]; // Optional credentials field
+  credentials?: Credential[]; // Optional credentials field
   onImageClick: (src: string) => void;
   isFirst?: boolean; // Optional prop to indicate if it's the first card
   note?: string; // Optional note field

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { CredentialsProps } from "../types";
 import CredentialCard from "./CredentialCard";
 
-const Credentials = ({ creds }: CredentialsProps) => {
+const Credentials = ({ credentials }: CredentialsProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [copiedStates, setCopiedStates] = useState<Set<string>>(new Set());
 
@@ -29,7 +29,7 @@ const Credentials = ({ creds }: CredentialsProps) => {
 
   return (
     <div className="d-flex flex-column align-items-start gap-0 mt-0 border-0">
-      {creds.map((c, idx) => (
+      {credentials.map((c, idx) => (
         <CredentialCard
           key={idx}
           credential={c}
@@ -38,7 +38,7 @@ const Credentials = ({ creds }: CredentialsProps) => {
           toggleOpen={() => toggleOpen(idx)}
           isCopied={isCopied}
           handleCopy={handleCopy}
-          isLast={idx === creds.length - 1}
+          isLast={idx === credentials.length - 1}
           anyOpen={openIndex !== null} // Pass if any card is open
         />
       ))}
