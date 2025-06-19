@@ -87,7 +87,7 @@ const ProjectCard = ({
             <strong>Note:</strong> {note}
           </div>
         )}
-        <div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-2 mb-2">
+        <div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 mb-2">
           <Button
             href={demo}
             target="_blank"

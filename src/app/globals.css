@@ -301,18 +301,12 @@
     transform var(--transition-duration-normal) var(--timing-function-ease),
     box-shadow var(--transition-duration-normal) var(--timing-function-ease),
     filter 1.2s cubic-bezier(0.77, 0, 0.175, 1);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(22, 27, 34, 0.18);
   transform: translateZ(0);
   will-change: background-position, background-size, filter, transform;
   backface-visibility: hidden;
-  -webkit-appearance: none;
   appearance: none;
   box-sizing: border-box;
-}
-
-.gradientButton:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: var(--hover-shadow); /* 0 8px 24px rgba(0,0,0,0.3) */
 }
 
 .tooltip-inner {
@@ -366,36 +360,45 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Revert to base button shadow */
   }
 
+  .github-btn:hover,
+  .github-btn:active,
+  .github-btn:focus,
   .gradientButton:hover,
-  .github-btn:hover {
-    transform: none; /* Disable button lift and scale */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Revert to base button shadow */
+  .gradientButton:active,
+  .gradientButton:focus {
+    transform: none !important; /* Disable button lift and scale */
+    box-shadow: 0 5px 15px rgba(22, 27, 34, 0.18) !important; /* Revert to base button shadow */
   }
 }
 
 .github-btn {
   display: inline-flex;
   align-items: center;
-  padding: 14px 32px;
+  padding: 14px 30px;
   font-size: 1.15rem;
   font-weight: 600;
   border: none;
   border-radius: 12px;
   background: linear-gradient(90deg, #161b22 0%, #333950 100%);
   color: #f6f8fa;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  overflow: hidden;
   box-shadow: 0 5px 15px rgba(22, 27, 34, 0.18);
   transition:
     background 0.2s,
     color 0.2s,
     box-shadow 0.2s,
     transform 0.2s;
-  cursor: pointer;
-  letter-spacing: 0.01em;
-  margin-left: 0.5em;
+  transform: translateZ(0);
+  will-change: background-position, background-size, filter, transform;
+  backface-visibility: hidden;
+  appearance: none;
+  box-sizing: border-box;
 }
 
 .github-btn:hover,
-.github-btn:focus .github-btn {
+.gradientButton:hover {
   transform: translateY(-4px) scale(1.02);
   box-shadow: var(--hover-shadow); /* 0 8px 24px rgba(0,0,0,0.3) */
 }
