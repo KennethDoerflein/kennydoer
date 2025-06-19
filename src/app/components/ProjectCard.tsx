@@ -88,13 +88,15 @@ const ProjectCard = ({
           </div>
         )}
         <div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 mb-2">
-          <Button
-            href={demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`gradientButton mx-auto`}>
-            View Demo Site
-          </Button>
+          {demo && (
+            <Button
+              href={demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`gradientButton mx-auto`}>
+              View Demo Site
+            </Button>
+          )}
           {github && (
             <Button
               href={github}
