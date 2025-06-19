@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Button, Card, OverlayTrigger, Spinner, Tooltip } from "react-bootstrap";
+import { Button, Card, Spinner } from "react-bootstrap";
+import { useTooltip } from "../hooks/useTooltip";
 import { Project } from "../types";
 import Credentials from "./Credentials";
 import TechBadges from "./TechBadges";
@@ -21,9 +22,12 @@ const ProjectCard = ({
   intrinsicHeight,
   note,
   completionTime,
+  github,
 }: Project) => {
   const aspectRatio = `${intrinsicWidth} / ${intrinsicHeight}`;
   const [loading, setLoading] = useState(true);
+
+  const { isVisible: isTooltipVisible, triggerProps, tooltipStyle } = useTooltip();
 
   useEffect(() => {
     setLoading(true);
@@ -34,42 +38,41 @@ const ProjectCard = ({
       <Card.Header className="text-center" style={{ backgroundColor: "#0F172A" }}>
         <div>{title}</div>
         {completionTime && (
-          <small className="text-muted" style={{ fontSize: "0.8em" }}>
-            ⏱️ Time to Completion: ~{completionTime}
+          <small className="text-muted" style={{ fontSize: "0.65em" }}>
+            ⏱️ Estimated Completion Time: ~{completionTime}
           </small>
         )}
       </Card.Header>
-      <OverlayTrigger
-        placement="bottom"
-        delay={{ show: 850, hide: 0 }}
-        overlay={<Tooltip id="expand-tooltip">Click image to enlarge</Tooltip>}>
-        <div
-          className="bg-dark position-relative w-100"
-          style={{ aspectRatio: aspectRatio }}
-          onClick={() => onImageClick(img)}>
-          {loading && (
-            <div className="position-absolute top-50 start-50 translate-middle z-1">
-              <Spinner animation="border" variant="primary" />
-            </div>
-          )}
-          <Image
-            src={img}
-            alt={alt}
-            width={intrinsicWidth}
-            height={intrinsicHeight}
-            style={{
-              display: "block",
-              width: "100%",
-              height: "auto",
-              objectFit: "cover",
-              opacity: loading ? 0.5 : 1,
-              transition: "opacity 0.3s ease-in-out",
-            }}
-            priority={isFirst}
-            onLoad={() => setLoading(false)}
-          />
-        </div>
-      </OverlayTrigger>
+
+      <div
+        className="bg-dark position-relative w-100"
+        style={{ aspectRatio: aspectRatio }}
+        onClick={() => onImageClick(img)}
+        {...triggerProps}>
+        {isTooltipVisible && <div style={tooltipStyle}>Click image to enlarge</div>}
+
+        {loading && (
+          <div className="position-absolute top-50 start-50 translate-middle z-1">
+            <Spinner animation="border" variant="primary" />
+          </div>
+        )}
+        <Image
+          src={img}
+          alt={alt}
+          width={intrinsicWidth}
+          height={intrinsicHeight}
+          style={{
+            display: "block",
+            width: "100%",
+            height: "auto",
+            objectFit: "cover",
+            opacity: loading ? 0.5 : 1,
+            transition: "opacity 0.3s ease-in-out",
+          }}
+          priority={isFirst}
+          onLoad={() => setLoading(false)}
+        />
+      </div>
 
       <Card.Body>
         <Card.Title>Tech Stack:</Card.Title>
@@ -84,13 +87,28 @@ const ProjectCard = ({
             <strong>Note:</strong> {note}
           </div>
         )}
-        <Button
-          href={demo}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`gradientButton mx-auto`}>
-          View Demo Site
-        </Button>
+        <div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-2 mb-2">
+          <Button
+            href={demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`gradientButton mx-auto`}>
+            View Demo Site
+          </Button>
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="github-btn mx-auto"
+              style={{ textDecoration: "none" }}>
+              <span className="github-nice-btn">
+                <i className="bi bi-github me-2"></i>
+                View on Github
+              </span>
+            </a>
+          )}
+        </div>
         {creds && <Credentials creds={creds} />}
       </Card.Footer>
     </Card>

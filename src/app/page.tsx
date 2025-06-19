@@ -22,9 +22,27 @@ const HomePage: NextPage = () => {
     }
   };
 
+  // Show dev site alert if version contains beta, alpha, or rc
+  const isDevVersion = /beta|alpha|rc/i.test(appInfo.version);
+
   return (
     <>
-      <Alert variant="warning" className="text-center mx-auto compact-alert px-3">
+      {isDevVersion && (
+        <Alert variant="danger" className="text-center mx-auto compact-alert px-3 mb-2 m-1">
+          <strong>Development Version: </strong>
+          You are currently on the development site. Features may be unstable.
+          <div className="mt-2">
+            <a
+              href="https://kennydoer.com"
+              rel="noopener noreferrer"
+              className="btn btn-dark btn-sm">
+              Go to Main Site
+            </a>
+          </div>
+        </Alert>
+      )}
+
+      <Alert variant="warning" className="text-center mx-auto compact-alert px-3 mb-0">
         <strong>Note: </strong>⚠️ All databases automatically reset to a known state every 30
         minutes (e.g., 10:00, 10:30, 11:00...).
       </Alert>
