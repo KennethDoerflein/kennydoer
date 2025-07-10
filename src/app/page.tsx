@@ -10,9 +10,40 @@ import ImageModal from "./components/ImageModal";
 import ProjectCard from "./components/ProjectCard";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import { projects as projectsData } from "./data/projects";
-import { motion, LayoutGroup } from "framer-motion";
+import { motion, LayoutGroup, AnimatePresence } from "framer-motion";
 import type { Project } from "./types";
 type ProjectData = Omit<Project, "onImageClick" | "isFirst">;
+
+// Scalable complexity levels map
+const complexityLevels = {
+  Beginner: 1,
+  Intermediate: 2,
+  Advanced: 3,
+} as const;
+
+type ComplexityLabel = keyof typeof complexityLevels;
+
+// Type guards for optional properties
+function hasYear(p: Partial<ProjectData>): p is ProjectData & { year: number } {
+  return typeof p.year === "number";
+}
+function hasComplexity(
+  p: Partial<ProjectData>
+): p is ProjectData & { complexity: ComplexityLabel } {
+  return typeof p.complexity === "string" && p.complexity in complexityLevels;
+}
+function hasCompletionTime(p: Partial<ProjectData>): p is ProjectData & { completionTime: string } {
+  return typeof p.completionTime === "string" && p.completionTime.length > 0;
+}
+
+function compareComplexity(a: Partial<ProjectData>, b: Partial<ProjectData>, asc = true) {
+  const idxA = hasComplexity(a) ? complexityLevels[a.complexity] : -1;
+  const idxB = hasComplexity(b) ? complexityLevels[b.complexity] : -1;
+  if (idxA === -1 && idxB === -1) return 0;
+  if (idxA === -1) return 1;
+  if (idxB === -1) return -1;
+  return asc ? idxA - idxB : idxB - idxA;
+}
 
 const sortOptions = [
   { value: "default", label: "Default" },
@@ -24,16 +55,6 @@ const sortOptions = [
   { value: "completion-desc", label: "Completion Time: Most to Least" },
 ];
 
-const complexityOrder = ["Beginner", "Intermediate", "Advanced"];
-
-function compareComplexity(a: { complexity?: string }, b: { complexity?: string }, asc = true) {
-  const idxA = a.complexity ? complexityOrder.indexOf(a.complexity) : -1;
-  const idxB = b.complexity ? complexityOrder.indexOf(b.complexity) : -1;
-  if (idxA === -1) return 1;
-  if (idxB === -1) return -1;
-  return asc ? idxA - idxB : idxB - idxA;
-}
-
 function parseCompletionTime(time?: string): number | null {
   if (!time) return null;
   const match = time.match(/(\d+(?:\.\d+)?)/);
@@ -42,30 +63,30 @@ function parseCompletionTime(time?: string): number | null {
 
 const sortFunctions: Record<string, (a: ProjectData, b: ProjectData) => number> = {
   "year-asc": (a, b) => {
-    if (typeof a.year !== "number" && typeof b.year !== "number") return 0;
-    if (typeof a.year !== "number") return 1;
-    if (typeof b.year !== "number") return -1;
+    if (!hasYear(a) && !hasYear(b)) return 0;
+    if (!hasYear(a)) return 1;
+    if (!hasYear(b)) return -1;
     return a.year - b.year;
   },
   "year-desc": (a, b) => {
-    if (typeof a.year !== "number" && typeof b.year !== "number") return 0;
-    if (typeof a.year !== "number") return 1;
-    if (typeof b.year !== "number") return -1;
+    if (!hasYear(a) && !hasYear(b)) return 0;
+    if (!hasYear(a)) return 1;
+    if (!hasYear(b)) return -1;
     return b.year - a.year;
   },
   "complexity-asc": (a, b) => compareComplexity(a, b, true),
   "complexity-desc": (a, b) => compareComplexity(a, b, false),
   "completion-asc": (a, b) => {
-    const tA = parseCompletionTime(a.completionTime);
-    const tB = parseCompletionTime(b.completionTime);
+    const tA = hasCompletionTime(a) ? parseCompletionTime(a.completionTime) : null;
+    const tB = hasCompletionTime(b) ? parseCompletionTime(b.completionTime) : null;
     if (tA === null && tB === null) return 0;
     if (tA === null) return 1;
     if (tB === null) return -1;
     return tA - tB;
   },
   "completion-desc": (a, b) => {
-    const tA = parseCompletionTime(a.completionTime);
-    const tB = parseCompletionTime(b.completionTime);
+    const tA = hasCompletionTime(a) ? parseCompletionTime(a.completionTime) : null;
+    const tB = hasCompletionTime(b) ? parseCompletionTime(b.completionTime) : null;
     if (tA === null && tB === null) return 0;
     if (tA === null) return 1;
     if (tB === null) return -1;
@@ -178,17 +199,22 @@ const HomePage: NextPage = () => {
 
         <LayoutGroup>
           <Row xs={1} md={1} className="g-3">
-            {sortedProjects.map((p, index) => (
-              <motion.div
-                key={p.title}
-                layout
-                transition={{ type: "spring", stiffness: 125, damping: 25 }}
-                className="d-flex justify-content-center">
-                <Col>
-                  <ProjectCard {...p} onImageClick={openModal} isFirst={index === 0} />
-                </Col>
-              </motion.div>
-            ))}
+            <AnimatePresence>
+              {sortedProjects.map((p, index) => (
+                <motion.div
+                  key={p.title}
+                  layout
+                  initial={{ opacity: 0 }} // Fades in
+                  animate={{ opacity: 1 }} // Stays visible
+                  exit={{ opacity: 0 }} // Fades out
+                  transition={{ type: "spring", stiffness: 125, damping: 25 }}
+                  className="d-flex justify-content-center">
+                  <Col>
+                    <ProjectCard {...p} onImageClick={openModal} isFirst={index === 0} />
+                  </Col>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </Row>
         </LayoutGroup>
 
