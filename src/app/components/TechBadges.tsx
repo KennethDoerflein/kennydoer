@@ -11,7 +11,7 @@ const TechBadges = ({ tech }: TechBadgesProps) => {
         const color = colors[i % colors.length];
         const textColor = ["light", "warning", "info"].includes(color) ? "dark" : "light";
         return (
-          <Badge key={t} bg={color} text={textColor} className="me-1 mb-1">
+          <Badge key={t} bg={color} text={textColor} className="me-1 mb-1 tech-badge-hover">
             {t}
           </Badge>
         );

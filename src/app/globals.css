@@ -316,6 +316,20 @@
   font-weight: 700 !important;
 }
 
+.tech-badge-hover {
+  will-change: transform, box-shadow, filter;
+  transition: all 0.2s ease-in-out;
+}
+
+.tech-badge-hover:hover {
+  transform: scale(1.12) translateY(-3px);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(13, 110, 253, 0.18);
+  filter: brightness(1.15) saturate(1.2);
+  z-index: 2;
+}
+
 /* Media query for mobile devices - disable hover animations */
 @media (max-width: 768px) {
   .tooltip {

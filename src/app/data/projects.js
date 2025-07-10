@@ -12,6 +12,8 @@ export const projects = [
     isFirst: true,
     completionTime: "20 Hours",
     github: "https://github.com/KennethDoerflein/JohnsonsSportingGoods",
+    year: 2024,
+    //complexity: "Intermediate",
   },
   {
     title: "Job Posting Site",
@@ -23,6 +25,8 @@ export const projects = [
     github: "https://github.com/KennethDoerflein/newgradnomad.com-HTML",
     intrinsicWidth: 1900,
     intrinsicHeight: 911,
+    year: 2023,
+    //complexity: "Intermediate",
   },
   {
     title: "Computer Store",
@@ -35,6 +39,8 @@ export const projects = [
     intrinsicWidth: 1917,
     intrinsicHeight: 913,
     completionTime: "40 Hours",
+    year: 2022,
+    //complexity: "Intermediate",
   },
   {
     title: "Blackjack",
@@ -46,6 +52,8 @@ export const projects = [
     github: "https://github.com/KennethDoerflein/Blackjack-React",
     intrinsicWidth: 1916,
     intrinsicHeight: 911,
+    year: 2024,
+    //complexity: "Advanced",
   },
   {
     title: "Banking System",
@@ -62,6 +70,8 @@ export const projects = [
     intrinsicWidth: 1904,
     intrinsicHeight: 916,
     completionTime: "60 Hours",
+    year: 2021,
+    //complexity: "Beginner",
   },
   {
     title: "Sporting Goods Emporium",
@@ -79,6 +89,8 @@ export const projects = [
     intrinsicHeight: 915,
     note: "All code related to product image uploads has been removed for this public demo.",
     completionTime: "30 Hours",
+    year: 2023,
+    //complexity: "Advanced",
   },
   {
     title: "Tic-Tac-Toe",
@@ -90,5 +102,7 @@ export const projects = [
     github: "https://github.com/KennethDoerflein/Tic-Tac-Toe-React",
     intrinsicWidth: 953,
     intrinsicHeight: 628,
+    year: 2024,
+    //complexity: "Beginner",
   },
 ];

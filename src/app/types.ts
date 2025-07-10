@@ -25,6 +25,8 @@ export interface Project {
   note?: string; // Optional note field
   completionTime?: string; // Optional completion time field
   github?: string; // Optional GitHub repo URL
+  year?: number; // Optional year field (number)
+  complexity?: string; // Optional complexity field (e.g., 'Beginner', 'Intermediate', 'Advanced')
 }
 
 export interface TechBadgesProps {
