@@ -1,7 +1,7 @@
 // src/app/components/ProjectCard.tsx
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Button, Card, Spinner } from "react-bootstrap";
 import { useTooltip } from "../hooks/useTooltip";
 import { Project } from "../types";
@@ -23,20 +23,38 @@ const ProjectCard = ({
   note,
   completionTime,
   github,
+  year,
 }: Project) => {
   const aspectRatio = `${intrinsicWidth} / ${intrinsicHeight}`;
-  const [loading, setLoading] = useState(true);
+  const loadedRef = useRef<{ [key: string]: boolean }>({});
+  const [loading, setLoading] = useState(() => !loadedRef.current[img]);
 
   const { isVisible: isTooltipVisible, triggerProps, tooltipStyle } = useTooltip();
 
   useEffect(() => {
-    setLoading(true);
+    // Only set loading to true if this image hasn't loaded before
+    if (!loadedRef.current[img]) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
   }, [img]);
+
+  // Prevent spinner on sort: only show spinner until image loads for the first time
+  const handleImageLoad = () => {
+    loadedRef.current[img] = true;
+    setLoading(false);
+  };
 
   return (
     <Card className="fade-in-up" style={{ maxWidth: "700px" }}>
       <Card.Header className="text-center" style={{ backgroundColor: "#0F172A" }}>
         <div>{title}</div>
+        {year !== undefined && year !== null && (
+          <small className="text-muted d-block mt-2" style={{ fontSize: "0.7em" }}>
+            📅 {year}
+          </small>
+        )}
         {completionTime && (
           <small className="text-muted" style={{ fontSize: "0.65em" }}>
             ⏱️ Estimated Completion Time: ~{completionTime}
@@ -70,7 +88,7 @@ const ProjectCard = ({
             transition: "opacity 0.3s ease-in-out",
           }}
           priority={isFirst}
-          onLoad={() => setLoading(false)}
+          onLoad={handleImageLoad}
         />
       </div>
 
