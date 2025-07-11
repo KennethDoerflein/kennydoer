@@ -12,6 +12,7 @@ import ProjectCard from "./components/ProjectCard";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import { projects as projectsData } from "./data/projects";
 import type { Project } from "./types";
+import { getProjectCardVariants } from "./utils/projectCardAnimations";
 type ProjectData = Omit<Project, "onImageClick" | "isFirst">;
 
 // Scalable complexity levels map
@@ -145,7 +146,7 @@ const HomePage: NextPage = () => {
       {isDevVersion && (
         <Alert variant="danger" className="text-center mx-auto compact-alert px-3 mb-2 m-1">
           <strong>Development Version: </strong>
-          You are currently on the development site. Features may be unstable.
+          You are currently on the development site. Features may be outdated or unstable.
           <div className="mt-2">
             <a
               href="https://kennydoer.com"
@@ -205,27 +206,7 @@ const HomePage: NextPage = () => {
                 return sortedProjects.map((p, index) => (
                   <motion.div
                     key={p.title}
-                    initial={{ opacity: 0, x: 100, y: 20 }}
-                    animate={{
-                      opacity: 1,
-                      x: 0,
-                      y: 0,
-                      transition: {
-                        ease: "easeOut",
-                        duration: 0.5,
-                        delay: index * 0.07,
-                      },
-                    }}
-                    exit={{
-                      opacity: 0,
-                      x: -100,
-                      y: -20,
-                      transition: {
-                        ease: "easeIn",
-                        duration: 0.3,
-                        delay: (totalItems - 1 - index) * 0.04,
-                      },
-                    }}
+                    {...getProjectCardVariants(totalItems, index)}
                     className="d-flex justify-content-center">
                     <Col>
                       <ProjectCard {...p} onImageClick={openModal} isFirst={index === 0} />
