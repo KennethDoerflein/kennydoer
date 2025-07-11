@@ -13,7 +13,7 @@ export const projects = [
     completionTime: "20 Hours",
     github: "https://github.com/KennethDoerflein/JohnsonsSportingGoods",
     year: 2024,
-    //complexity: "Intermediate",
+    complexity: "Intermediate",
   },
   {
     title: "Job Posting Site",
@@ -26,7 +26,7 @@ export const projects = [
     intrinsicWidth: 1900,
     intrinsicHeight: 911,
     year: 2023,
-    //complexity: "Intermediate",
+    complexity: "Intermediate",
   },
   {
     title: "Computer Store",
@@ -40,7 +40,7 @@ export const projects = [
     intrinsicHeight: 913,
     completionTime: "40 Hours",
     year: 2022,
-    //complexity: "Intermediate",
+    complexity: "Intermediate",
   },
   {
     title: "Blackjack",
@@ -53,7 +53,7 @@ export const projects = [
     intrinsicWidth: 1916,
     intrinsicHeight: 911,
     year: 2024,
-    //complexity: "Advanced",
+    complexity: "Advanced",
   },
   {
     title: "Banking System",
@@ -71,7 +71,7 @@ export const projects = [
     intrinsicHeight: 916,
     completionTime: "60 Hours",
     year: 2021,
-    //complexity: "Beginner",
+    complexity: "Advanced",
   },
   {
     title: "Sporting Goods Emporium",
@@ -90,7 +90,7 @@ export const projects = [
     note: "All code related to product image uploads has been removed for this public demo.",
     completionTime: "30 Hours",
     year: 2023,
-    //complexity: "Advanced",
+    complexity: "Intermediate",
   },
   {
     title: "Tic-Tac-Toe",
@@ -103,6 +103,6 @@ export const projects = [
     intrinsicWidth: 953,
     intrinsicHeight: 628,
     year: 2024,
-    //complexity: "Beginner",
+    complexity: "Beginner",
   },
 ];
