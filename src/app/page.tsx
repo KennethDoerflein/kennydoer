@@ -1,8 +1,9 @@
 // src/app/page.tsx
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import type { NextPage } from "next";
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Alert, Col, Container, Row } from "react-bootstrap";
 import appInfo from "../../package.json";
 import Footer from "./components/Footer";
@@ -10,7 +11,6 @@ import ImageModal from "./components/ImageModal";
 import ProjectCard from "./components/ProjectCard";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import { projects as projectsData } from "./data/projects";
-import { motion, LayoutGroup, AnimatePresence } from "framer-motion";
 import type { Project } from "./types";
 type ProjectData = Omit<Project, "onImageClick" | "isFirst">;
 
@@ -197,26 +197,45 @@ const HomePage: NextPage = () => {
           </div>
         </div>
 
-        <LayoutGroup>
-          <Row xs={1} md={1} className="g-3">
-            <AnimatePresence>
-              {sortedProjects.map((p, index) => (
-                <motion.div
-                  key={p.title}
-                  layout
-                  initial={{ opacity: 0 }} // Fades in
-                  animate={{ opacity: 1 }} // Stays visible
-                  exit={{ opacity: 0 }} // Fades out
-                  transition={{ type: "spring", stiffness: 125, damping: 25 }}
-                  className="d-flex justify-content-center">
-                  <Col>
-                    <ProjectCard {...p} onImageClick={openModal} isFirst={index === 0} />
-                  </Col>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </Row>
-        </LayoutGroup>
+        <Row xs={1} md={1} className="g-3">
+          <AnimatePresence mode="wait" initial={false}>
+            <div key={sort}>
+              {(() => {
+                const totalItems = sortedProjects.length;
+                return sortedProjects.map((p, index) => (
+                  <motion.div
+                    key={p.title}
+                    initial={{ opacity: 0, x: 100, y: 20 }}
+                    animate={{
+                      opacity: 1,
+                      x: 0,
+                      y: 0,
+                      transition: {
+                        ease: "easeOut",
+                        duration: 0.5,
+                        delay: index * 0.07,
+                      },
+                    }}
+                    exit={{
+                      opacity: 0,
+                      x: -100,
+                      y: -20,
+                      transition: {
+                        ease: "easeIn",
+                        duration: 0.3,
+                        delay: (totalItems - 1 - index) * 0.04,
+                      },
+                    }}
+                    className="d-flex justify-content-center">
+                    <Col>
+                      <ProjectCard {...p} onImageClick={openModal} isFirst={index === 0} />
+                    </Col>
+                  </motion.div>
+                ));
+              })()}
+            </div>
+          </AnimatePresence>
+        </Row>
 
         <ScrollToTopButton />
       </Container>
