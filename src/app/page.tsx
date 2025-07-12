@@ -164,7 +164,7 @@ const HomePage: NextPage = () => {
       </Alert>
 
       <Container>
-        <div className="d-flex flex-column align-items-center mt-4">
+        <div className="d-flex flex-column align-items-center mt-4 pt-1">
           <div className="d-flex align-items-center gap-2">
             <label
               htmlFor="sort-select"
@@ -198,16 +198,13 @@ const HomePage: NextPage = () => {
           </div>
         </div>
 
-        <Row xs={1} md={1} className="g-3">
+        <Row xs={1} md={1}>
           <AnimatePresence mode="wait" initial={false}>
             <div key={sort}>
               {(() => {
                 const totalItems = sortedProjects.length;
                 return sortedProjects.map((p, index) => (
-                  <motion.div
-                    key={p.title}
-                    {...getProjectCardVariants(totalItems, index)}
-                    className="d-flex justify-content-center">
+                  <motion.div key={p.title} {...getProjectCardVariants(totalItems, index)}>
                     <Col>
                       <ProjectCard {...p} onImageClick={openModal} isFirst={index === 0} />
                     </Col>
