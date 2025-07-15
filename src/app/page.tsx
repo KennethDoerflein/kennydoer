@@ -164,56 +164,42 @@ const HomePage: NextPage = () => {
       </Alert>
 
       <Container>
-        <div className="d-flex flex-column align-items-center mt-4 pt-1">
-          <div className="d-flex align-items-center gap-2">
-            <label
-              htmlFor="sort-select"
-              className="fw-bold mb-0 text-light"
-              style={{ fontSize: "1em" }}>
-              Sort Projects:
-            </label>
-            <div className="dropdown">
-              <select
-                id="sort-select"
-                className="form-select form-select-sm w-auto bg-dark text-light dropdown-toggle"
-                style={{
-                  minWidth: 160,
-                  fontWeight: 500,
-                  boxShadow: "none",
-                  borderRadius: "0.5rem",
-                  cursor: "pointer",
-                }}
-                value={sort}
-                onChange={handleSortChange}>
-                {filteredSortOptions.map((opt: { value: string; label: string }) => (
-                  <option
-                    key={opt.value}
-                    value={opt.value}
-                    style={{ background: "#181b20", color: "#fff" }}>
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
+        <div className="d-flex justify-content-center align-items-center mt-4 pt-1">
+          <label htmlFor="sort-select" className="fw-bold me-2 ">
+            Sort Projects:
+          </label>
+          <select
+            id="sort-select"
+            className="form-select form-select-sm w-auto"
+            style={{
+              minWidth: 160,
+              fontWeight: 500,
+              boxShadow: "none",
+              borderRadius: "0.5rem",
+              cursor: "pointer",
+            }}
+            value={sort}
+            onChange={handleSortChange}>
+            {filteredSortOptions.map(({ value, label }) => (
+              <option key={value} value={value} style={{ background: "#181b20", color: "#fff" }}>
+                {label}
+              </option>
+            ))}
+          </select>
         </div>
 
-        <Row xs={1} md={1}>
-          <AnimatePresence mode="wait" initial={false}>
-            <div key={sort}>
-              {(() => {
-                const totalItems = sortedProjects.length;
-                return sortedProjects.map((p, index) => (
-                  <motion.div key={p.title} {...getProjectCardVariants(totalItems, index)}>
-                    <Col>
-                      <ProjectCard {...p} onImageClick={openModal} isFirst={index === 0} />
-                    </Col>
-                  </motion.div>
-                ));
-              })()}
-            </div>
-          </AnimatePresence>
-        </Row>
+        <AnimatePresence mode="wait" initial={false}>
+          <Row as={motion.div} key={sort} xs={1}>
+            {sortedProjects.map((p, index) => (
+              <Col
+                as={motion.div}
+                key={p.title}
+                {...getProjectCardVariants(sortedProjects.length, index)}>
+                <ProjectCard {...p} onImageClick={openModal} isFirst={index === 0} />
+              </Col>
+            ))}
+          </Row>
+        </AnimatePresence>
 
         <ScrollToTopButton />
       </Container>
