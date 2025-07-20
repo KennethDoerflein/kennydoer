@@ -119,7 +119,7 @@ export const projects = [
       "Framer Motion",
       "Bootstrap Icons",
     ],
-    description: `This personal portfolio website, showcasing projects and skills. Built with React, Next.js, TypeScript, React-Bootstrap, Framer Motion, and Bootstrap Icons. The app structure includes custom components (ProjectCard, TechBadges, Footer, ImageModal, Credentials, ScrollToTopButton), hooks (useTooltip), utility files (projectCardAnimations), global and modular CSS, and type definitions. Animations are powered by Framer Motion, and the site uses Next.js for routing and optimization. Responsive design principles are applied throughout.`,
+    description: `This portfolio website, showcasing projects and skills. Built with React, Next.js, TypeScript, React-Bootstrap, Framer Motion, and Bootstrap Icons. The app structure includes custom components (ProjectCard, TechBadges, Footer, ImageModal, Credentials, ScrollToTopButton), hooks (useTooltip), utility files (projectCardAnimations), global and modular CSS, and type definitions. Animations are powered by Framer Motion, and the site uses Next.js for routing and optimization. Responsive design principles are applied throughout.`,
     //demo: "https://kennydoer.com",
     //github: "https://github.com/KennethDoerflein/kennydoer",
     //intrinsicWidth: 1911,
