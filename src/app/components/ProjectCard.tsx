@@ -107,35 +107,37 @@ const ProjectCard = ({
         </div>
         <Card.Text style={{ whiteSpace: "pre-line" }}>{description}</Card.Text>
       </Card.Body>
-      <Card.Footer className="text-center">
-        {note && (
-          <div className="mb-3 text-muted">
-            <strong>Note:</strong> {note}
+      {(note || github || demo || credentials) && (
+        <Card.Footer className="text-center">
+          {note && (
+            <div className="mb-3 text-muted">
+              <strong>Note:</strong> {note}
+            </div>
+          )}
+          <div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 mb-2">
+            {demo && (
+              <Button
+                href={demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`gradientButton mx-auto`}>
+                View Demo Site
+              </Button>
+            )}
+            {github && (
+              <Button
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="github-btn mx-auto">
+                <i className="bi bi-github me-2"></i>
+                View on Github
+              </Button>
+            )}
           </div>
-        )}
-        <div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 mb-2">
-          {demo && (
-            <Button
-              href={demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`gradientButton mx-auto`}>
-              View Demo Site
-            </Button>
-          )}
-          {github && (
-            <Button
-              href={github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="github-btn mx-auto">
-              <i className="bi bi-github me-2"></i>
-              View on Github
-            </Button>
-          )}
-        </div>
-        {credentials && <Credentials credentials={credentials} />}
-      </Card.Footer>
+          {credentials && <Credentials credentials={credentials} />}
+        </Card.Footer>
+      )}
     </Card>
   );
 };
