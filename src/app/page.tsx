@@ -18,8 +18,10 @@ type ProjectData = Omit<Project, "onImageClick" | "isFirst">;
 // Scalable complexity levels map
 const complexityLevels = {
   Beginner: 1,
+  Advanced_Beginner: 1.5,
   Intermediate: 2,
   Advanced: 3,
+  Proficient: 4,
 } as const;
 
 type ComplexityLabel = keyof typeof complexityLevels;
@@ -133,13 +135,27 @@ const HomePage: NextPage = () => {
     });
   }, [hasYear, hasComplexity, hasCompletion]);
 
+  // Ensure all projects have intrinsicWidth and intrinsicHeight for sorting
+  const normalizedProjects = useMemo(() => {
+    return projectsData.map((p) => ({
+      ...p,
+      intrinsicWidth: p.intrinsicWidth ?? 1,
+      intrinsicHeight: p.intrinsicHeight ?? 1,
+    })) as ProjectData[];
+  }, []);
+
   const sortedProjects = useMemo(() => {
-    if (sort === "default") return [...projectsData] as ProjectData[];
-    if (sort in sortFunctions) {
-      return [...projectsData].sort(sortFunctions[sort]);
+    const projectsToSort = [...normalizedProjects];
+
+    if (sort === "default") {
+      return projectsToSort;
     }
-    return [...projectsData] as ProjectData[];
-  }, [sort]);
+    if (sort in sortFunctions) {
+      return projectsToSort.sort(sortFunctions[sort]);
+    }
+
+    return projectsToSort;
+  }, [sort, normalizedProjects]);
 
   return (
     <>
