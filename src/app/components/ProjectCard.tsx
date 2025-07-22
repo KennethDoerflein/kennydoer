@@ -25,23 +25,27 @@ const ProjectCard = ({
   github,
   year,
 }: Project) => {
-  const aspectRatio = `${intrinsicWidth} / ${intrinsicHeight}`;
+  // Safely calculate aspect ratio with a fallback.
+  const aspectRatio =
+    intrinsicWidth && intrinsicHeight ? `${intrinsicWidth} / ${intrinsicHeight}` : "16 / 9";
+
   const loadedRef = useRef<{ [key: string]: boolean }>({});
-  const [loading, setLoading] = useState(() => !loadedRef.current[img]);
+
+  // Safely initialize loading state to false if there's no image.
+  const [loading, setLoading] = useState(img ? !loadedRef.current[img] : false);
 
   const { isVisible: isTooltipVisible, triggerProps, tooltipStyle } = useTooltip();
 
   useEffect(() => {
-    // Only set loading to true if this image hasn't loaded before
-    if (!loadedRef.current[img]) {
-      setLoading(true);
-    } else {
+    if (!img) {
       setLoading(false);
+      return;
     }
+    setLoading(!loadedRef.current[img]);
   }, [img]);
 
-  // Prevent spinner on sort: only show spinner until image loads for the first time
   const handleImageLoad = () => {
+    if (!img) return;
     loadedRef.current[img] = true;
     setLoading(false);
   };
@@ -62,35 +66,39 @@ const ProjectCard = ({
         )}
       </Card.Header>
 
-      <div
-        className="bg-dark position-relative w-100"
-        style={{ aspectRatio: aspectRatio }}
-        onClick={() => onImageClick(img)}
-        {...triggerProps}>
-        {isTooltipVisible && <div style={tooltipStyle}>Click image to enlarge</div>}
+      {/* This renders the image container ONLY if an image is provided. */}
+      {img && intrinsicWidth && intrinsicHeight && (
+        <div
+          className="bg-dark position-relative w-100"
+          style={{ aspectRatio: aspectRatio }}
+          onClick={() => onImageClick(img)}
+          {...triggerProps}>
+          {loading && (
+            <div className="position-absolute top-50 start-50 translate-middle z-1">
+              <Spinner animation="border" variant="primary" />
+            </div>
+          )}
 
-        {loading && (
-          <div className="position-absolute top-50 start-50 translate-middle z-1">
-            <Spinner animation="border" variant="primary" />
-          </div>
-        )}
-        <Image
-          src={img}
-          alt={alt}
-          width={intrinsicWidth}
-          height={intrinsicHeight}
-          style={{
-            display: "block",
-            width: "100%",
-            height: "auto",
-            objectFit: "cover",
-            opacity: loading ? 0.5 : 1,
-            transition: "opacity 0.3s ease-in-out",
-          }}
-          priority={isFirst}
-          onLoad={handleImageLoad}
-        />
-      </div>
+          {isTooltipVisible && <div style={tooltipStyle}>Click image to enlarge</div>}
+
+          <Image
+            src={img}
+            alt={alt || `${title} project image`}
+            width={intrinsicWidth}
+            height={intrinsicHeight}
+            style={{
+              display: "block",
+              width: "100%",
+              height: "auto",
+              objectFit: "cover",
+              opacity: loading ? 0.5 : 1, // Visual cue for loading
+              transition: "opacity 0.3s ease-in-out",
+            }}
+            priority={isFirst}
+            onLoad={handleImageLoad} // This hides the spinner when done
+          />
+        </div>
+      )}
 
       <Card.Body>
         <Card.Title>Tech Stack:</Card.Title>
@@ -99,35 +107,37 @@ const ProjectCard = ({
         </div>
         <Card.Text style={{ whiteSpace: "pre-line" }}>{description}</Card.Text>
       </Card.Body>
-      <Card.Footer className="text-center">
-        {note && (
-          <div className="mb-3 text-muted">
-            <strong>Note:</strong> {note}
+      {(note || github || demo || credentials) && (
+        <Card.Footer className="text-center">
+          {note && (
+            <div className="mb-3 text-muted">
+              <strong>Note:</strong> {note}
+            </div>
+          )}
+          <div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 mb-2">
+            {demo && (
+              <Button
+                href={demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`gradientButton mx-auto`}>
+                View Demo Site
+              </Button>
+            )}
+            {github && (
+              <Button
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="github-btn mx-auto">
+                <i className="bi bi-github me-2"></i>
+                View on Github
+              </Button>
+            )}
           </div>
-        )}
-        <div className="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 mb-2">
-          {demo && (
-            <Button
-              href={demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`gradientButton mx-auto`}>
-              View Demo Site
-            </Button>
-          )}
-          {github && (
-            <Button
-              href={github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="github-btn mx-auto">
-              <i className="bi bi-github me-2"></i>
-              View on Github
-            </Button>
-          )}
-        </div>
-        {credentials && <Credentials credentials={credentials} />}
-      </Card.Footer>
+          {credentials && <Credentials credentials={credentials} />}
+        </Card.Footer>
+      )}
     </Card>
   );
 };

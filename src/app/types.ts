@@ -12,8 +12,8 @@ export interface CredentialsProps {
 
 export interface Project {
   title: string;
-  img: string;
-  alt: string;
+  img?: string;
+  alt?: string;
   intrinsicWidth: number;
   intrinsicHeight: number;
   tech: string[];
