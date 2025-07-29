@@ -3,6 +3,7 @@ import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
 export type TooltipLocation = "top" | "bottom" | "left" | "right";
 
 export const useTooltip = (
+  isHoverEnabled: boolean, // Accept hover status as a required argument
   delay = 850,
   options?: {
     disableInterpolation?: boolean;
@@ -10,28 +11,18 @@ export const useTooltip = (
     location?: TooltipLocation;
   }
 ) => {
-  // Detect mobile/touch device
-  const isTouchDevice =
-    typeof window !== "undefined" &&
-    ("ontouchstart" in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0));
-
   const [isVisible, setIsVisible] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  // State to hold the dynamic transform style
   const [transform, setTransform] = useState("translate(-50%, 24px)");
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  // This entire hook is controlled by the isHoverEnabled prop.
+  // If hover is not enabled, we return a disabled state.
   useEffect(() => {
-    // Hide tooltip on scroll
-    const handleScroll = () => setIsVisible(false);
-    window.addEventListener("scroll", handleScroll, true);
-    return () => {
-      if (hoverTimeoutRef.current) {
-        clearTimeout(hoverTimeoutRef.current);
-      }
-      window.removeEventListener("scroll", handleScroll, true);
-    };
-  }, []);
+    if (!isHoverEnabled) {
+      setIsVisible(false);
+    }
+  }, [isHoverEnabled]);
 
   const handleMouseEnter = useCallback(
     (e?: MouseEvent<HTMLElement>) => {
@@ -124,7 +115,7 @@ export const useTooltip = (
   }, []);
 
   // If on mobile, always hide tooltip and return no-op handlers
-  if (isTouchDevice) {
+  if (!isHoverEnabled) {
     return {
       isVisible: false,
       triggerProps: {
@@ -132,7 +123,7 @@ export const useTooltip = (
         onMouseLeave: () => {},
         onMouseMove: () => {},
       },
-      tooltipStyle: {},
+      tooltipStyle: { display: "none" }, // Explicitly hide
       hideTooltip,
       resetTooltip,
     };

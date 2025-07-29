@@ -5,12 +5,10 @@ const NO_HOVER_CLASS = "no-hover";
 
 /**
  * A React hook that detects if the primary input mechanism allows for hover effects.
- * - It adds a 'can-hover' or 'no-hover' class to the body for CSS styling.
- * - It returns a boolean `isHoverEnabled` for conditional logic in components.
- * * @returns {boolean} `true` if a mouse is detected, otherwise `false`.
+ * It listens for the first `mousemove` or `touchstart` event to determine capability.
+ * @returns {boolean} `true` if a mouse is detected as the primary input, otherwise `false`.
  */
 export const useHoverEffect = (): boolean => {
-  // State to hold the hover capability status, assuming no hover by default.
   const [isHoverEnabled, setIsHoverEnabled] = useState(false);
 
   useEffect(() => {
@@ -19,35 +17,48 @@ export const useHoverEffect = (): boolean => {
       return;
     }
 
-    // If the class is already set (e.g., from a previous page navigation),
-    // sync the state and exit early.
-    if (document.body.classList.contains(CAN_HOVER_CLASS)) {
-      setIsHoverEnabled(true);
+    // Check if detection has already run to avoid re-running on component re-renders
+    // or navigation within a single-page app.
+    if (
+      document.body.classList.contains(CAN_HOVER_CLASS) ||
+      document.body.classList.contains(NO_HOVER_CLASS)
+    ) {
+      setIsHoverEnabled(document.body.classList.contains(CAN_HOVER_CLASS));
       return;
     }
 
-    // Set the default class assuming no hover capability.
-    document.body.classList.add(NO_HOVER_CLASS);
+    let hasFired = false;
+    const cleanup = () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchstart", handleTouchStart);
+    };
 
-    const handleFirstMouseMove = () => {
-      document.body.classList.remove(NO_HOVER_CLASS);
-      document.body.classList.add(CAN_HOVER_CLASS);
-
-      // Update the state for React components to use.
+    // If a mouse is used, we can assume hover is enabled.
+    const handleMouseMove = () => {
+      if (hasFired) return;
+      hasFired = true;
       setIsHoverEnabled(true);
-
-      // Clean up the listener after it has run once.
-      window.removeEventListener("mousemove", handleFirstMouseMove);
+      document.body.classList.add(CAN_HOVER_CLASS);
+      cleanup();
     };
 
-    // Listen for the first mouse movement.
-    window.addEventListener("mousemove", handleFirstMouseMove, { once: true });
-
-    // Cleanup function for React's lifecycle.
-    return () => {
-      window.removeEventListener("mousemove", handleFirstMouseMove);
+    // If a touch event happens first, we can assume hover is not the primary input.
+    const handleTouchStart = () => {
+      if (hasFired) return;
+      hasFired = true;
+      setIsHoverEnabled(false);
+      document.body.classList.add(NO_HOVER_CLASS);
+      cleanup();
     };
-  }, []); // The empty dependency array ensures this effect runs only once.
+
+    // Add passive listeners for performance. The `once` option ensures they are
+    // automatically removed after firing, preventing memory leaks.
+    window.addEventListener("mousemove", handleMouseMove, { once: true, passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { once: true, passive: true });
+
+    // Return a cleanup function in case the component unmounts before an event fires.
+    return cleanup;
+  }, []);
 
   return isHoverEnabled;
 };

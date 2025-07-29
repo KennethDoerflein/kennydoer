@@ -30,10 +30,10 @@ const ProjectCard = ({
   const aspectRatio =
     intrinsicWidth && intrinsicHeight ? `${intrinsicWidth} / ${intrinsicHeight}` : "16 / 9";
   const loadedRef = useRef<{ [key: string]: boolean }>({});
-
-  // Safely initialize loading state to false if there's no image.
   const [loading, setLoading] = useState(img ? !loadedRef.current[img] : false);
-  const { isVisible: isTooltipVisible, triggerProps, tooltipStyle } = useTooltip();
+
+  // Pass the isHoverEnabled state to the useTooltip hook
+  const { isVisible: isTooltipVisible, triggerProps, tooltipStyle } = useTooltip(isHoverEnabled);
 
   useEffect(() => {
     if (!img) {
@@ -82,13 +82,15 @@ const ProjectCard = ({
             cursor: isHoverEnabled ? "pointer" : "default",
           }}
           onClick={handleImageClick}
-          {...triggerProps}>
+          {...triggerProps} // Spread the trigger props here
+        >
           {loading && (
             <div className="position-absolute top-50 start-50 translate-middle z-1">
               <Spinner animation="border" variant="primary" />
             </div>
           )}
 
+          {/* Apply the tooltip style and control visibility */}
           {isTooltipVisible && <div style={tooltipStyle}>Click image to enlarge</div>}
 
           <Image
@@ -101,7 +103,7 @@ const ProjectCard = ({
               width: "100%",
               height: "auto",
               objectFit: "cover",
-              opacity: loading ? 0.5 : 1, // Visual cue for loading
+              opacity: loading ? 0.5 : 1,
               transition: "opacity 0.3s ease-in-out",
             }}
             priority={isFirst}
