@@ -16,13 +16,30 @@ export const useTooltip = (
   const [transform, setTransform] = useState("translate(-50%, 24px)");
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // This entire hook is controlled by the isHoverEnabled prop.
-  // If hover is not enabled, we return a disabled state.
   useEffect(() => {
+    // If hover isn't enabled, there's nothing to do.
     if (!isHoverEnabled) {
-      setIsVisible(false);
+      return;
     }
-  }, [isHoverEnabled]);
+
+    const handleScroll = () => {
+      // When the user scrolls, hide the tooltip...
+      setIsVisible(false);
+      // ...and clear any pending timer that was about to show it.
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+        hoverTimeoutRef.current = null;
+      }
+    };
+
+    // Add the listener. Using the capture phase ensures it runs early.
+    window.addEventListener("scroll", handleScroll, { capture: true });
+
+    // Cleanup function to remove the listener.
+    return () => {
+      window.removeEventListener("scroll", handleScroll, { capture: true });
+    };
+  }, [isHoverEnabled]); // Reruns if hover capability changes.
 
   const handleMouseEnter = useCallback(
     (e?: MouseEvent<HTMLElement>) => {
