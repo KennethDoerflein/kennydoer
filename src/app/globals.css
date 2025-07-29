@@ -41,7 +41,7 @@
     box-shadow var(--transition-duration-normal) var(--timing-function-ease) !important;
 }
 
-.card:hover {
+.can-hover .card:hover {
   box-shadow: var(--card-hover-shadow);
 }
 
@@ -54,7 +54,7 @@
     box-shadow var(--transition-duration-slow) var(--timing-function-ease) !important;
 }
 
-.card img:hover {
+.can-hover .card img:hover {
   cursor: pointer;
   /* transform: scale(1.05); */
   filter: brightness(1.1) saturate(1.05);
@@ -74,7 +74,7 @@
   background-position: center;
 }
 
-.card-header:hover {
+.can-hover .card-header:hover {
   background-color: var(--card-header-hover-bg);
   background-position: right bottom;
 }
@@ -117,19 +117,14 @@
   border: none;
   border-radius: 50%;
   font-size: 1.5rem;
-
   background-color: #b22222;
   color: #ffffff;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
-
   opacity: 0.98;
-
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   transition:
     background-color var(--transition-duration-normal, 0.3s) ease,
     transform var(--transition-duration-fast, 0.2s) ease,
@@ -137,7 +132,7 @@
   cursor: pointer;
 }
 
-.close-btn:hover {
+.can-hover .close-btn:hover {
   background-color: #ff4d4d;
   transform: scale(1.1);
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
@@ -153,7 +148,7 @@
     box-shadow var(--transition-duration-normal) var(--timing-function-ease);
 }
 
-.badge:hover {
+.can-hover .badge:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -174,7 +169,7 @@
     background-position 0.6s var(--timing-function-ease-in-out);
 }
 
-.btn-info:hover {
+.can-hover .btn-info:hover {
   background-color: var(--btn-info-hover-bg);
   background-position: right bottom;
   transform: scale(1.05);
@@ -225,7 +220,7 @@
     box-shadow var(--transition-duration-normal) var(--timing-function-ease);
 }
 
-#goToBtn:hover {
+.can-hover #goToBtn:hover {
   background-color: var(--scroll-btn-hover-bg);
   transform: translateY(-4px) scale(1.02);
   box-shadow: var(--hover-shadow); /* 0 8px 24px rgba(0,0,0,0.3) */
@@ -250,6 +245,8 @@
   transition: background-color var(--transition-duration-normal) var(--timing-function-ease);
 }
 
+/* Note: Styling pseudo-elements based on a body class is not supported. */
+/* This hover effect will apply on all devices with a visible scrollbar. */
 ::-webkit-scrollbar-thumb:hover {
   background-color: #777;
 }
@@ -315,73 +312,23 @@
   font-weight: 700 !important;
 }
 
+/* Hide tooltips on devices without hover capability */
+.no-hover .tooltip {
+  display: none !important;
+}
+
 .tech-badge-hover {
   will-change: transform, box-shadow, filter;
   transition: all 0.2s ease-in-out;
 }
 
-.tech-badge-hover:hover {
+.can-hover .tech-badge-hover:hover {
   transform: scale(1.12) translateY(-3px);
   box-shadow:
     0 6px 20px rgba(0, 0, 0, 0.2),
     0 2px 8px rgba(13, 110, 253, 0.18);
   filter: brightness(1.15) saturate(1.2);
   z-index: 2;
-}
-
-/* Media query for mobile devices - disable hover animations */
-@media (max-width: 768px) {
-  .tooltip {
-    display: none !important; /* Disable tooltips on mobile */
-  }
-
-  .card:hover {
-    transform: none; /* Disable card lift */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Revert to base card shadow */
-  }
-
-  .card img:hover {
-    transform: none; /* Disable image scale */
-    filter: none; /* Disable image filter changes */
-    /* pointer-events: none; was removed to allow clicks/taps if any */
-  }
-
-  .card-header:hover {
-    background-color: var(--card-header-bg); /* Revert background color */
-    background-position: center; /* Revert background position */
-  }
-
-  .btn-close:hover {
-    background-color: var(--close-btn-bg); /* Revert background color */
-    transform: none; /* Disable button scale */
-  }
-
-  .badge:hover {
-    transform: none; /* Disable badge lift */
-    box-shadow: none; /* Remove hover shadow (base badge has no shadow) */
-  }
-
-  .btn-info:hover {
-    background-color: var(--btn-info-bg); /* Revert background color */
-    background-position: center; /* Revert background position */
-    transform: none; /* Disable button scale */
-  }
-
-  #goToBtn:hover {
-    background-color: var(--scroll-btn-bg); /* Revert background color */
-    transform: none; /* Disable button lift and scale */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Revert to base button shadow */
-  }
-
-  .github-btn:hover,
-  .github-btn:active,
-  .github-btn:focus,
-  .gradientButton:hover,
-  .gradientButton:active,
-  .gradientButton:focus {
-    transform: none !important; /* Disable button lift and scale */
-    box-shadow: 0 5px 15px rgba(22, 27, 34, 0.18) !important; /* Revert to base button shadow */
-  }
 }
 
 .github-btn {
@@ -410,8 +357,8 @@
   box-sizing: border-box;
 }
 
-.github-btn:hover,
-.gradientButton:hover {
+.can-hover .github-btn:hover,
+.can-hover .gradientButton:hover {
   transform: translateY(-4px) scale(1.02);
   box-shadow: var(--hover-shadow); /* 0 8px 24px rgba(0,0,0,0.3) */
 }

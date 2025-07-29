@@ -1,7 +1,7 @@
 // src/app/components/ProjectCard.tsx
 
 import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button, Card, Spinner } from "react-bootstrap";
 import { useTooltip } from "../hooks/useTooltip";
 import { Project } from "../types";
@@ -24,16 +24,15 @@ const ProjectCard = ({
   completionTime,
   github,
   year,
+  isHoverEnabled,
 }: Project) => {
   // Safely calculate aspect ratio with a fallback.
   const aspectRatio =
     intrinsicWidth && intrinsicHeight ? `${intrinsicWidth} / ${intrinsicHeight}` : "16 / 9";
-
   const loadedRef = useRef<{ [key: string]: boolean }>({});
 
   // Safely initialize loading state to false if there's no image.
   const [loading, setLoading] = useState(img ? !loadedRef.current[img] : false);
-
   const { isVisible: isTooltipVisible, triggerProps, tooltipStyle } = useTooltip();
 
   useEffect(() => {
@@ -48,6 +47,13 @@ const ProjectCard = ({
     if (!img) return;
     loadedRef.current[img] = true;
     setLoading(false);
+  };
+
+  // This checks if clicks are allowed before proceeding.
+  const handleImageClick = () => {
+    if (isHoverEnabled && img) {
+      onImageClick(img);
+    }
   };
 
   return (
@@ -70,8 +76,12 @@ const ProjectCard = ({
       {img && intrinsicWidth && intrinsicHeight && (
         <div
           className="bg-dark position-relative w-100"
-          style={{ aspectRatio: aspectRatio }}
-          onClick={() => onImageClick(img)}
+          style={{
+            aspectRatio: aspectRatio,
+            // Conditionally set the cursor to indicate clickability.
+            cursor: isHoverEnabled ? "pointer" : "default",
+          }}
+          onClick={handleImageClick}
           {...triggerProps}>
           {loading && (
             <div className="position-absolute top-50 start-50 translate-middle z-1">
