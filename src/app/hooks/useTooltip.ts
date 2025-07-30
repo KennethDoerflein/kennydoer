@@ -3,6 +3,7 @@ import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
 export type TooltipLocation = "top" | "bottom" | "left" | "right";
 
 export const useTooltip = (
+  isHoverEnabled: boolean, // Accept hover status as a required argument
   delay = 850,
   options?: {
     disableInterpolation?: boolean;
@@ -10,28 +11,35 @@ export const useTooltip = (
     location?: TooltipLocation;
   }
 ) => {
-  // Detect mobile/touch device
-  const isTouchDevice =
-    typeof window !== "undefined" &&
-    ("ontouchstart" in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0));
-
   const [isVisible, setIsVisible] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  // State to hold the dynamic transform style
   const [transform, setTransform] = useState("translate(-50%, 24px)");
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Hide tooltip on scroll
-    const handleScroll = () => setIsVisible(false);
-    window.addEventListener("scroll", handleScroll, true);
-    return () => {
+    // If hover isn't enabled, there's nothing to do.
+    if (!isHoverEnabled) {
+      return;
+    }
+
+    const handleScroll = () => {
+      // When the user scrolls, hide the tooltip...
+      setIsVisible(false);
+      // ...and clear any pending timer that was about to show it.
       if (hoverTimeoutRef.current) {
         clearTimeout(hoverTimeoutRef.current);
+        hoverTimeoutRef.current = null;
       }
-      window.removeEventListener("scroll", handleScroll, true);
     };
-  }, []);
+
+    // Add the listener. Using the capture phase ensures it runs early.
+    window.addEventListener("scroll", handleScroll, { capture: true });
+
+    // Cleanup function to remove the listener.
+    return () => {
+      window.removeEventListener("scroll", handleScroll, { capture: true });
+    };
+  }, [isHoverEnabled]); // Reruns if hover capability changes.
 
   const handleMouseEnter = useCallback(
     (e?: MouseEvent<HTMLElement>) => {
@@ -124,7 +132,7 @@ export const useTooltip = (
   }, []);
 
   // If on mobile, always hide tooltip and return no-op handlers
-  if (isTouchDevice) {
+  if (!isHoverEnabled) {
     return {
       isVisible: false,
       triggerProps: {
@@ -132,7 +140,7 @@ export const useTooltip = (
         onMouseLeave: () => {},
         onMouseMove: () => {},
       },
-      tooltipStyle: {},
+      tooltipStyle: { display: "none" }, // Explicitly hide
       hideTooltip,
       resetTooltip,
     };

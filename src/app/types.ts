@@ -22,6 +22,7 @@ export interface Project {
   credentials?: Credential[]; // Optional credentials field
   onImageClick: (src: string) => void;
   isFirst?: boolean; // Optional prop to indicate if it's the first card
+  isHoverEnabled: boolean; // Indicates if hover effects are enabled
   note?: string; // Optional note field
   completionTime?: string; // Optional completion time field
   github?: string; // Optional GitHub repo URL

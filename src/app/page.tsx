@@ -11,9 +11,10 @@ import ImageModal from "./components/ImageModal";
 import ProjectCard from "./components/ProjectCard";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import { projects as projectsData } from "./data/projects";
+import { useHoverEffect } from "./hooks/useHoverEffect";
 import type { Project } from "./types";
 import { getProjectCardVariants } from "./utils/projectCardAnimations";
-type ProjectData = Omit<Project, "onImageClick" | "isFirst">;
+type ProjectData = Omit<Project, "onImageClick" | "isFirst" | "isHoverEnabled">;
 
 // Scalable complexity levels map
 const complexityLevels = {
@@ -98,15 +99,16 @@ const sortFunctions: Record<string, (a: ProjectData, b: ProjectData) => number> 
 };
 
 const HomePage: NextPage = () => {
+  // Capture the returned boolean state from the hook.
+  const isHoverEnabled = useHoverEffect();
+
   const [show, setShow] = useState(false);
   const [modalSrc, setModalSrc] = useState("");
   const [sort, setSort] = useState("default");
 
   const openModal = (src: string) => {
-    if (window.innerWidth > 768) {
-      setModalSrc(src);
-      setShow(true);
-    }
+    setModalSrc(src);
+    setShow(true);
   };
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -211,7 +213,12 @@ const HomePage: NextPage = () => {
                 as={motion.div}
                 key={p.title}
                 {...getProjectCardVariants(sortedProjects.length, index)}>
-                <ProjectCard {...p} onImageClick={openModal} isFirst={index === 0} />
+                <ProjectCard
+                  {...p}
+                  onImageClick={openModal}
+                  isFirst={index === 0}
+                  isHoverEnabled={isHoverEnabled}
+                />
               </Col>
             ))}
           </Row>

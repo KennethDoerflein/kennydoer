@@ -7,7 +7,9 @@ import { useTooltip } from "../hooks/useTooltip";
 import { CredentialCardProps } from "../types";
 import { formatLabel, isEmailFormat } from "../utils";
 import CopyableField from "./CopyableField";
+import { useHoverEffect } from "../hooks/useHoverEffect";
 
+// Get the hover status from our primary hook
 const CredentialCard = ({
   credential,
   index,
@@ -20,12 +22,16 @@ const CredentialCard = ({
 }: CredentialCardProps) => {
   const id = credential.username ?? credential.email;
   const isEmail = isEmailFormat(id);
+  const isHoverEnabled = useHoverEffect();
   const {
     isVisible: isTooltipVisible,
     triggerProps,
     tooltipStyle,
     resetTooltip,
-  } = useTooltip(1000, { disableMovement: true, location: "top" });
+  } = useTooltip(isHoverEnabled, 1000, {
+    disableMovement: true,
+    location: "top",
+  });
 
   const controls = useAnimationControls();
   const chevronVariants = {
