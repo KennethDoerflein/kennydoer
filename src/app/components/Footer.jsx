@@ -15,7 +15,7 @@ export default function Footer({ appInfo }) {
         rel="noopener noreferrer"
         className="footer-icon-link align-middle"
         aria-label="View my GitHub profile">
-        <i className="bi bi-github"></i>
+        <i className="bi bi-github" style={{ paddingBottom: "2px" }}></i>
       </a>
 
       <a

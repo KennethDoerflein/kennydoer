@@ -4,7 +4,7 @@ export default function PrintablesIcon({ width = 28, height = 28 }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="-10 10 218.364 297.474"
+      viewBox="-15 0 218.364 297.474"
       width={width}
       height={height}>
       <g>
