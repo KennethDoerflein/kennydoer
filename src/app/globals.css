@@ -1,11 +1,11 @@
 :root {
   --alert-bg: #ffc107;
   --alert-color: #000;
-  --card-bg: #1e1e1e;
+  --card-bg: rgba(255, 255, 255, 0.08);
   --card-hover-shadow: 0 0 25px #00ffff1a;
   --hover-shadow: 0 8px 24px #0000004d; /* Used by #goToBtn:hover and .gradientButton:hover */
-  --card-header-bg: #2182d1;
-  --card-header-hover-bg: #1778a1;
+  --card-header-bg: rgba(255, 255, 255, 0.15);
+  --card-header-hover-bg: rgba(255, 255, 255, 0.25);
   --modal-bg: #121212;
   --close-btn-bg: #ffffff;
   --close-btn-hover-bg: rgba(255, 255, 255, 0.3);
@@ -20,6 +20,13 @@
   --timing-function-ease-in-out: ease-in-out;
 }
 
+body {
+  background-image: linear-gradient(to right top, #0f2027, #203a43, #2c5364);
+  background-attachment: fixed;
+  background-size: cover;
+  color: #f1f1f1;
+}
+
 .compact-alert {
   padding: 8px 12px;
   margin-bottom: 15px;
@@ -32,17 +39,26 @@
 .card {
   max-width: 700px;
   margin: 30px auto;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
   background-color: var(--card-bg);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  background-image: radial-gradient(circle at top left, rgba(255, 255, 255, 0.05), transparent);
+  box-shadow:
+    inset 0 0 2px 0 rgba(255, 255, 255, 0.5),
+    0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition:
     transform var(--transition-duration-slow) var(--timing-function-ease),
     box-shadow var(--transition-duration-normal) var(--timing-function-ease) !important;
 }
 
 .can-hover .card:hover {
-  box-shadow: var(--card-hover-shadow);
+  box-shadow:
+    inset 0 0 2px 0 rgba(255, 255, 255, 0.5),
+    0 4px 30px rgba(0, 0, 0, 0.1),
+    0 0 25px #00ffff1a;
 }
 
 .card img {
@@ -67,6 +83,7 @@
   text-align: center;
   background-color: var(--card-header-bg);
   color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   transition:
     background-color var(--transition-duration-normal) var(--timing-function-ease),
     background-position 0.6s var(--timing-function-ease-in-out);
@@ -90,15 +107,18 @@
 
 .card-footer {
   font-size: 0.9rem;
-  background-color: #222;
+  background-color: rgba(0, 0, 0, 0.1);
   color: #ccc;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .modal-content {
-  background: var(--modal-bg);
-  border: none;
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
   animation: fadeIn var(--transition-duration-normal) var(--timing-function-ease);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 }
 
 #modalImage {
@@ -114,10 +134,12 @@
   width: 40px;
   height: 40px;
   padding: 0;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   font-size: 1.5rem;
-  background-color: #b22222;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   color: #ffffff;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
   opacity: 0.98;
@@ -133,7 +155,7 @@
 }
 
 .can-hover .close-btn:hover {
-  background-color: #ff4d4d;
+  background-color: rgba(255, 255, 255, 0.2);
   transform: scale(1.1);
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
 }
@@ -153,14 +175,69 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.tech-badge-glass {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 0.45em 0.65em;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  transition:
+    transform var(--transition-duration-fast) var(--timing-function-ease),
+    box-shadow var(--transition-duration-normal) var(--timing-function-ease);
+}
+
+.can-hover .tech-badge-glass:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.tech-badge-glass.tech-badge-primary {
+  border-color: var(--bs-primary);
+  background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+.tech-badge-glass.tech-badge-secondary {
+  border-color: var(--bs-secondary);
+  background-color: rgba(var(--bs-secondary-rgb), 0.1);
+}
+
+.tech-badge-glass.tech-badge-success {
+  border-color: var(--bs-success);
+  background-color: rgba(var(--bs-success-rgb), 0.1);
+}
+
+.tech-badge-glass.tech-badge-danger {
+  border-color: var(--bs-danger);
+  background-color: rgba(var(--bs-danger-rgb), 0.1);
+}
+
+.tech-badge-glass.tech-badge-warning {
+  border-color: var(--bs-warning);
+  background-color: rgba(var(--bs-warning-rgb), 0.1);
+}
+
+.tech-badge-glass.tech-badge-info {
+  border-color: var(--bs-info);
+  background-color: rgba(var(--bs-info-rgb), 0.1);
+}
+
+.tech-badge-glass.tech-badge-light {
+  border-color: var(--bs-light);
+  background-color: rgba(var(--bs-light-rgb), 0.1);
+}
+
 .btn-info {
   padding: 0.5rem 1.25rem;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 6px;
   font-weight: 500;
   font-size: 1rem;
-  color: #000;
-  background-color: var(--btn-info-bg);
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   background-size: 200% 200%;
   background-position: center;
   transition:
@@ -170,7 +247,7 @@
 }
 
 .can-hover .btn-info:hover {
-  background-color: var(--btn-info-hover-bg);
+  background-color: rgba(255, 255, 255, 0.2);
   background-position: right bottom;
   transform: scale(1.05);
 }
@@ -232,23 +309,23 @@
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #333;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #555;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
   border-radius: 10px;
-  transition: background-color var(--transition-duration-normal) var(--timing-function-ease);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 /* Note: Styling pseudo-elements based on a body class is not supported. */
 /* This hover effect will apply on all devices with a visible scrollbar. */
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #777;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.3));
 }
 
 @keyframes organicSwirl {
@@ -289,7 +366,7 @@
   cursor: pointer;
   letter-spacing: 0.05em;
   overflow: hidden;
-  background: linear-gradient(120deg, #23235b 0%, #3a3a7c 30%, #6c4cff 70%, #3a3a7c 100%);
+  background: linear-gradient(120deg, #23235b 0%, #3a3a7c 30%, #5a48b4 70%, #3a3a7c 100%);
   background-size: 300% 300%;
   background-position: 50% 50%;
   animation: organicSwirl 10s cubic-bezier(0.77, 0, 0.175, 1) infinite;
@@ -361,4 +438,27 @@
 .can-hover .gradientButton:hover {
   transform: translateY(-4px) scale(1.02);
   box-shadow: var(--hover-shadow); /* 0 8px 24px rgba(0,0,0,0.3) */
+}
+
+.footer-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+  font-size: 1.5rem;
+  color: #fff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  transition: all 0.3s ease;
+}
+
+.footer-icon-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }

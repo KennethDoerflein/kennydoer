@@ -1,7 +1,23 @@
 // src/app/components/TechBadges.tsx
 
-import { Badge } from "react-bootstrap";
+import { motion, Variants, SpringOptions } from "framer-motion";
 import { TechBadgesProps } from "../types";
+
+const badgeVariants: Variants = {
+  hidden: { opacity: 0, y: 20, rotateX: -90 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 10,
+    },
+  },
+};
+
+const transition: SpringOptions = { stiffness: 400, damping: 10 };
 
 const TechBadges = ({ tech }: TechBadgesProps) => {
   const colors = ["primary", "secondary", "success", "danger", "warning", "info", "light"];
@@ -9,11 +25,17 @@ const TechBadges = ({ tech }: TechBadgesProps) => {
     <>
       {tech.map((t, i) => {
         const color = colors[i % colors.length];
-        const textColor = ["light", "warning", "info"].includes(color) ? "dark" : "light";
+        const className = `badge me-1 mb-1 tech-badge-glass tech-badge-${color}`;
         return (
-          <Badge key={t} bg={color} text={textColor} className="me-1 mb-1 tech-badge-hover">
+          <motion.span
+            key={t}
+            className={className}
+            variants={badgeVariants}
+            custom={i}
+            whileHover={{ scale: 1.15, rotate: 5 }}
+            transition={transition}>
             {t}
-          </Badge>
+          </motion.span>
         );
       })}
     </>

@@ -1,7 +1,7 @@
 // src/app/components/Footer.tsx
 
 import { useState } from "react";
-import { Button, Container, Modal } from "react-bootstrap";
+import { Container, Modal, Button } from "react-bootstrap";
 import PrintablesIcon from "./PrintablesIcon";
 
 export default function Footer({ appInfo }) {
@@ -9,26 +9,25 @@ export default function Footer({ appInfo }) {
 
   return (
     <footer className="text-center py-4">
-      <Button
-        variant="dark"
-        size="lg"
+      <a
         href="https://github.com/KennethDoerflein"
         target="_blank"
-        rel="noopener noreferrer">
+        rel="noopener noreferrer"
+        className="footer-icon-link align-middle"
+        aria-label="View my GitHub profile">
         <i className="bi bi-github"></i>
-      </Button>
+      </a>
 
-      <Button
-        variant="dark"
-        size="lg"
+      <a
         href="https://www.printables.com/@ken_590448"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center">
+        className="footer-icon-link align-middle"
+        aria-label="View my Printables profile">
         <PrintablesIcon />
-      </Button>
+      </a>
 
-      <Container className="text-center pb-2 text-body-secondary">
+      <Container className="text-center pt-2 pb-2 text-body-secondary">
         Site Version: {appInfo.version}
       </Container>
 

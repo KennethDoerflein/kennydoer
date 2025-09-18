@@ -1,5 +1,6 @@
 // src/app/components/ProjectCard.tsx
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Button, Card, Spinner } from "react-bootstrap";
@@ -7,6 +8,17 @@ import { useTooltip } from "../hooks/useTooltip";
 import { Project } from "../types";
 import Credentials from "./Credentials";
 import TechBadges from "./TechBadges";
+
+const techBadgeContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.05,
+    },
+  },
+};
 
 const ProjectCard = ({
   title,
@@ -114,9 +126,13 @@ const ProjectCard = ({
 
       <Card.Body>
         <Card.Title>Tech Stack:</Card.Title>
-        <div className="mb-3">
+        <motion.div
+          className="mb-3"
+          variants={techBadgeContainerVariants}
+          initial="hidden"
+          animate="visible">
           <TechBadges tech={tech} />
-        </div>
+        </motion.div>
         <Card.Text style={{ whiteSpace: "pre-line" }}>{description}</Card.Text>
       </Card.Body>
       {(note || github || demo || credentials) && (
