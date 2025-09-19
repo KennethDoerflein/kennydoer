@@ -1,12 +1,20 @@
 "use client";
 
-import { useTheme } from "../context/ThemeContext";
+import { getTheme, useTheme } from "../context/ThemeContext";
+
+const themeOptions = {
+  "deep-space": "Deep Space",
+  "glassy-blue": "Ocean Blue",
+  "glassy-light": "Purple Mist",
+  "forest": "Forest Green",
+};
 
 const ThemePicker = () => {
   const { theme, setTheme } = useTheme();
+  const themes = getTheme();
 
   const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setTheme(e.target.value as "glassy-blue" | "glassy-light" | "forest");
+    setTheme(e.target.value as keyof typeof themeOptions);
   };
 
   return (
@@ -26,9 +34,11 @@ const ThemePicker = () => {
           borderRadius: "0.5rem",
           cursor: "pointer",
         }}>
-        <option value="glassy-blue">Glassy Blue</option>
-        <option value="glassy-light">Glassy Light</option>
-        <option value="forest">Forest</option>
+        {themes.options.map((themeKey) => (
+          <option key={themeKey} value={themeKey}>
+            {themeOptions[themeKey as keyof typeof themeOptions]}
+          </option>
+        ))}
       </select>
     </div>
   );

@@ -2,7 +2,14 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
-type Theme = "glassy-blue" | "glassy-light" | "forest";
+const themes = {
+  defaultTheme: "deep-space",
+  options: ["deep-space", "glassy-blue", "glassy-light", "forest"],
+};
+
+export const getTheme = () => themes;
+
+type Theme = (typeof themes.options)[number];
 
 interface ThemeContextType {
   theme: Theme;
@@ -12,18 +19,16 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>("glassy-blue");
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme") as Theme | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window !== "undefined") {
+      return (localStorage.getItem("theme") as Theme) || themes.defaultTheme;
     }
-  }, []);
+    return themes.defaultTheme;
+  });
 
   useEffect(() => {
-    document.body.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
+    document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
   return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;

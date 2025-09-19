@@ -22,6 +22,17 @@ export const metadata: Metadata = {
   description: "A website to showcase my projects",
 };
 
+const themeScript = `
+  (function() {
+    try {
+      const theme = localStorage.getItem('theme') || 'deep-space';
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      console.error('Error setting theme from localStorage', e);
+    }
+  })();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,6 +40,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <ThemeProvider>
         <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
       </ThemeProvider>

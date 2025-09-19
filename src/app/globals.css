@@ -4,6 +4,53 @@
   --transition-duration-slow: 0.5s;
   --timing-function-ease: ease;
   --timing-function-ease-in-out: ease-in-out;
+  --bs-secondary-color: #e8e6e3b6;
+}
+
+[data-theme="deep-space"] {
+  --alert-bg: #8a2be2;
+  --alert-color: #f0e6ff;
+  --card-bg: rgba(25, 25, 45, 0.85);
+  --card-hover-shadow: 0 0 35px rgba(0, 255, 255, 0.3), 0 0 15px rgba(255, 0, 255, 0.2);
+  --hover-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  --card-header-bg: rgba(45, 35, 75, 0.8);
+  --card-header-hover-bg: rgba(60, 45, 100, 0.9);
+  --card-header-color: #e6e6fa;
+  --modal-bg: #1a1a2e;
+  --close-btn-bg: #ff00ff;
+  --close-btn-color: #ffffff;
+  --close-btn-hover-bg: #ff00ff;
+  --btn-info-bg: #00ffff;
+  --btn-info-hover-bg: #00e5e5;
+  --scroll-btn-bg: rgba(45, 35, 75, 0.8);
+  --scroll-btn-hover-bg: rgba(60, 45, 100, 0.9);
+  --body-bg: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 50%, #2a1a3e 100%);
+  --body-color: #c0c0e0;
+  --card-body-color: #c0c0e0;
+  --card-bg-image: radial-gradient(circle at top right, rgba(0, 255, 255, 0.1), transparent 50%);
+  --card-box-shadow: inset 0 0 5px rgba(255, 0, 255, 0.3), 0 8px 32px rgba(0, 0, 0, 0.5);
+  --card-border-color: rgba(0, 255, 255, 0.3);
+  --card-img-border-color: rgba(0, 255, 255, 0.3);
+  --card-footer-bg: rgba(25, 25, 45, 0.5);
+  --card-footer-color: #a0a0c0;
+  --card-footer-border-color: rgba(0, 255, 255, 0.2);
+  --modal-bg-color: rgba(26, 26, 46, 0.95);
+  --modal-border-color: rgba(0, 255, 255, 0.4);
+  --close-btn-border-color: #ff00ff;
+  --close-btn-bg-color: rgba(255, 0, 255, 0.2);
+  --close-btn-hover-bg-color: rgba(255, 0, 255, 0.4);
+  --scrollbar-track-bg: #1a1a2e;
+  --scrollbar-thumb-bg: linear-gradient(180deg, #ff00ff, #00ffff);
+  --scrollbar-thumb-border-color: rgba(0, 255, 255, 0.5);
+  --scrollbar-thumb-hover-bg: linear-gradient(180deg, #ff00ff, #00e5e5);
+  --footer-icon-color: #c0c0e0;
+  --footer-icon-border-color: rgba(0, 255, 255, 0.3);
+  --footer-icon-hover-bg: rgba(0, 255, 255, 0.1);
+  --text-body-secondary-color: #a0a0c0;
+  --modal-text-color: #c0c0e0;
+  --sort-select-bg: var(--card-bg);
+  --sort-select-text: var(--body-color);
+  --sort-select-border: var(--card-border-color);
 }
 
 [data-theme="glassy-blue"] {
@@ -49,99 +96,114 @@
   --footer-icon-color: #fff;
   --footer-icon-border-color: rgba(255, 255, 255, 0.2);
   --footer-icon-hover-bg: rgba(255, 255, 255, 0.1);
+  --text-body-secondary-color: #f1f1f1;
+  --modal-text-color: #f1f1f1;
+  --sort-select-bg: var(--card-bg);
+  --sort-select-text: var(--body-color);
+  --sort-select-border: var(--card-border-color);
 }
 
 [data-theme="glassy-light"] {
-  --alert-bg: #ffc107;
-  --alert-color: #000;
-  --card-bg: rgba(255, 255, 255, 0.5);
-  --card-hover-shadow: 0 0 25px #0000001a;
-  --hover-shadow: 0 8px 24px #0000004d;
-  --card-header-bg: rgba(255, 255, 255, 0.7);
-  --card-header-hover-bg: rgba(255, 255, 255, 0.8);
-  --card-header-color: #212529;
-  --modal-bg: #f8f9fa;
-  --close-btn-bg: #000000;
-  --close-btn-color: #000;
-  --close-btn-hover-bg: rgba(0, 0, 0, 0.3);
+  --bs-secondary-color: #ff9900;
+  --tech-badge-color: #ff9900;
+  --alert-bg: #fff3cd;
+  --alert-color: #664d03;
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --card-hover-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+  --hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  --card-header-bg: rgba(255, 255, 255, 0.8);
+  --card-header-hover-bg: rgba(255, 255, 255, 0.95);
+  --card-header-color: #ff0000;
+  --modal-bg: #ffffff;
+  --close-btn-bg: #343a40;
+  --close-btn-color: #ffffff;
+  --close-btn-hover-bg: #495057;
   --btn-info-bg: #0dcaf0;
   --btn-info-hover-bg: #31d2f2;
   --scroll-btn-bg: var(--card-header-bg);
   --scroll-btn-hover-bg: var(--card-header-hover-bg);
-  --body-bg: linear-gradient(to right top, #d3cce3, #e9e4f0);
+  --body-bg: linear-gradient(to right top, #e0eafc, #cfdef3);
   --body-color: #212529;
   --card-body-color: #212529;
-  --card-bg-image: radial-gradient(circle at top left, rgba(0, 0, 0, 0.05), transparent);
-  --card-box-shadow: inset 0 0 1px 0 rgba(0, 0, 0, 0.2), 0 4px 15px rgba(0, 0, 0, 0.05);
-  --card-border-color: rgba(0, 0, 0, 0.1);
-  --card-img-border-color: #dee2e6;
-  --card-footer-bg: rgba(255, 255, 255, 0.5);
-  --card-footer-color: #6c757d;
-  --card-footer-border-color: rgba(0, 0, 0, 0.1);
-  --modal-bg-color: rgba(255, 255, 255, 0.8);
-  --modal-border-color: rgba(0, 0, 0, 0.1);
-  --close-btn-border-color: rgba(0, 0, 0, 0.2);
-  --close-btn-bg-color: rgba(0, 0, 0, 0.1);
-  --close-btn-hover-bg-color: rgba(0, 0, 0, 0.2);
+  --card-bg-image: none;
+  --card-box-shadow: inset 0 0 1px 0 rgba(0, 0, 0, 0.1), 0 4px 15px rgba(0, 0, 0, 0.05);
+  --card-border-color: rgba(0, 0, 0, 0.15);
+  --card-img-border-color: #ced4da;
+  --card-footer-bg: rgba(255, 255, 255, 0.7);
+  --card-footer-color: #495057;
+  --card-footer-border-color: rgba(0, 0, 0, 0.15);
+  --modal-bg-color: rgba(255, 255, 255, 0.9);
+  --modal-border-color: rgba(0, 0, 0, 0.15);
+  --close-btn-border-color: rgba(0, 0, 0, 0.1);
+  --close-btn-bg-color: rgba(255, 255, 255, 0.5);
+  --close-btn-hover-bg-color: rgba(255, 255, 255, 0.7);
   --scrollbar-track-bg: rgba(0, 0, 0, 0.05);
-  --scrollbar-thumb-bg: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+  --scrollbar-thumb-bg: rgba(0, 0, 0, 0.2);
   --scrollbar-thumb-border-color: rgba(0, 0, 0, 0.1);
-  --scrollbar-thumb-hover-bg: linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2));
-  --footer-icon-color: #212529;
+  --scrollbar-thumb-hover-bg: rgba(0, 0, 0, 0.3);
+  --footer-icon-color: #343a40;
   --footer-icon-border-color: rgba(0, 0, 0, 0.2);
-  --footer-icon-hover-bg: rgba(0, 0, 0, 0.1);
+  --footer-icon-hover-bg: rgba(0, 0, 0, 0.05);
+  --text-body-secondary-color: #495057;
+  --modal-text-color: #212529;
+  --sort-select-bg: #ffffff;
+  --sort-select-text: #212529;
+  --sort-select-border: #ced4da;
 }
 
 [data-theme="forest"] {
-  --alert-bg: #ffc107;
-  --alert-color: #000;
-  --card-bg: rgba(255, 255, 255, 0.08);
-  --card-hover-shadow: 0 0 25px #a3b18a;
-  --hover-shadow: 0 8px 24px #0000004d;
-  --card-header-bg: rgba(94, 112, 83, 0.5);
-  --card-header-hover-bg: rgba(94, 112, 83, 0.7);
-  --card-header-color: #dad7cd;
-  --modal-bg: #121212;
-  --close-btn-bg: #ffffff;
-  --close-btn-color: #dad7cd;
-  --close-btn-hover-bg: rgba(255, 255, 255, 0.3);
+  --alert-bg: #fdeec9;
+  --alert-color: #533f00;
+  --card-bg: rgba(30, 42, 34, 0.85);
+  --card-hover-shadow: 0 0 30px rgba(163, 177, 138, 0.4);
+  --hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --card-header-bg: rgba(52, 78, 65, 0.8);
+  --card-header-hover-bg: rgba(62, 88, 75, 0.95);
+  --card-header-color: #e8e6e3;
+  --modal-bg: #1e2a22;
+  --close-btn-bg: #a3b18a;
+  --close-btn-color: #1e2a22;
+  --close-btn-hover-bg: #b5c49a;
   --btn-info-bg: #a3b18a;
   --btn-info-hover-bg: #b5c49a;
   --scroll-btn-bg: var(--card-header-bg);
   --scroll-btn-hover-bg: var(--card-header-hover-bg);
-  --body-bg: linear-gradient(to right top, #3a5a40, #588157, #344e41);
-  --body-color: #dad7cd;
-  --card-body-color: #dad7cd;
-  --card-bg-image: radial-gradient(circle at top left, rgba(218, 215, 205, 0.05), transparent);
-  --card-box-shadow: inset 0 0 2px 0 rgba(218, 215, 205, 0.5), 0 4px 30px rgba(0, 0, 0, 0.2);
-  --card-border-color: rgba(218, 215, 205, 0.2);
-  --card-img-border-color: #a3b18a;
-  --card-footer-bg: rgba(52, 78, 65, 0.5);
-  --card-footer-color: #dad7cd;
-  --card-footer-border-color: rgba(218, 215, 205, 0.1);
-  --modal-bg-color: rgba(52, 78, 65, 0.8);
-  --modal-border-color: rgba(218, 215, 205, 0.2);
-  --close-btn-border-color: rgba(218, 215, 205, 0.2);
-  --close-btn-bg-color: rgba(218, 215, 205, 0.1);
-  --close-btn-hover-bg-color: rgba(218, 215, 205, 0.2);
-  --scrollbar-track-bg: rgba(52, 78, 65, 0.1);
-  --scrollbar-thumb-bg: linear-gradient(180deg, rgba(163, 177, 138, 0.4), rgba(163, 177, 138, 0.2));
-  --scrollbar-thumb-border-color: rgba(163, 177, 138, 0.3);
-  --scrollbar-thumb-hover-bg: linear-gradient(
-    180deg,
-    rgba(163, 177, 138, 0.5),
-    rgba(163, 177, 138, 0.3)
-  );
-  --footer-icon-color: #dad7cd;
-  --footer-icon-border-color: rgba(218, 215, 205, 0.2);
-  --footer-icon-hover-bg: rgba(218, 215, 205, 0.1);
+  --body-bg: linear-gradient(to right top, #28372c, #3a5a40, #2c4031);
+  --body-color: #d8d4cf;
+  --card-body-color: #d8d4cf;
+  --card-bg-image: radial-gradient(circle at top left, rgba(218, 215, 205, 0.03), transparent);
+  --card-box-shadow: inset 0 0 3px 0 rgba(218, 215, 205, 0.3), 0 4px 30px rgba(0, 0, 0, 0.3);
+  --card-border-color: rgba(163, 177, 138, 0.3);
+  --card-img-border-color: rgba(163, 177, 138, 0.4);
+  --card-footer-bg: rgba(42, 68, 55, 0.7);
+  --card-footer-color: #b8b4af;
+  --card-footer-border-color: rgba(163, 177, 138, 0.2);
+  --modal-bg-color: rgba(30, 42, 34, 0.95);
+  --modal-border-color: rgba(163, 177, 138, 0.4);
+  --close-btn-border-color: rgba(163, 177, 138, 0.3);
+  --close-btn-bg-color: rgba(163, 177, 138, 0.1);
+  --close-btn-hover-bg-color: rgba(163, 177, 138, 0.2);
+  --scrollbar-track-bg: rgba(30, 42, 34, 0.5);
+  --scrollbar-thumb-bg: rgba(163, 177, 138, 0.4);
+  --scrollbar-thumb-border-color: rgba(163, 177, 138, 0.2);
+  --scrollbar-thumb-hover-bg: rgba(163, 177, 138, 0.5);
+  --footer-icon-color: #d8d4cf;
+  --footer-icon-border-color: rgba(163, 177, 138, 0.3);
+  --footer-icon-hover-bg: rgba(163, 177, 138, 0.1);
+  --text-body-secondary-color: #b8b4af;
+  --modal-text-color: #d8d4cf;
+  --sort-select-bg: var(--card-bg);
+  --sort-select-text: var(--body-color);
+  --sort-select-border: var(--card-border-color);
 }
 
 body {
+  min-height: 100%;
   background-image: var(--body-bg);
   color: var(--body-color);
   background-attachment: fixed;
   background-size: cover;
+  overflow-y: scroll; /* Show scrollbar always to prevent layout shift */
 }
 
 .compact-alert {
@@ -234,6 +296,13 @@ body {
   animation: fadeIn var(--transition-duration-normal) var(--timing-function-ease);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
+  color: var(--modal-text-color);
+}
+
+#sort-select {
+  background-color: var(--sort-select-bg);
+  color: var(--sort-select-text);
+  border-color: var(--sort-select-border);
 }
 
 #modalImage {
@@ -306,7 +375,7 @@ body {
 .tech-badge-glass {
   background-color: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
+  color: var(--tech-badge-color, #fff);
   padding: 0.45em 0.65em;
   font-size: 0.8rem;
   border-radius: 6px;
