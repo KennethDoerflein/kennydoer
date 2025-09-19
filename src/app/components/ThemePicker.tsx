@@ -6,7 +6,7 @@ const themeOptions = {
   "deep-space": "Deep Space",
   "glassy-blue": "Ocean Blue",
   "glassy-light": "Purple Mist",
-  "forest": "Forest Green",
+  forest: "Forest Green",
 };
 
 const ThemePicker = () => {
@@ -26,12 +26,11 @@ const ThemePicker = () => {
         id="theme-picker"
         value={theme}
         onChange={handleThemeChange}
-        className="form-select form-select-sm w-auto theme-picker"
+        className="themed-dropdown w-auto"
         style={{
           minWidth: 160,
           fontWeight: 500,
           boxShadow: "none",
-          borderRadius: "0.5rem",
           cursor: "pointer",
         }}>
         {themes.options.map((themeKey) => (
