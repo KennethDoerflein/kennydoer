@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { Container, Modal, Button } from "react-bootstrap";
 import PrintablesIcon from "./PrintablesIcon";
+import ThemePicker from "./ThemePicker";
 
 export default function Footer({ appInfo }) {
   const [showTerms, setShowTerms] = useState(false);
 
   return (
     <footer className="text-center py-4">
+      <ThemePicker />
       <a
         href="https://github.com/KennethDoerflein"
         target="_blank"
