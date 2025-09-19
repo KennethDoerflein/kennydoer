@@ -6,7 +6,7 @@ const themeOptions = {
   "deep-space": "Deep Space",
   "glassy-blue": "Ocean Blue",
   "glassy-light": "Purple Mist",
-  forest: "Forest Green",
+  "forest": "Forest Green",
 };
 
 const ThemePicker = () => {
