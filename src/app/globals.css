@@ -71,8 +71,8 @@
   --modal-bg: #121212;
   --btn-info-bg: #0dcaf0;
   --btn-info-hover-bg: #31d2f2;
-  --scroll-btn-bg: var(--card-header-bg);
-  --scroll-btn-hover-bg: var(--card-header-hover-bg);
+  --scroll-btn-bg: rgba(13, 202, 240, 0.5);
+  --scroll-btn-hover-bg: rgba(13, 202, 240, 0.7);
   --scroll-btn-color: #fff;
   --body-color: #f1f1f1;
   --card-body-color: #f1f1f1;
@@ -121,8 +121,8 @@
   --modal-bg: #ffffff;
   --btn-info-bg: #0dcaf0;
   --btn-info-hover-bg: #31d2f2;
-  --scroll-btn-bg: var(--card-header-bg);
-  --scroll-btn-hover-bg: var(--card-header-hover-bg);
+  --scroll-btn-bg: rgba(174, 164, 235, 0.7);
+  --scroll-btn-hover-bg: rgba(174, 164, 235, 0.9);
   --scroll-btn-color: #483d8b;
   --body-color: #212529;
   --card-body-color: #212529;
