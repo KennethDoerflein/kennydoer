@@ -11,8 +11,8 @@ const badgeVariants: Variants = {
     rotateX: 0,
     transition: {
       type: "spring",
-      stiffness: 500,
-      damping: 30,
+      stiffness: 100,
+      damping: 10,
     },
   },
 };
