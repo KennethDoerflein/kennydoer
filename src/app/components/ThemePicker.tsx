@@ -1,6 +1,8 @@
 "use client";
 
-import { getTheme, useTheme } from "../context/ThemeContext";
+import { useTheme } from "../context/ThemeContext";
+import { getTheme } from "./ThemedLayout";
+import { useEffect, useState } from "react";
 
 const themeOptions = {
   "deep-space": "Deep Space",
@@ -12,10 +14,28 @@ const themeOptions = {
 const ThemePicker = () => {
   const { theme, setTheme } = useTheme();
   const themes = getTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setTheme(e.target.value as keyof typeof themeOptions);
   };
+
+  // Prevent the dropdown from rendering on the server and initial client render
+  // to avoid showing the default theme before the correct one is loaded.
+  if (!mounted) {
+    // Render a placeholder to prevent layout shift
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center my-3"
+        style={{ minHeight: "40px" }}>
+        <div style={{ width: "230px" }} />
+      </div>
+    );
+  }
 
   return (
     <div className="d-flex justify-content-center align-items-center my-3">

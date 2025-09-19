@@ -30,7 +30,6 @@
   --scroll-btn-bg: rgba(45, 35, 75, 0.8);
   --scroll-btn-hover-bg: rgba(60, 45, 100, 0.9);
   --scroll-btn-color: #fff;
-  --body-bg: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 50%, #2a1a3e 100%);
   --body-color: #c0c0e0;
   --card-body-color: #c0c0e0;
   --card-bg-image: radial-gradient(circle at top right, rgba(0, 255, 255, 0.1), transparent 50%);
@@ -73,7 +72,6 @@
   --scroll-btn-bg: var(--card-header-bg);
   --scroll-btn-hover-bg: var(--card-header-hover-bg);
   --scroll-btn-color: #fff;
-  --body-bg: linear-gradient(to right top, #0f2027, #203a43, #2c5364);
   --body-color: #f1f1f1;
   --card-body-color: #f1f1f1;
   --card-bg-image: radial-gradient(circle at top left, rgba(255, 255, 255, 0.05), transparent);
@@ -123,7 +121,6 @@
   --scroll-btn-bg: var(--card-header-bg);
   --scroll-btn-hover-bg: var(--card-header-hover-bg);
   --scroll-btn-color: #483d8b;
-  --body-bg: linear-gradient(to right top, #e0eafc, #cfdef3);
   --body-color: #212529;
   --card-body-color: #212529;
   --card-bg-image: none;
@@ -165,7 +162,6 @@
   --scroll-btn-bg: var(--card-header-bg);
   --scroll-btn-hover-bg: var(--card-header-hover-bg);
   --scroll-btn-color: #fff;
-  --body-bg: linear-gradient(to right top, #28372c, #3a5a40, #2c4031);
   --body-color: #d8d4cf;
   --card-body-color: #d8d4cf;
   --card-bg-image: radial-gradient(circle at top left, rgba(218, 215, 205, 0.03), transparent);
@@ -195,13 +191,26 @@
 
 body {
   min-height: 100%;
-  background-image: var(--body-bg);
   color: var(--body-color);
+  background-color: #121212;
   background-attachment: fixed;
   background-size: cover;
   overflow-y: scroll; /* Show scrollbar always to prevent layout shift */
-  transition:
-    color var(--transition-duration-slow) var(--timing-function-ease-in-out);
+  transition: color var(--transition-duration-slow) var(--timing-function-ease-in-out);
+  position: relative;
+  z-index: 1;
+}
+
+.background-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: -1;
+  transition: opacity var(--transition-duration-slow) var(--timing-function-ease-in-out);
 }
 
 .compact-alert {

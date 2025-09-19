@@ -4,7 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "./context/ThemeContext";
+import { ThemedLayout } from "./components/ThemedLayout";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -44,7 +44,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemedLayout>{children}</ThemedLayout>
       </body>
     </html>
   );

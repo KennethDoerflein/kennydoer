@@ -1,14 +1,9 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useContext } from "react";
+import { themes } from "../components/ThemedLayout";
 
-const themes = {
-  defaultTheme: "deep-space",
-  options: ["deep-space", "glassy-blue", "glassy-light", "forest"],
-};
-
-export const getTheme = () => themes;
-
+// This type is now based on the exported themes object
 type Theme = (typeof themes.options)[number];
 
 interface ThemeContextType {
@@ -16,42 +11,14 @@ interface ThemeContextType {
   setTheme: (theme: Theme) => void;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window !== "undefined") {
-      const storedTheme = localStorage.getItem("theme") as Theme;
-      if (storedTheme && themes.options.includes(storedTheme)) {
-        return storedTheme;
-      }
-    }
-    return themes.defaultTheme;
-  });
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  // To prevent ssr mismatch, we return null on the server and first client render.
-  // After hydration, the component will re-render and show the children.
-  if (!mounted) {
-    return null;
-  }
-
-  return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
-};
+// The actual context is defined here, and provided in ThemedLayout
+export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (context === undefined) {
-    throw new Error("useTheme must be used within a ThemeProvider");
+    // The error message correctly points developers to the new layout component
+    throw new Error("useTheme must be used within a ThemedLayout");
   }
   return context;
 };
