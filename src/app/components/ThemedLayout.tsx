@@ -23,6 +23,7 @@ export const getTheme = () => themes;
 export const ThemedLayout = ({ children }: { children: ReactNode }) => {
   const [theme, rawSetTheme] = useState<Theme>(themes.defaultTheme);
   const [mounted, setMounted] = useState(false);
+  const [animationActive, setAnimationActive] = useState(false);
 
   // State for background layers
   const [activeLayer, setActiveLayer] = useState(1);
@@ -33,7 +34,7 @@ export const ThemedLayout = ({ children }: { children: ReactNode }) => {
     setMounted(true);
     const storedTheme = (localStorage.getItem("theme") as Theme) || themes.defaultTheme;
     rawSetTheme(storedTheme);
-    setBgLayer1({ backgroundImage: themeGradients[storedTheme] });
+    // Initial background is handled by CSS, so no need to set it here
   }, []);
 
   useEffect(() => {
@@ -46,17 +47,28 @@ export const ThemedLayout = ({ children }: { children: ReactNode }) => {
   const setTheme = useCallback(
     (newTheme: Theme) => {
       if (newTheme !== theme) {
-        if (activeLayer === 1) {
+        if (!animationActive) {
+          // First time theme is changed, activate the animation
+          setBgLayer1({ backgroundImage: themeGradients[theme] });
           setBgLayer2({ backgroundImage: themeGradients[newTheme] });
           setActiveLayer(2);
+          setAnimationActive(true);
+          // Hide the body's CSS background
+          document.body.style.backgroundImage = "none";
         } else {
-          setBgLayer1({ backgroundImage: themeGradients[newTheme] });
-          setActiveLayer(1);
+          // Subsequent theme changes
+          if (activeLayer === 1) {
+            setBgLayer2({ backgroundImage: themeGradients[newTheme] });
+            setActiveLayer(2);
+          } else {
+            setBgLayer1({ backgroundImage: themeGradients[newTheme] });
+            setActiveLayer(1);
+          }
         }
         rawSetTheme(newTheme);
       }
     },
-    [theme, activeLayer]
+    [theme, activeLayer, animationActive]
   );
 
   return (
@@ -64,12 +76,12 @@ export const ThemedLayout = ({ children }: { children: ReactNode }) => {
       <div
         id="background-layer-1"
         className="background-layer"
-        style={{ ...bgLayer1, opacity: activeLayer === 1 ? 1 : 0 }}
+        style={{ ...bgLayer1, opacity: activeLayer === 1 && animationActive ? 1 : 0 }}
       />
       <div
         id="background-layer-2"
         className="background-layer"
-        style={{ ...bgLayer2, opacity: activeLayer === 2 ? 1 : 0 }}
+        style={{ ...bgLayer2, opacity: activeLayer === 2 && animationActive ? 1 : 0 }}
       />
       <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>
     </>

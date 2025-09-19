@@ -16,6 +16,7 @@
 }
 
 [data-theme="deep-space"] {
+  --body-bg: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 50%, #2a1a3e 100%);
   --alert-bg: #8a2be2;
   --alert-color: #f0e6ff;
   --card-bg: rgba(25, 25, 45, 0.85);
@@ -58,6 +59,7 @@
 }
 
 [data-theme="glassy-blue"] {
+  --body-bg: linear-gradient(to right top, #0f2027, #203a43, #2c5364);
   --alert-bg: #ffc107;
   --alert-color: #000;
   --card-bg: rgba(255, 255, 255, 0.08);
@@ -104,6 +106,7 @@
 }
 
 [data-theme="glassy-light"] {
+  --body-bg: linear-gradient(to right top, #e0eafc, #cfdef3);
   --theme-picker-option-bg: #ffffff;
   --bs-secondary-color: #9370db;
   --tech-badge-color: #652add;
@@ -148,6 +151,7 @@
 }
 
 [data-theme="forest"] {
+  --body-bg: linear-gradient(to right top, #28372c, #3a5a40, #2c4031);
   --alert-bg: #fdeec9;
   --alert-color: #533f00;
   --card-bg: rgba(30, 42, 34, 0.85);
@@ -193,6 +197,7 @@ body {
   min-height: 100%;
   color: var(--body-color);
   background-color: #121212;
+  background-image: var(--body-bg);
   background-attachment: fixed;
   background-size: cover;
   overflow-y: scroll; /* Show scrollbar always to prevent layout shift */

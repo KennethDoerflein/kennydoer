@@ -22,6 +22,7 @@ const ThemePicker = () => {
 
   const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setTheme(e.target.value as keyof typeof themeOptions);
+    e.currentTarget.blur();
   };
 
   // Prevent the dropdown from rendering on the server and initial client render

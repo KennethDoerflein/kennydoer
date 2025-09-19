@@ -113,6 +113,7 @@ const HomePage: NextPage = () => {
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSort(e.target.value);
+    e.currentTarget.blur();
   };
 
   const isDevVersion = /beta|alpha|rc/i.test(appInfo.version);
