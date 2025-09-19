@@ -43,9 +43,9 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <ThemeProvider>
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
-      </ThemeProvider>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

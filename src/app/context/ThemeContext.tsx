@@ -19,23 +19,31 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>(themes.defaultTheme);
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window !== "undefined") {
+      const storedTheme = localStorage.getItem("theme") as Theme;
+      if (storedTheme && themes.options.includes(storedTheme)) {
+        return storedTheme;
+      }
+    }
+    return themes.defaultTheme;
+  });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const storedTheme = document.documentElement.getAttribute("data-theme") as Theme;
-    if (storedTheme && themes.options.includes(storedTheme)) {
-      setTheme(storedTheme);
-    }
   }, []);
 
   useEffect(() => {
-    if (mounted) {
-      document.documentElement.setAttribute("data-theme", theme);
-      localStorage.setItem("theme", theme);
-    }
-  }, [theme, mounted]);
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  // To prevent ssr mismatch, we return null on the server and first client render.
+  // After hydration, the component will re-render and show the children.
+  if (!mounted) {
+    return null;
+  }
 
   return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
 };

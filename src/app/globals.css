@@ -200,6 +200,8 @@ body {
   background-attachment: fixed;
   background-size: cover;
   overflow-y: scroll; /* Show scrollbar always to prevent layout shift */
+  transition:
+    color var(--transition-duration-slow) var(--timing-function-ease-in-out);
 }
 
 .compact-alert {
