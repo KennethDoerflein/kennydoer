@@ -1,6 +1,6 @@
 // src/app/components/TechBadges.tsx
 
-import { motion, Variants, SpringOptions } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { TechBadgesProps } from "../types";
 
 const badgeVariants: Variants = {
@@ -11,13 +11,11 @@ const badgeVariants: Variants = {
     rotateX: 0,
     transition: {
       type: "spring",
-      stiffness: 100,
-      damping: 10,
+      stiffness: 500,
+      damping: 30,
     },
   },
 };
-
-const transition: SpringOptions = { stiffness: 400, damping: 10 };
 
 const TechBadges = ({ tech }: TechBadgesProps) => {
   const colors = ["primary", "secondary", "success", "danger", "warning", "info", "light"];
@@ -32,8 +30,7 @@ const TechBadges = ({ tech }: TechBadgesProps) => {
             className={className}
             variants={badgeVariants}
             custom={i}
-            whileHover={{ scale: 1.15, rotate: 5 }}
-            transition={transition}>
+            whileHover={{ scale: 1.15, rotate: 5 }}>
             {t}
           </motion.span>
         );
