@@ -409,7 +409,6 @@ body {
 }
 
 .can-hover .tech-badge-glass:hover {
-  transform: translateY(-3px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.2);
 }
@@ -444,10 +443,10 @@ body {
   background-color: rgba(var(--bs-info-rgb), 0.1);
 }
 
-.tech-badge-glass.tech-badge-light {
+/* .tech-badge-glass.tech-badge-light {
   border-color: var(--bs-light);
   background-color: rgba(var(--bs-light-rgb), 0.1);
-}
+} */
 
 .btn-info {
   padding: 0.5rem 1.25rem;

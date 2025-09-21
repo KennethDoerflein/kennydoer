@@ -19,7 +19,7 @@ import { TechBadgesProps } from "../types";
 // };
 
 const TechBadges = ({ tech }: TechBadgesProps) => {
-  const colors = ["primary", "secondary", "success", "danger", "warning", "info", "light"];
+  const colors = ["primary", "secondary", "success", "danger", "warning", "info"];
   return (
     <>
       {tech.map((t, i) => {
