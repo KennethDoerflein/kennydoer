@@ -83,7 +83,7 @@ export const ThemedLayout = ({ children }: { children: ReactNode }) => {
       document.body.style.backgroundImage = "none";
       setAnimationActive(true);
 
-      // Stage 2: Use a microtask/timeout to schedule the cross-fade for the next paint.
+      // Stage 2: Use a timeout to schedule the cross-fade for the next paint.
       // This ensures React has committed the changes from Stage 1 to the DOM.
       const timer = setTimeout(() => {
         setBgLayer2({ backgroundImage: themeGradients[firstThemeChange] });

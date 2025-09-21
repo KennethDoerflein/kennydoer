@@ -33,6 +33,19 @@ const CredentialCard = ({
   });
 
   const controls = useAnimationControls();
+
+  // Variants for the button's border-radius and hover effect
+  const buttonVariants: Variants = {
+    open: {
+      borderRadius: "1rem 1rem 0 0",
+      transition: { duration: 0.1, ease: easeInOut },
+    },
+    closed: {
+      borderRadius: "1.3rem",
+      transition: { duration: 0.1, ease: easeInOut, delay: 0.25 },
+    },
+  };
+
   const chevronVariants: Variants = {
     closed: {
       rotate: 0,
@@ -93,17 +106,18 @@ const CredentialCard = ({
         borderRadius: "1.3rem",
         overflow: "visible",
       }}>
-      <button
+      <motion.button
         onClick={toggleOpen}
         className="card-header text-light d-flex justify-content-between align-items-center border-0"
         aria-expanded={isOpen}
         style={{
-          borderRadius: isOpen ? "1rem 1rem 0 0" : "1.3rem",
-          transition: "border-radius 0.1s ease",
-          transitionDelay: isOpen ? "0s" : "0.25s",
           backgroundColor: "#5c4685",
           fontWeight: 600,
         }}
+        variants={buttonVariants}
+        animate={isOpen ? "open" : "closed"}
+        whileHover={isHoverEnabled ? { backgroundColor: "#6d549e" } : {}}
+        transition={{ duration: 0.2, ease: easeInOut }}
         {...triggerProps}>
         {isTooltipVisible && (
           <div style={tooltipStyle}>{isOpen ? "Click to collapse" : "Click to expand"}</div>
@@ -115,7 +129,7 @@ const CredentialCard = ({
           variants={chevronVariants}
           style={{ display: "inline-block" }}
         />
-      </button>
+      </motion.button>
 
       <motion.div
         initial="closed"

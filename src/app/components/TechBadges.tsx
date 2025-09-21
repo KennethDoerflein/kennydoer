@@ -1,21 +1,22 @@
 // src/app/components/TechBadges.tsx
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { TechBadgesProps } from "../types";
 
-const badgeVariants: Variants = {
-  hidden: { opacity: 0, y: 20, rotateX: -90 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 10,
-    },
-  },
-};
+// import { motion, Variants } from "framer-motion";
+// const badgeVariants: Variants = {
+//   hidden: { opacity: 0, y: 20, rotateX: -90 },
+//   visible: {
+//     opacity: 1,
+//     y: 0,
+//     rotateX: 0,
+//     transition: {
+//       type: "spring",
+//       stiffness: 100,
+//       damping: 10,
+//     },
+//   },
+// };
 
 const TechBadges = ({ tech }: TechBadgesProps) => {
   const colors = ["primary", "secondary", "success", "danger", "warning", "info", "light"];
@@ -28,9 +29,9 @@ const TechBadges = ({ tech }: TechBadgesProps) => {
           <motion.span
             key={t}
             className={className}
-            variants={badgeVariants}
+            // variants={badgeVariants}
             custom={i}
-            whileHover={{ scale: 1.15, rotate: 5 }}>
+            whileHover={{ scale: 1.25, rotate: i % 2 === 0 ? 5 : -5 }}>
             {t}
           </motion.span>
         );

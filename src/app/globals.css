@@ -613,13 +613,7 @@ body {
   display: none !important;
 }
 
-.tech-badge-hover {
-  will-change: transform, box-shadow, filter;
-  transition: all 0.2s ease-in-out;
-}
-
 .can-hover .tech-badge-hover:hover {
-  transform: scale(1.12) translateY(-3px);
   box-shadow:
     0 6px 20px rgba(0, 0, 0, 0.2),
     0 2px 8px rgba(13, 110, 253, 0.18);
