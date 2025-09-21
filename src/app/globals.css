@@ -20,7 +20,7 @@
   --alert-bg: #8a2be2;
   --alert-color: #f0e6ff;
   --card-bg: rgba(25, 25, 45, 0.85);
-  --card-hover-shadow: 0 0 35px rgba(0, 255, 255, 0.3), 0 0 15px rgba(255, 0, 255, 0.2);
+  --card-hover-shadow: inset 0 0 5px rgba(255, 0, 255, 0.3), 0 0 35px rgba(0, 255, 255, 0.1);
   --hover-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
   --card-header-bg: rgba(45, 35, 75, 0.8);
   --card-header-hover-bg: rgba(60, 45, 100, 0.9);
@@ -36,6 +36,7 @@
   --card-bg-image: radial-gradient(circle at top right, rgba(0, 255, 255, 0.1), transparent 50%);
   --card-box-shadow: inset 0 0 5px rgba(255, 0, 255, 0.3), 0 8px 32px rgba(0, 0, 0, 0.5);
   --card-border-color: rgba(0, 255, 255, 0.3);
+  --card-border-hover-color: rgba(0, 255, 255, 0.5);
   --card-img-border-color: rgba(0, 255, 255, 0.3);
   --card-footer-bg: rgba(25, 25, 45, 0.5);
   --card-footer-color: #a0a0c0;
@@ -63,7 +64,7 @@
   --alert-bg: #ffc107;
   --alert-color: #000;
   --card-bg: rgba(255, 255, 255, 0.08);
-  --card-hover-shadow: 0 0 25px #00ffff1a;
+  --card-hover-shadow: inset 0 0 2px 0 rgba(255, 255, 255, 1), 0 0 25px #00ffff1a;
   --hover-shadow: 0 8px 24px #0000004d;
   --card-header-bg: rgba(255, 255, 255, 0.15);
   --card-header-hover-bg: rgba(255, 255, 255, 0.25);
@@ -79,6 +80,7 @@
   --card-bg-image: radial-gradient(circle at top left, rgba(255, 255, 255, 0.05), transparent);
   --card-box-shadow: inset 0 0 2px 0 rgba(255, 255, 255, 0.5), 0 4px 30px rgba(0, 0, 0, 0.1);
   --card-border-color: rgba(255, 255, 255, 0.2);
+  --card-border-hover-color: rgba(255, 255, 255, 0.4);
   --card-img-border-color: #333;
   --card-footer-bg: rgba(0, 0, 0, 0.1);
   --card-footer-color: #ccc;
@@ -113,7 +115,7 @@
   --alert-bg: #fff3cd;
   --alert-color: #664d03;
   --card-bg: rgba(255, 255, 255, 0.6);
-  --card-hover-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+  --card-hover-shadow: inset 0 0 1px 0 rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 0, 0, 0.4);
   --hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   --card-header-bg: rgba(255, 255, 255, 0.8);
   --card-header-hover-bg: rgba(255, 255, 255, 0.95);
@@ -129,6 +131,7 @@
   --card-bg-image: none;
   --card-box-shadow: inset 0 0 1px 0 rgba(0, 0, 0, 0.1), 0 4px 15px rgba(0, 0, 0, 0.05);
   --card-border-color: rgba(0, 0, 0, 0.15);
+  --card-border-hover-color: rgba(0, 0, 0, 0.3);
   --card-img-border-color: #ced4da;
   --card-footer-bg: rgba(255, 255, 255, 0.7);
   --card-footer-color: #495057;
@@ -155,7 +158,7 @@
   --alert-bg: #fdeec9;
   --alert-color: #533f00;
   --card-bg: rgba(30, 42, 34, 0.85);
-  --card-hover-shadow: 0 0 30px rgba(163, 177, 138, 0.4);
+  --card-hover-shadow: inset 0 0 3px 0 rgba(218, 215, 205, 0.3), 0 0 30px rgba(163, 177, 138, 0.4);
   --hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   --card-header-bg: rgba(52, 78, 65, 0.8);
   --card-header-hover-bg: rgba(62, 88, 75, 0.95);
@@ -171,6 +174,7 @@
   --card-bg-image: radial-gradient(circle at top left, rgba(218, 215, 205, 0.03), transparent);
   --card-box-shadow: inset 0 0 3px 0 rgba(218, 215, 205, 0.3), 0 4px 30px rgba(0, 0, 0, 0.3);
   --card-border-color: rgba(163, 177, 138, 0.3);
+  --card-border-hover-color: rgba(163, 177, 138, 0.5);
   --card-img-border-color: rgba(163, 177, 138, 0.4);
   --card-footer-bg: rgba(42, 68, 55, 0.7);
   --card-footer-color: #b8b4af;
