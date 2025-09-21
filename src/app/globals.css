@@ -138,8 +138,8 @@
   --card-footer-border-color: rgba(0, 0, 0, 0.15);
   --modal-bg-color: rgba(255, 255, 255, 0.9);
   --modal-border-color: rgba(0, 0, 0, 0.15);
-  --scrollbar-track-bg: rgba(0, 0, 0, 0.05);
-  --scrollbar-thumb-bg: rgba(0, 0, 0, 0.2);
+  --scrollbar-track-bg: rgb(234, 171, 240);
+  --scrollbar-thumb-bg: rgba(132, 0, 255, 0.555);
   --scrollbar-thumb-border-color: rgba(0, 0, 0, 0.1);
   --scrollbar-thumb-hover-bg: rgba(0, 0, 0, 0.3);
   --footer-icon-color: #343a40;
