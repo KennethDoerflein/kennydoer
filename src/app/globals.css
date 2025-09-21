@@ -44,9 +44,9 @@
   --modal-bg-color: rgba(26, 26, 46, 0.95);
   --modal-border-color: rgba(0, 255, 255, 0.4);
   --scrollbar-track-bg: #1a1a2e;
-  --scrollbar-thumb-bg: linear-gradient(180deg, #ff00ff, #00ffff);
+  --scrollbar-thumb-bg: #00ffffc2;
   --scrollbar-thumb-border-color: rgba(0, 255, 255, 0.5);
-  --scrollbar-thumb-hover-bg: linear-gradient(180deg, #ff00ff, #00e5e5);
+  --scrollbar-thumb-hover-bg: #0aa1a1;
   --footer-icon-color: #c0c0e0;
   --footer-icon-border-color: rgba(0, 255, 255, 0.3);
   --footer-icon-hover-bg: rgba(0, 255, 255, 0.1);
@@ -542,10 +542,9 @@ body {
   background: var(--scrollbar-thumb-bg);
   border-radius: 10px;
   border: 2px solid var(--scrollbar-track-bg);
+  transition: background var(--transition-duration-normal) var(--timing-function-ease);
 }
 
-/* Note: Styling pseudo-elements based on a body class is not supported. */
-/* This hover effect will apply on all devices with a visible scrollbar. */
 ::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-hover-bg);
   border-width: 1px;
