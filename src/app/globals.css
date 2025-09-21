@@ -133,7 +133,7 @@
   --card-border-color: rgba(0, 0, 0, 0.15);
   --card-border-hover-color: rgba(0, 0, 0, 0.3);
   --card-img-border-color: #ced4da;
-  --card-bg-image: radial-gradient(circle at top left, rgba(220, 203, 238, 0.7), transparent);
+  --card-bg-image: rgba(220, 203, 238, 0.7);
   --card-footer-bg: rgba(220, 203, 238, 0.1);
   --card-footer-color: #495057;
   --card-footer-border-color: rgba(0, 0, 0, 0.15);
