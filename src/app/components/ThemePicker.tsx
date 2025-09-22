@@ -3,12 +3,13 @@
 import { useTheme } from "../context/ThemeContext";
 import { getTheme } from "./ThemedLayout";
 import { useEffect, useState } from "react";
+import CustomDropdown from "./CustomDropdown";
 
 const themeOptions = {
   "deep-space": "Deep Space",
   "glassy-blue": "Ocean Blue",
   "glassy-light": "Purple Mist",
-  "forest": "Forest Green",
+  forest: "Forest Green",
 };
 
 const ThemePicker = () => {
@@ -20,10 +21,14 @@ const ThemePicker = () => {
     setMounted(true);
   }, []);
 
-  const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setTheme(e.target.value as keyof typeof themeOptions);
-    e.currentTarget.blur();
+  const handleThemeChange = (newValue: string) => {
+    setTheme(newValue as keyof typeof themeOptions);
   };
+
+  const dropdownOptions = themes.options.map((themeKey) => ({
+    value: themeKey,
+    label: themeOptions[themeKey as keyof typeof themeOptions],
+  }));
 
   // Prevent the dropdown from rendering on the server and initial client render
   // to avoid showing the default theme before the correct one is loaded.
@@ -33,33 +38,23 @@ const ThemePicker = () => {
       <div
         className="d-flex justify-content-center align-items-center my-3"
         style={{ minHeight: "40px" }}>
-        <div style={{ width: "230px" }} />
+        <div style={{ width: "125px" }} />
       </div>
     );
   }
 
   return (
     <div className="d-flex justify-content-center align-items-center my-3">
-      <label htmlFor="theme-picker" className="me-2">
+      <label htmlFor="theme-picker" className="me-2 fw-bold">
         Theme:
       </label>
-      <select
+      <CustomDropdown
         id="theme-picker"
+        options={dropdownOptions}
         value={theme}
         onChange={handleThemeChange}
-        className="themed-dropdown w-auto"
-        style={{
-          minWidth: 160,
-          fontWeight: 500,
-          boxShadow: "none",
-          cursor: "pointer",
-        }}>
-        {themes.options.map((themeKey) => (
-          <option key={themeKey} value={themeKey}>
-            {themeOptions[themeKey as keyof typeof themeOptions]}
-          </option>
-        ))}
-      </select>
+        width="125px"
+      />
     </div>
   );
 };
