@@ -113,6 +113,7 @@ const HomePage: NextPage = () => {
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSort(e.target.value);
+    e.currentTarget.blur();
   };
 
   const isDevVersion = /beta|alpha|rc/i.test(appInfo.version);
@@ -188,18 +189,17 @@ const HomePage: NextPage = () => {
           </label>
           <select
             id="sort-select"
-            className="form-select form-select-sm w-auto"
+            className="themed-dropdown w-auto"
             style={{
               minWidth: 160,
               fontWeight: 500,
               boxShadow: "none",
-              borderRadius: "0.5rem",
               cursor: "pointer",
             }}
             value={sort}
             onChange={handleSortChange}>
             {filteredSortOptions.map(({ value, label }) => (
-              <option key={value} value={value} style={{ background: "#181b20", color: "#fff" }}>
+              <option key={value} value={value}>
                 {label}
               </option>
             ))}

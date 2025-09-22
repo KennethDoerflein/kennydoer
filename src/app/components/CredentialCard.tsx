@@ -1,8 +1,7 @@
 // src/app/components/CredentialCard.tsx
 
-import { easeInOut, motion, useAnimationControls } from "framer-motion";
+import { easeInOut, motion, useAnimationControls, Variants } from "framer-motion";
 import { useEffect } from "react";
-import { Collapse } from "react-bootstrap";
 import { useTooltip } from "../hooks/useTooltip";
 import { CredentialCardProps } from "../types";
 import { formatLabel, isEmailFormat } from "../utils";
@@ -34,7 +33,20 @@ const CredentialCard = ({
   });
 
   const controls = useAnimationControls();
-  const chevronVariants = {
+
+  // Variants for the button's border-radius and hover effect
+  const buttonVariants: Variants = {
+    open: {
+      borderRadius: "1rem 1rem 0 0",
+      transition: { duration: 0.1, ease: easeInOut },
+    },
+    closed: {
+      borderRadius: "1.3rem",
+      transition: { duration: 0.1, ease: easeInOut, delay: 0.25 },
+    },
+  };
+
+  const chevronVariants: Variants = {
     closed: {
       rotate: 0,
       transition: { duration: 0.3 },
@@ -46,6 +58,25 @@ const CredentialCard = ({
     wiggle: {
       rotate: [0, 20, -15, 10, -5, 0],
       transition: { duration: 0.6, ease: easeInOut },
+    },
+  };
+
+  const cardBodyVariants: Variants = {
+    open: {
+      height: "auto",
+      opacity: 1,
+      transition: {
+        height: { duration: 0.3, ease: easeInOut },
+        opacity: { duration: 0.2, ease: "linear", delay: 0.1 },
+      },
+    },
+    closed: {
+      height: 0,
+      opacity: 0,
+      transition: {
+        height: { duration: 0.3, ease: easeInOut },
+        opacity: { duration: 0.2, ease: "linear" },
+      },
     },
   };
 
@@ -75,17 +106,18 @@ const CredentialCard = ({
         borderRadius: "1.3rem",
         overflow: "visible",
       }}>
-      <button
+      <motion.button
         onClick={toggleOpen}
         className="card-header text-light d-flex justify-content-between align-items-center border-0"
         aria-expanded={isOpen}
         style={{
-          borderRadius: isOpen ? "1rem 1rem 0 0" : "1.3rem",
-          transition: "border-radius 0.1s ease",
-          transitionDelay: isOpen ? "0s" : "0.25s",
           backgroundColor: "#5c4685",
           fontWeight: 600,
         }}
+        variants={buttonVariants}
+        animate={isOpen ? "open" : "closed"}
+        whileHover={isHoverEnabled ? { backgroundColor: "#6d549e" } : {}}
+        transition={{ duration: 0.2, ease: easeInOut }}
         {...triggerProps}>
         {isTooltipVisible && (
           <div style={tooltipStyle}>{isOpen ? "Click to collapse" : "Click to expand"}</div>
@@ -97,28 +129,33 @@ const CredentialCard = ({
           variants={chevronVariants}
           style={{ display: "inline-block" }}
         />
-      </button>
+      </motion.button>
 
-      <Collapse in={isOpen} unmountOnExit>
-        <div className="p-0 m-0" style={{ borderRadius: "0 0 1rem 1rem", overflow: "hidden" }}>
-          <div
-            className="card-body p-3 border-0"
-            style={{ backgroundColor: "rgba(255,255,255,0.03)" }}>
-            <CopyableField
-              label={isEmail ? "Email" : "Username"}
-              value={id!}
-              copied={isCopied(index, "id")}
-              onCopy={() => handleCopy(id!, index, "id")}
-            />
-            <CopyableField
-              label="Password"
-              value={credential.password}
-              copied={isCopied(index, "password")}
-              onCopy={() => handleCopy(credential.password, index, "password")}
-            />
-          </div>
+      <motion.div
+        initial="closed"
+        animate={isOpen ? "open" : "closed"}
+        variants={cardBodyVariants}
+        style={{
+          overflow: "hidden",
+          borderRadius: "0 0 1rem 1rem",
+        }}>
+        <div
+          className="card-body p-3 border-0"
+          style={{ backgroundColor: "rgba(255,255,255,0.03)" }}>
+          <CopyableField
+            label={isEmail ? "Email" : "Username"}
+            value={id!}
+            copied={isCopied(index, "id")}
+            onCopy={() => handleCopy(id!, index, "id")}
+          />
+          <CopyableField
+            label="Password"
+            value={credential.password}
+            copied={isCopied(index, "password")}
+            onCopy={() => handleCopy(credential.password, index, "password")}
+          />
         </div>
-      </Collapse>
+      </motion.div>
     </div>
   );
 };

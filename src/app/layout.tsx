@@ -4,6 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ThemedLayout } from "./components/ThemedLayout";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,14 +22,30 @@ export const metadata: Metadata = {
   description: "A website to showcase my projects",
 };
 
+const themeScript = `
+  (function() {
+    try {
+      const theme = localStorage.getItem('theme') || 'deep-space';
+      document.documentElement.setAttribute('data-theme', theme);
+    } catch (e) {
+      console.error('Error setting theme from localStorage', e);
+    }
+  })();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-bs-theme="dark" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <ThemedLayout>{children}</ThemedLayout>
+      </body>
     </html>
   );
 }
