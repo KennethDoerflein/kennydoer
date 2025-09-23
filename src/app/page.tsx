@@ -6,6 +6,7 @@ import type { NextPage } from "next";
 import { useMemo, useState } from "react";
 import { Alert, Col, Container, Row } from "react-bootstrap";
 import appInfo from "../../package.json";
+import CustomDropdown from "./components/CustomDropdown";
 import Footer from "./components/Footer";
 import ImageModal from "./components/ImageModal";
 import ProjectCard from "./components/ProjectCard";
@@ -111,9 +112,8 @@ const HomePage: NextPage = () => {
     setShow(true);
   };
 
-  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSort(e.target.value);
-    e.currentTarget.blur();
+  const handleSortChange = (newValue: string) => {
+    setSort(newValue);
   };
 
   const isDevVersion = /beta|alpha|rc/i.test(appInfo.version);
@@ -184,26 +184,16 @@ const HomePage: NextPage = () => {
 
       <Container>
         <div className="d-flex justify-content-center align-items-center mt-4 pt-1">
-          <label htmlFor="sort-select" className="fw-bold me-2 ">
+          <label htmlFor="sort-select" className="fw-bold me-2">
             Sort Projects:
           </label>
-          <select
+          <CustomDropdown
             id="sort-select"
-            className="themed-dropdown w-auto"
-            style={{
-              minWidth: 160,
-              fontWeight: 500,
-              boxShadow: "none",
-              cursor: "pointer",
-            }}
+            options={filteredSortOptions}
             value={sort}
-            onChange={handleSortChange}>
-            {filteredSortOptions.map(({ value, label }) => (
-              <option key={value} value={value}>
-                {label}
-              </option>
-            ))}
-          </select>
+            onChange={handleSortChange}
+            width="250px"
+          />
         </div>
 
         <AnimatePresence mode="wait" initial={false}>

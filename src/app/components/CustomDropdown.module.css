@@ -1,0 +1,156 @@
+/* src/app/components/CustomDropdown.module.css */
+.dropdown {
+  position: relative;
+  font-family: inherit;
+  font-size: small;
+}
+
+.control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+  background-color: var(--sort-select-bg);
+  color: var(--sort-select-text);
+  border: 1px solid var(--sort-select-border);
+  cursor: pointer;
+  text-align: left;
+  font-weight: 500;
+  min-height: 40px;
+  transition:
+    border-color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+}
+
+.control:focus-visible {
+  outline: none;
+  border-color: var(--btn-info-bg);
+  box-shadow: 0 0 0 3px rgba(13, 202, 240, 0.25);
+}
+
+.chevron {
+  width: 16px;
+  height: 16px;
+  background-image: var(--sort-select-arrow);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transition: transform 200ms ease-in-out;
+  transform: rotate(-90deg);
+}
+
+.chevron.open {
+  transform: rotate(0deg);
+}
+.chevron.openTop {
+  transform: rotate(-180deg);
+}
+
+.menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: var(--sort-select-bg);
+  border: 1px solid var(--sort-select-border);
+  border-radius: 8px;
+  list-style: none;
+  padding: 5px;
+  margin: 0;
+  z-index: 1000;
+  opacity: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  max-height: 300px;
+  overflow-y: auto;
+
+  /* Default to opening downwards */
+  top: calc(100% + 4px);
+  transform-origin: top;
+  animation: menu-open-down 200ms ease-out forwards;
+}
+
+.menu.top {
+  top: auto;
+  bottom: calc(100% + 4px);
+  transform-origin: bottom;
+  animation-name: menu-open-up;
+}
+
+@keyframes menu-open-down {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes menu-open-up {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes menu-close-down {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(-5px);
+  }
+}
+
+@keyframes menu-close-up {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(5px);
+  }
+}
+
+.menu.closing {
+  animation-name: menu-close-down;
+  animation-duration: 200ms;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.menu.top.closing {
+  animation-name: menu-close-up;
+}
+
+.option {
+  padding: 10px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+  color: var(--sort-select-text);
+  font-weight: 500;
+}
+
+.option:hover,
+.option.focused {
+  background-color: var(--card-header-hover-bg);
+  color: var(--card-header-color);
+  outline: none;
+}
+
+.option[aria-selected="true"] {
+  font-weight: bold;
+  background-color: var(--card-header-bg);
+}
