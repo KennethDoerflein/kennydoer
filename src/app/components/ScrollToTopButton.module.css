@@ -1,0 +1,31 @@
+.goToBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1050;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: var(--scroll-btn-color);
+  background-color: var(--scroll-btn-bg);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color var(--transition-duration-normal) var(--timing-function-ease),
+    transform var(--transition-duration-normal) var(--timing-function-ease),
+    box-shadow var(--transition-duration-normal) var(--timing-function-ease);
+}
+
+.can-hover .goToBtn:hover {
+  background-color: var(--scroll-btn-hover-bg);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--hover-shadow); /* 0 8px 24px rgba(0,0,0,0.3) */
+  cursor: pointer;
+}
+
+.goToBtn i {
+  margin: 0;
+}

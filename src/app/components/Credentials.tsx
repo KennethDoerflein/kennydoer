@@ -28,7 +28,7 @@ const Credentials = ({ credentials }: CredentialsProps) => {
     copiedStates.has(`${index}-${field}`);
 
   return (
-    <div className="d-flex flex-column align-items-start gap-0 mt-0 border-0">
+    <div className="d-flex flex-column align-items-center gap-3 mt-4 border-0">
       {credentials.map((c, idx) => (
         <CredentialCard
           key={idx}

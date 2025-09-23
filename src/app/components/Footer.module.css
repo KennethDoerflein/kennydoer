@@ -1,0 +1,22 @@
+.footerIconLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+  font-size: 1.5rem;
+  color: var(--footer-icon-color);
+  background: transparent;
+  border: 1px solid var(--footer-icon-border-color);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  transition: all 0.3s ease;
+}
+
+.footerIconLink:hover {
+  background-color: var(--footer-icon-hover-bg);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}

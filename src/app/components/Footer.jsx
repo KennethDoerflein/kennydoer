@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Container, Modal, Button } from "react-bootstrap";
 import PrintablesIcon from "./PrintablesIcon";
 import ThemePicker from "./ThemePicker";
+import styles from "./Footer.module.css";
 
 export default function Footer({ appInfo }) {
   const [showTerms, setShowTerms] = useState(false);
@@ -15,7 +16,7 @@ export default function Footer({ appInfo }) {
         href="https://github.com/KennethDoerflein"
         target="_blank"
         rel="noopener noreferrer"
-        className="footer-icon-link align-middle"
+        className={`${styles.footerIconLink} align-middle`}
         aria-label="View my GitHub profile">
         <i className="bi bi-github align-middle"></i>
       </a>
@@ -24,7 +25,7 @@ export default function Footer({ appInfo }) {
         href="https://www.printables.com/@ken_590448"
         target="_blank"
         rel="noopener noreferrer"
-        className="footer-icon-link align-middle"
+        className={`${styles.footerIconLink} align-middle`}
         aria-label="View my Printables profile">
         <PrintablesIcon />
       </a>

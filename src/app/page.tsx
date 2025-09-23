@@ -16,6 +16,7 @@ import { useHoverEffect } from "./hooks/useHoverEffect";
 import type { Project } from "./types";
 import { getProjectCardVariants } from "./utils/projectCardAnimations";
 type ProjectData = Omit<Project, "onImageClick" | "isFirst" | "isHoverEnabled">;
+import styles from "./styles/components/alerts.module.css";
 
 // Scalable complexity levels map
 const complexityLevels = {
@@ -163,7 +164,9 @@ const HomePage: NextPage = () => {
   return (
     <>
       {isDevVersion && (
-        <Alert variant="danger" className="text-center mx-auto compact-alert px-3 mb-2 m-1">
+        <Alert
+          variant="danger"
+          className={`text-center mx-auto compact-alert px-3 mb-2 m-1 ${styles.compactAlert}`}>
           <strong>Development Version: </strong>
           You are currently on the development site. Features may be outdated or unstable.
           <div className="mt-2">
@@ -177,7 +180,9 @@ const HomePage: NextPage = () => {
         </Alert>
       )}
 
-      <Alert variant="warning" className="text-center mx-auto compact-alert px-3 mb-0">
+      <Alert
+        variant="warning"
+        className={`text-center mx-auto compact-alert px-3 mb-0 ${styles.compactAlert}`}>
         <strong>Note: </strong>⚠️ All databases automatically reset to a known state every 30
         minutes (e.g., 10:00, 10:30, 11:00...).
       </Alert>

@@ -1,0 +1,77 @@
+.btnInfo {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  background-size: 200% 200%;
+  background-position: center;
+  transition:
+    transform var(--transition-duration-fast) var(--timing-function-ease),
+    background-color var(--transition-duration-fast) var(--timing-function-ease),
+    background-position 0.6s var(--timing-function-ease-in-out);
+}
+
+.can-hover .btnInfo:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  background-position: right bottom;
+  transform: scale(1.05);
+}
+
+.gradientButton {
+  display: inline-block;
+  padding: 14px 36px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  color: #ffffff;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  overflow: hidden;
+  background: linear-gradient(120deg, #23235b 0%, #3a3a7c 30%, #5a48b4 70%, #3a3a7c 100%);
+  background-size: 300% 300%;
+  background-position: 50% 50%;
+  box-shadow: 0 5px 15px rgba(22, 27, 34, 0.18);
+  transform: translateZ(0);
+  will-change: background-position, background-size, filter, transform;
+  backface-visibility: hidden;
+  appearance: none;
+  box-sizing: border-box;
+}
+
+.githubBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 14.5px 27px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #161b22 0%, #333950 100%);
+  color: #f6f8fa;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(22, 27, 34, 0.18);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+  transform: translateZ(0);
+  will-change: background-position, background-size, filter, transform;
+  backface-visibility: hidden;
+  appearance: none;
+  box-sizing: border-box;
+}
+
+.can-hover .githubBtn:hover,
+.can-hover .gradientButton:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--hover-shadow); /* 0 8px 24px rgba(0,0,0,0.3) */
+}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Modal, Spinner } from "react-bootstrap";
 import { BsXLg } from "react-icons/bs";
+import styles from "./ImageModal.module.css";
 
 const ImageModal = ({ show, onHide, src }: { show: boolean; onHide: () => void; src: string }) => {
   const [loading, setLoading] = useState(true);
@@ -11,9 +12,9 @@ const ImageModal = ({ show, onHide, src }: { show: boolean; onHide: () => void; 
   }, [show, src]);
 
   return (
-    <Modal show={show} onHide={onHide} fullscreen>
+    <Modal show={show} onHide={onHide} fullscreen dialogClassName={styles.modalContent}>
       <Modal.Header className="py-0" closeButton={false}>
-        <button type="button" className="close-btn" onClick={onHide} aria-label="Close">
+        <button type="button" className={styles.closeBtn} onClick={onHide} aria-label="Close">
           <BsXLg />
         </button>
       </Modal.Header>

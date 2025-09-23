@@ -1,0 +1,42 @@
+.goToBtnWrapper {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
+}
+
+.goToBtnWrapper.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.theme-picker option,
+#sort-select option {
+  background-color: var(--theme-picker-option-bg, var(--card-header-bg));
+  color: var(--body-color);
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s var(--timing-function-ease) forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

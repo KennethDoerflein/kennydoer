@@ -1,0 +1,8 @@
+.compactAlert {
+  padding: 8px 12px;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 8px;
+  width: fit-content;
+}

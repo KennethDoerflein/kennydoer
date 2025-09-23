@@ -108,7 +108,7 @@ const CredentialCard = ({
       }}>
       <motion.button
         onClick={toggleOpen}
-        className="card-header text-light d-flex justify-content-between align-items-center border-0"
+        className="card-header text-light d-flex justify-content-between align-items-center border-0 p-3 "
         aria-expanded={isOpen}
         style={{
           backgroundColor: "#5c4685",
@@ -116,7 +116,6 @@ const CredentialCard = ({
         }}
         variants={buttonVariants}
         animate={isOpen ? "open" : "closed"}
-        whileHover={isHoverEnabled ? { backgroundColor: "#6d549e" } : {}}
         transition={{ duration: 0.2, ease: easeInOut }}
         {...triggerProps}>
         {isTooltipVisible && (
@@ -139,9 +138,7 @@ const CredentialCard = ({
           overflow: "hidden",
           borderRadius: "0 0 1rem 1rem",
         }}>
-        <div
-          className="card-body p-3 border-0"
-          style={{ backgroundColor: "rgba(255,255,255,0.03)" }}>
+        <div className="card-body p-3 border-0">
           <CopyableField
             label={isEmail ? "Email" : "Username"}
             value={id!}
