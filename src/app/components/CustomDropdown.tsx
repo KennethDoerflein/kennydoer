@@ -159,7 +159,8 @@ const CustomDropdown = ({ id, options, value, onChange, width }: CustomDropdownP
           className={`${styles.menu} ${isClosing ? styles.closing : ""} ${direction === "top" ? styles.top : ""}`}
           role="listbox"
           id={menuId}
-          aria-labelledby={id}>
+          aria-labelledby={id}
+          onMouseLeave={() => setFocusedIndex(-1)}>
           {options.map((option, index) => (
             <li
               key={option.value}
