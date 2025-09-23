@@ -116,6 +116,7 @@ const CredentialCard = ({
         }}
         variants={buttonVariants}
         animate={isOpen ? "open" : "closed"}
+        whileHover={{ backgroundColor: "#6c5695" }}
         transition={{ duration: 0.2, ease: easeInOut }}
         {...triggerProps}>
         {isTooltipVisible && (
