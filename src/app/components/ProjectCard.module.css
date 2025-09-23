@@ -13,7 +13,7 @@
     box-shadow var(--transition-duration-normal) var(--timing-function-ease);
 }
 
-.can-hover .projectCard:hover {
+:global(.can-hover) .projectCard:hover {
   box-shadow: var(--card-hover-shadow);
 }
 
@@ -26,7 +26,7 @@
     box-shadow var(--transition-duration-slow) var(--timing-function-ease) !important;
 }
 
-.can-hover .projectCard img:hover {
+:global(.can-hover) .projectCard img:hover {
   cursor: pointer;
   filter: brightness(1.1) saturate(1.05);
 }
@@ -46,7 +46,7 @@
   background-position: center;
 }
 
-.can-hover .projectCardHeader:hover {
+:global(.can-hover) .projectCardHeader:hover {
   background-color: var(--card-header-hover-bg);
   background-position: right bottom;
 }

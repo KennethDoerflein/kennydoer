@@ -16,7 +16,7 @@
     background-position 0.6s var(--timing-function-ease-in-out);
 }
 
-.can-hover .btnInfo:hover {
+:global(.can-hover) .btnInfo:hover {
   background-color: rgba(255, 255, 255, 0.2);
   background-position: right bottom;
   transform: scale(1.05);
@@ -37,6 +37,11 @@
   background-size: 300% 300%;
   background-position: 50% 50%;
   box-shadow: 0 5px 15px rgba(22, 27, 34, 0.18);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
   transform: translateZ(0);
   will-change: background-position, background-size, filter, transform;
   backface-visibility: hidden;
@@ -70,8 +75,8 @@
   box-sizing: border-box;
 }
 
-.can-hover .githubBtn:hover,
-.can-hover .gradientButton:hover {
+:global(.can-hover) .githubBtn:hover,
+:global(.can-hover) .gradientButton:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: var(--hover-shadow); /* 0 8px 24px rgba(0,0,0,0.3) */
+  box-shadow: var(--hover-shadow);
 }

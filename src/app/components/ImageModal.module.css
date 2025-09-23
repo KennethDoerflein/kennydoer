@@ -34,7 +34,7 @@
   cursor: pointer;
 }
 
-.can-hover .closeBtn:hover {
+:global(.can-hover) .closeBtn:hover {
   background-color: var(--close-btn-hover-bg-color);
   transform: scale(1.1);
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
