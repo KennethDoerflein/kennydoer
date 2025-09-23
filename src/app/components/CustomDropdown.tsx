@@ -153,16 +153,22 @@ const CustomDropdown = ({ id, options, value, onChange, width }: CustomDropdownP
         id={id}>
         <span>{selectedOption ? selectedOption.label : "Select..."}</span>
         <span
-          className={`${styles.chevron} ${isOpen ? (direction === "top" ? styles.openTop : styles.open) : ""}`}
+          className={`${styles.chevron} ${
+            isOpen ? (direction === "top" ? styles.openTop : styles.open) : ""
+          }`}
         />
       </button>
       {(isOpen || isClosing) && (
         <ul
           ref={menuRef}
-          className={`${styles.menu} ${isClosing ? styles.closing : ""} ${direction === "top" ? styles.top : ""}`}
+          className={`${styles.menu} ${isClosing ? styles.closing : ""} ${
+            direction === "top" ? styles.top : ""
+          }`}
           role="listbox"
           id={menuId}
-          aria-labelledby={id}>
+          aria-labelledby={id}
+          onMouseLeave={() => setFocusedIndex(-1)} // The fix is here
+        >
           {options.map((option, index) => (
             <li
               key={option.value}
