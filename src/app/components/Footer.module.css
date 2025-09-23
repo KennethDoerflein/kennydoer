@@ -14,7 +14,7 @@
   transition: all 0.3s ease;
 }
 
-.footerIconLink:hover {
+:global(.can-hover) .footerIconLink:hover {
   background-color: var(--footer-icon-hover-bg);
   color: #fff;
   transform: translateY(-3px);
