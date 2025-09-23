@@ -21,8 +21,10 @@ const CustomDropdown = ({ id, options, value, onChange, width }: CustomDropdownP
   const [isClosing, setIsClosing] = useState(false);
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [direction, setDirection] = useState<"top" | "bottom">("bottom");
+
   const dropdownRef = useRef<HTMLDivElement>(null);
   const controlRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLUListElement>(null);
   const menuId = useId();
 
   const selectedOption = options.find((option) => option.value === value);
@@ -54,23 +56,23 @@ const CustomDropdown = ({ id, options, value, onChange, width }: CustomDropdownP
     if (!isOpen) return;
 
     const calculateDirection = () => {
-      if (!dropdownRef.current) return;
+      if (!dropdownRef.current || !menuRef.current) return;
 
       const dropdownRect = dropdownRef.current.getBoundingClientRect();
       const spaceBelow = window.innerHeight - dropdownRect.bottom;
       const spaceAbove = dropdownRect.top;
 
-      // Roughly estimate menu height - 200px is the max-height in CSS
-      const menuHeight = Math.min(options.length * 40 + 10, 200);
+      const menuHeight = menuRef.current.offsetHeight;
 
-      if (spaceBelow < menuHeight && spaceAbove > spaceBelow) {
+      if (spaceBelow < menuHeight + 15 && spaceAbove > spaceBelow) {
         setDirection("top");
       } else {
         setDirection("bottom");
       }
     };
 
-    calculateDirection();
+    calculateDirection(); // Run the calculation as soon as the menu is open.
+
     const selectedIndex = options.findIndex((opt) => opt.value === value);
     setFocusedIndex(selectedIndex);
 
@@ -84,7 +86,7 @@ const CustomDropdown = ({ id, options, value, onChange, width }: CustomDropdownP
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen, options, options.length, value]);
+  }, [isOpen, value, options]);
 
   const handleKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {
@@ -131,7 +133,7 @@ const CustomDropdown = ({ id, options, value, onChange, width }: CustomDropdownP
 
   useEffect(() => {
     if (isOpen && focusedIndex !== -1) {
-      const optionElement = dropdownRef.current?.querySelector<HTMLLIElement>(
+      const optionElement = menuRef.current?.querySelector<HTMLLIElement>(
         `[data-index="${focusedIndex}"]`
       );
       optionElement?.scrollIntoView({ block: "nearest" });
@@ -151,16 +153,22 @@ const CustomDropdown = ({ id, options, value, onChange, width }: CustomDropdownP
         id={id}>
         <span>{selectedOption ? selectedOption.label : "Select..."}</span>
         <span
-          className={`${styles.chevron} ${isOpen ? (direction === "top" ? styles.openTop : styles.open) : ""}`}
+          className={`${styles.chevron} ${
+            isOpen ? (direction === "top" ? styles.openTop : styles.open) : ""
+          }`}
         />
       </button>
       {(isOpen || isClosing) && (
         <ul
-          className={`${styles.menu} ${isClosing ? styles.closing : ""} ${direction === "top" ? styles.top : ""}`}
+          ref={menuRef}
+          className={`${styles.menu} ${isClosing ? styles.closing : ""} ${
+            direction === "top" ? styles.top : ""
+          }`}
           role="listbox"
           id={menuId}
           aria-labelledby={id}
           onMouseLeave={() => setFocusedIndex(-1)}>
+
           {options.map((option, index) => (
             <li
               key={option.value}
