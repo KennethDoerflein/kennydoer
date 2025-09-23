@@ -13,7 +13,7 @@ export const themeGradients: Record<Theme, string> = {
 };
 
 export const themes = {
-  defaultTheme: "deep-space" as Theme,
+  defaultTheme: "glassy-blue" as Theme,
   options: ["deep-space", "glassy-blue", "glassy-light", "forest"] as Theme[],
 };
 

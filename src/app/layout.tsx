@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 const themeScript = `
   (function() {
     try {
-      const theme = localStorage.getItem('theme') || 'deep-space';
+      const theme = localStorage.getItem('theme') || 'glassy-blue';
       document.documentElement.setAttribute('data-theme', theme);
     } catch (e) {
       console.error('Error setting theme from localStorage', e);
