@@ -117,8 +117,8 @@
   --card-bg: rgba(255, 255, 255, 0.6);
   --card-hover-shadow: inset 0 0 1px 0 rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 0, 0, 0.4);
   --hover-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  --card-header-bg: rgba(255, 255, 255, 0.8);
-  --card-header-hover-bg: rgba(255, 255, 255, 0.95);
+  --card-header-bg: rgba(132, 129, 133, 0.2);
+  --card-header-hover-bg: rgba(132, 129, 133, 0.3);
   --card-header-color: #7067aa;
   --modal-bg: #ffffff;
   --btn-info-bg: #0dcaf0;
