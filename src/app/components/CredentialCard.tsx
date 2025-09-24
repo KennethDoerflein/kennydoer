@@ -38,11 +38,11 @@ const CredentialCard = ({
   const buttonVariants: Variants = {
     open: {
       borderRadius: "1rem 1rem 0 0",
-      transition: { duration: 0.1, ease: easeInOut },
+      transition: { borderRadius: { duration: 5, ease: easeInOut, delay: 0.05 } },
     },
     closed: {
-      borderRadius: "1.3rem",
-      transition: { duration: 0.1, ease: easeInOut, delay: 0.25 },
+      borderRadius: "1rem",
+      transition: { borderRadius: { duration: 0.1, ease: easeInOut, delay: 0.25 } },
     },
   };
 
@@ -67,7 +67,7 @@ const CredentialCard = ({
       opacity: 1,
       transition: {
         height: { duration: 0.3, ease: easeInOut },
-        opacity: { duration: 0.2, ease: "linear", delay: 0.1 },
+        opacity: { duration: 0.2, ease: "linear", delay: 0.15 },
       },
     },
     closed: {
@@ -117,7 +117,6 @@ const CredentialCard = ({
         variants={buttonVariants}
         animate={isOpen ? "open" : "closed"}
         whileHover={{ backgroundColor: "#6c5695" }}
-        transition={{ duration: 0.2, ease: easeInOut }}
         {...triggerProps}>
         {isTooltipVisible && (
           <div style={tooltipStyle}>{isOpen ? "Click to collapse" : "Click to expand"}</div>
@@ -131,14 +130,7 @@ const CredentialCard = ({
         />
       </motion.button>
 
-      <motion.div
-        initial="closed"
-        animate={isOpen ? "open" : "closed"}
-        variants={cardBodyVariants}
-        style={{
-          overflow: "hidden",
-          borderRadius: "0 0 1rem 1rem",
-        }}>
+      <motion.div initial="closed" animate={isOpen ? "open" : "closed"} variants={cardBodyVariants}>
         <div className="card-body p-3 border-0">
           <CopyableField
             label={isEmail ? "Email" : "Username"}
