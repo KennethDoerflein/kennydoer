@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, KeyboardEvent, useId } from "react";
+import { useState, useRef, useEffect, KeyboardEvent, useId, useLayoutEffect } from "react";
 import styles from "./CustomDropdown.module.css";
 
 type Option = {
@@ -52,7 +52,7 @@ const CustomDropdown = ({ id, options, value, onChange, width }: CustomDropdownP
     closeMenu();
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isOpen) return;
 
     const calculateDirection = () => {
@@ -61,17 +61,16 @@ const CustomDropdown = ({ id, options, value, onChange, width }: CustomDropdownP
       const dropdownRect = dropdownRef.current.getBoundingClientRect();
       const spaceBelow = window.innerHeight - dropdownRect.bottom;
       const spaceAbove = dropdownRect.top;
-
       const menuHeight = menuRef.current.offsetHeight;
 
-      if (spaceBelow < menuHeight + 15 && spaceAbove > spaceBelow) {
+      if (spaceBelow < menuHeight + 30 && spaceAbove > spaceBelow) {
         setDirection("top");
       } else {
         setDirection("bottom");
       }
     };
 
-    calculateDirection(); // Run the calculation as soon as the menu is open.
+    calculateDirection();
 
     const selectedIndex = options.findIndex((opt) => opt.value === value);
     setFocusedIndex(selectedIndex);
@@ -98,16 +97,12 @@ const CustomDropdown = ({ id, options, value, onChange, width }: CustomDropdownP
         break;
       case "ArrowDown":
         e.preventDefault();
-        if (!isOpen) {
-          setIsOpen(true);
-        }
+        if (!isOpen) setIsOpen(true);
         setFocusedIndex((prevIndex) => (prevIndex < options.length - 1 ? prevIndex + 1 : 0));
         break;
       case "ArrowUp":
         e.preventDefault();
-        if (!isOpen) {
-          setIsOpen(true);
-        }
+        if (!isOpen) setIsOpen(true);
         setFocusedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : options.length - 1));
         break;
       case "Enter":
@@ -167,8 +162,7 @@ const CustomDropdown = ({ id, options, value, onChange, width }: CustomDropdownP
           role="listbox"
           id={menuId}
           aria-labelledby={id}
-          onMouseLeave={() => setFocusedIndex(-1)} // The fix is here
-        >
+          onMouseLeave={() => setFocusedIndex(-1)}>
           {options.map((option, index) => (
             <li
               key={option.value}
