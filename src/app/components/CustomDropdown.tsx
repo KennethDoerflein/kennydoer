@@ -63,7 +63,7 @@ const CustomDropdown = ({ id, options, value, onChange, width }: CustomDropdownP
       const spaceAbove = dropdownRect.top;
       const menuHeight = menuRef.current.offsetHeight;
 
-      if (spaceBelow < menuHeight + 15 && spaceAbove > spaceBelow) {
+      if (spaceBelow < menuHeight + 30 && spaceAbove > spaceBelow) {
         setDirection("top");
       } else {
         setDirection("bottom");
