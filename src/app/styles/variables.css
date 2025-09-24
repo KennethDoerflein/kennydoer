@@ -130,8 +130,8 @@
   --card-body-color: #212529;
   --card-bg-image: none;
   --card-box-shadow: inset 0 0 1px 0 rgba(0, 0, 0, 0.1), 0 4px 15px rgba(0, 0, 0, 0.05);
-  --card-border-color: rgba(0, 0, 0, 0.15);
-  --card-border-hover-color: rgba(0, 0, 0, 0.3);
+  --card-border-color: rgba(198, 17, 204, 0.2);
+  --card-border-hover-color: rgba(198, 17, 204, 0.4);
   --card-img-border-color: #ced4da;
   --card-bg-image: rgba(220, 203, 238, 0.7);
   --card-footer-bg: rgba(220, 203, 238, 0.1);
