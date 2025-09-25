@@ -2,6 +2,7 @@
 
 import { useEffect, useState, ReactNode, useCallback } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import WelcomeModal from "./WelcomeModal";
 
 type Theme = "deep-space" | "glassy-blue" | "glassy-light" | "forest";
 
@@ -23,6 +24,7 @@ export const getTheme = () => themes;
 export const ThemedLayout = ({ children }: { children: ReactNode }) => {
   const [theme, rawSetTheme] = useState<Theme>(themes.defaultTheme);
   const [mounted, setMounted] = useState(false);
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
 
   // --- Animation State ---
   const [animationActive, setAnimationActive] = useState(false);
@@ -35,6 +37,8 @@ export const ThemedLayout = ({ children }: { children: ReactNode }) => {
   // 1. On mount: Set theme from storage and preload layer 1.
   useEffect(() => {
     const storedTheme = (localStorage.getItem("theme") as Theme) || themes.defaultTheme;
+    const hasVisited = localStorage.getItem("hasVisitedBefore");
+
     // Set data-theme immediately to apply CSS background instantly.
     document.documentElement.setAttribute("data-theme", storedTheme);
     // Set the theme state for React.
@@ -42,6 +46,11 @@ export const ThemedLayout = ({ children }: { children: ReactNode }) => {
     // Pre-load layer 1 with the initial theme for the first animation.
     setBgLayer1({ backgroundImage: themeGradients[storedTheme] });
     setMounted(true);
+
+    // If the user hasn't visited before, show the welcome modal.
+    if (!hasVisited) {
+      setShowWelcomeModal(true);
+    }
   }, []);
 
   // 2. When theme state changes, update localStorage.
@@ -108,7 +117,10 @@ export const ThemedLayout = ({ children }: { children: ReactNode }) => {
         className="background-layer"
         style={{ ...bgLayer2, opacity: animationActive && activeLayer === 2 ? 1 : 0 }}
       />
-      <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>
+      <ThemeContext.Provider value={{ theme, setTheme }}>
+        {children}
+        <WelcomeModal isOpen={showWelcomeModal} onClose={() => setShowWelcomeModal(false)} />
+      </ThemeContext.Provider>
     </>
   );
 };
