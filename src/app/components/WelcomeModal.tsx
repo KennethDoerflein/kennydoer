@@ -16,24 +16,32 @@ interface WelcomeModalProps {
 
 const WelcomeModal = ({ isOpen, onClose }: WelcomeModalProps) => {
   const { theme, setTheme } = useTheme();
-  const [previewTheme, setPreviewTheme] = useState<Theme | null>(null);
-  const [originalTheme, setOriginalTheme] = useState<Theme | null>(null);
+  const [isClosing, setIsClosing] = useState(false);
+  const [initialTheme, setInitialTheme] = useState<Theme | null>(null);
 
-  // When the modal opens, store the original theme.
   useEffect(() => {
-    if (isOpen && !originalTheme) {
-      setOriginalTheme(theme);
+    if (isOpen) {
+      setInitialTheme(theme);
+      setIsClosing(false);
     }
-    // Reset preview when modal is closed/opened
-    if (!isOpen) {
-      setOriginalTheme(null);
-      setPreviewTheme(null);
-    }
-  }, [isOpen, theme, originalTheme]);
+  }, [isOpen, theme]);
 
-  const handlePreview = (selectedTheme: Theme) => {
-    setPreviewTheme(selectedTheme);
-    setTheme(selectedTheme); // Apply theme for live preview
+  const handleThemeSelection = (selectedTheme: Theme) => {
+    setTheme(selectedTheme);
+  };
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+    }, 500); // Animation duration
+  };
+
+  const handleCancel = () => {
+    if (initialTheme) {
+      setTheme(initialTheme);
+    }
+    handleClose();
   };
 
   if (!isOpen) {
@@ -41,8 +49,10 @@ const WelcomeModal = ({ isOpen, onClose }: WelcomeModalProps) => {
   }
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal} data-testid="welcome-modal">
+    <div className={`${styles.overlay} ${isClosing ? styles.fadeOut : ""}`}>
+      <div
+        className={`${styles.modal} ${isClosing ? styles.fadeOutRight : ""}`}
+        data-testid="welcome-modal">
         <h2 className={styles.title}>Welcome!</h2>
         <p className={styles.subtitle}>Choose a theme to personalize your experience.</p>
         <div className={styles.themeGrid}>
@@ -50,36 +60,27 @@ const WelcomeModal = ({ isOpen, onClose }: WelcomeModalProps) => {
             <div
               key={themeKey}
               className={`${styles.themeOption} ${themeKey === theme ? styles.selected : ""}`}
-              onClick={() => handlePreview(themeKey)}>
+              onClick={() => handleThemeSelection(themeKey)}>
               <div
                 className={styles.themePreview}
                 style={{ background: themeGradients[themeKey] }}
               />
-              <span className={styles.themeOption}>
+              <span className={styles.themeName}>
                 {themeOptions[themeKey as keyof typeof themeOptions]}
               </span>
             </div>
           ))}
         </div>
         <div className={styles.buttonGroup}>
-          <button
-            className={styles.cancelButton}
-            onClick={() => {
-              if (originalTheme) {
-                setTheme(originalTheme); // Revert to original theme
-              }
-              localStorage.setItem("hasVisitedBefore", "true");
-              onClose();
-            }}>
+          <button className={styles.cancelButton} onClick={handleCancel}>
             Maybe Later
           </button>
           <button
             className={styles.confirmButton}
             onClick={() => {
               localStorage.setItem("hasVisitedBefore", "true");
-              onClose();
-            }}
-            disabled={!previewTheme}>
+              handleClose();
+            }}>
             Confirm
           </button>
         </div>
