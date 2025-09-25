@@ -42,6 +42,7 @@ const WelcomeModal = ({ isOpen, onClose }: WelcomeModalProps) => {
       setTheme(initialTheme);
     }
     handleClose();
+    localStorage.setItem("hasVisitedBefore", "false");
   };
 
   if (!isOpen) {

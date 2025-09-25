@@ -37,7 +37,7 @@ export const ThemedLayout = ({ children }: { children: ReactNode }) => {
   // 1. On mount: Set theme from storage and preload layer 1.
   useEffect(() => {
     const storedTheme = (localStorage.getItem("theme") as Theme) || themes.defaultTheme;
-    const hasVisited = localStorage.getItem("hasVisitedBefore");
+    const hasVisited = localStorage.getItem("hasVisitedBefore") === "true";
 
     // Set data-theme immediately to apply CSS background instantly.
     document.documentElement.setAttribute("data-theme", storedTheme);
