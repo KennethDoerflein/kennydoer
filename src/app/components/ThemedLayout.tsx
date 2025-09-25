@@ -65,6 +65,8 @@ export const ThemedLayout = ({ children }: { children: ReactNode }) => {
 
       // Set data-theme immediately for other style changes.
       document.documentElement.setAttribute("data-theme", newTheme);
+      // Mark as visited when the theme is changed from the footer
+      localStorage.setItem("hasVisitedBefore", "true");
 
       if (!animationActive) {
         // First transition: just store the new theme. The effect will handle the rest.
