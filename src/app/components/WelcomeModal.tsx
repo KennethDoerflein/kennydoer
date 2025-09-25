@@ -49,7 +49,7 @@ const WelcomeModal = ({ isOpen, onClose }: WelcomeModalProps) => {
           {themes.options.map((themeKey) => (
             <div
               key={themeKey}
-              className={`${styles.themeOption} ${previewTheme === themeKey ? styles.selected : ""}`}
+              className={`${styles.themeOption} ${themeKey === theme ? styles.selected : ""}`}
               onClick={() => handlePreview(themeKey)}>
               <div
                 className={styles.themePreview}
