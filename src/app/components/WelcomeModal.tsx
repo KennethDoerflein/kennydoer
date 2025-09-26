@@ -20,11 +20,11 @@ const WelcomeModal = ({ isOpen, onClose }: WelcomeModalProps) => {
   const [initialTheme, setInitialTheme] = useState<Theme | null>(null);
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && initialTheme === null) {
       setInitialTheme(theme);
       setIsClosing(false);
     }
-  }, [isOpen, theme]);
+  }, [initialTheme, isOpen, theme]);
 
   const handleThemeSelection = (selectedTheme: Theme) => {
     setTheme(selectedTheme);
