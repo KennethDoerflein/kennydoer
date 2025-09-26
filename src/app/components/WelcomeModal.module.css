@@ -180,8 +180,7 @@
   .modal {
     background: var(--card-header-bg);
     border-radius: 100px;
-    backdrop-filter: blur(150px);
-    animation: fadeIn 0.5s ease-out forwards;
+    backdrop-filter: blur(80px) saturate(200%);
   }
 
   @keyframes fadeIn {
