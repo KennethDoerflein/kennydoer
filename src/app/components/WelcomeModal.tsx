@@ -33,9 +33,12 @@ const WelcomeModal = ({ isOpen, onClose }: WelcomeModalProps) => {
 
   const handleClose = () => {
     setIsClosing(true);
-    setTimeout(() => {
+  };
+
+  const handleAnimationEnd = () => {
+    if (isClosing) {
       onClose();
-    }, 500); // Animation duration
+    }
   };
 
   const handleCancel = () => {
@@ -47,8 +50,8 @@ const WelcomeModal = ({ isOpen, onClose }: WelcomeModalProps) => {
   };
 
   const handleConfirm = () => {
-    handleClose();
     localStorage.setItem("hasVisitedBefore", "true");
+    handleClose();
   };
 
   if (!isOpen) {
@@ -59,6 +62,7 @@ const WelcomeModal = ({ isOpen, onClose }: WelcomeModalProps) => {
     <div className={`${styles.overlay} ${isClosing ? styles.fadeOut : ""}`}>
       <div
         className={`${styles.modal} ${isClosing ? styles.fadeOutRight : ""}`}
+        onAnimationEnd={handleAnimationEnd}
         data-testid="welcome-modal">
         <h2 className={styles.title}>Welcome!</h2>
         <p className={styles.subtitle}>Choose a theme to personalize your experience.</p>
