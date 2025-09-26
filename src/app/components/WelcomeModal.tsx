@@ -28,6 +28,7 @@ const WelcomeModal = ({ isOpen, onClose }: WelcomeModalProps) => {
 
   const handleThemeSelection = (selectedTheme: Theme) => {
     setTheme(selectedTheme);
+    localStorage.setItem("hasVisitedBefore", "false");
   };
 
   const handleClose = () => {
@@ -43,6 +44,11 @@ const WelcomeModal = ({ isOpen, onClose }: WelcomeModalProps) => {
     }
     handleClose();
     localStorage.setItem("hasVisitedBefore", "false");
+  };
+
+  const handleConfirm = () => {
+    handleClose();
+    localStorage.setItem("hasVisitedBefore", "true");
   };
 
   if (!isOpen) {
@@ -76,12 +82,7 @@ const WelcomeModal = ({ isOpen, onClose }: WelcomeModalProps) => {
           <button className={styles.cancelButton} onClick={handleCancel}>
             Maybe Later
           </button>
-          <button
-            className={styles.confirmButton}
-            onClick={() => {
-              localStorage.setItem("hasVisitedBefore", "true");
-              handleClose();
-            }}>
+          <button className={styles.confirmButton} onClick={handleConfirm}>
             Confirm
           </button>
         </div>
