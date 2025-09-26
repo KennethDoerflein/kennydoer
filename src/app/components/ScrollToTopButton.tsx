@@ -8,7 +8,7 @@ const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > window.innerHeight) {
+    if (window.scrollY > 0.25 * window.innerHeight) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
