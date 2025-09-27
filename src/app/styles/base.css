@@ -1,0 +1,57 @@
+body {
+  min-height: 100%;
+  color: var(--body-color);
+  background-color: #121212;
+  background-image: var(--body-bg);
+  background-attachment: fixed;
+  background-size: cover;
+  overflow-y: scroll; /* Show scrollbar always to prevent layout shift */
+  transition: color var(--transition-duration-slow) var(--timing-function-ease-in-out);
+  position: relative;
+  z-index: 1;
+}
+
+.background-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: -1;
+  transition: opacity var(--transition-duration-slow) var(--timing-function-ease-in-out);
+}
+
+::-webkit-scrollbar {
+  width: 14px;
+  transition: all var(--transition-duration-fast) var(--timing-function-ease);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-bg);
+  border-radius: 10px;
+  border: 2px solid var(--scrollbar-track-bg);
+  transition: background var(--transition-duration-normal) var(--timing-function-ease);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-bg);
+  border-width: 1px;
+}
+
+.tooltip-inner {
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+}
+
+/* Hide tooltips on devices without hover capability */
+.no-hover .tooltip {
+  display: none !important;
+}

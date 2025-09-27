@@ -131,15 +131,11 @@ export const useTooltip = (
     setIsVisible(false);
   }, []);
 
-  // If on mobile, always hide tooltip and return no-op handlers
+  // If on mobile, always hide tooltip and return an empty triggerProps object
   if (!isHoverEnabled) {
     return {
       isVisible: false,
-      triggerProps: {
-        onMouseEnter: () => {},
-        onMouseLeave: () => {},
-        onMouseMove: () => {},
-      },
+      triggerProps: {}, // Return empty object to avoid overwriting handlers
       tooltipStyle: { display: "none" }, // Explicitly hide
       hideTooltip,
       resetTooltip,

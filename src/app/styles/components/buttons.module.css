@@ -1,0 +1,61 @@
+.gradientButton {
+  display: inline-block;
+  padding: 14px 36px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: var(--card-border-color) solid 1px;
+  border-radius: 12px;
+  color: #ffffff;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  overflow: hidden;
+  background: linear-gradient(120deg, #23235b 0%, #3a3a7c 30%, #5a48b4 70%, #3a3a7c 100%);
+  background-size: 300% 300%;
+  background-position: 50% 50%;
+  box-shadow: 0 5px 15px rgba(22, 27, 34, 0.18);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s,
+    border 0.2s;
+  transform: translateZ(0);
+  will-change: background-position, background-size, filter, transform;
+  backface-visibility: hidden;
+  appearance: none;
+  box-sizing: border-box;
+}
+
+.githubBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 14.5px 27px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  border: var(--card-border-color) solid 1px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #161b22 0%, #333950 100%);
+  color: #f6f8fa;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(22, 27, 34, 0.18);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s,
+    border 0.2s;
+  transform: translateZ(0);
+  will-change: background-position, background-size, filter, transform;
+  backface-visibility: hidden;
+  appearance: none;
+  box-sizing: border-box;
+}
+
+:global(.can-hover) .githubBtn:hover,
+:global(.can-hover) .gradientButton:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--hover-shadow);
+  border: var(--sort-select-text) solid 1px;
+}

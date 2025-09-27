@@ -1,0 +1,41 @@
+.modalContent {
+  background: var(--modal-bg-color);
+  border: 1px solid var(--modal-border-color);
+  border-radius: 16px;
+  animation: fadeIn var(--transition-duration-normal) var(--timing-function-ease);
+  backdrop-filter: blur(15px);
+  color: var(--modal-text-color);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  z-index: 1050;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--close-btn-border-color);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  background-color: var(--close-btn-bg-color);
+  backdrop-filter: blur(15px);
+  color: var(--close-btn-color);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  opacity: 0.98;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color var(--transition-duration-normal, 0.3s) ease,
+    transform var(--transition-duration-fast, 0.2s) ease,
+    color var(--transition-duration-normal, 0.3s) ease;
+  cursor: pointer;
+}
+
+:global(.can-hover) .closeBtn:hover {
+  background-color: var(--close-btn-hover-bg-color);
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+}

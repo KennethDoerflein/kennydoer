@@ -1,0 +1,65 @@
+.projectCard {
+  max-width: 700px;
+  margin: 30px auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--card-bg);
+  background-image: var(--card-bg-image);
+  box-shadow: var(--card-box-shadow);
+  backdrop-filter: blur(15px);
+  border: 1px solid var(--card-border-color);
+  transition:
+    transform var(--transition-duration-slow) var(--timing-function-ease),
+    box-shadow var(--transition-duration-normal) var(--timing-function-ease);
+}
+
+:global(.can-hover) .projectCard:hover {
+  box-shadow: var(--card-hover-shadow);
+}
+
+.projectCard img {
+  border-bottom: 1px solid var(--card-img-border-color);
+  border-radius: 0;
+  transition:
+    transform var(--transition-duration-slow) var(--timing-function-ease),
+    filter var(--transition-duration-slow) var(--timing-function-ease),
+    box-shadow var(--transition-duration-slow) var(--timing-function-ease) !important;
+}
+
+:global(.can-hover) .projectCard img:hover {
+  cursor: pointer;
+  filter: brightness(1.1) saturate(1.05);
+}
+
+.projectCardHeader {
+  padding: 0.75rem 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  background-color: var(--card-header-bg);
+  color: var(--card-header-color);
+  border-bottom: 1px solid var(--card-border-color);
+  transition:
+    background-color var(--transition-duration-normal) var(--timing-function-ease),
+    background-position 0.6s var(--timing-function-ease-in-out);
+  background-size: 200% 200%;
+  background-position: center;
+}
+
+:global(.can-hover) .projectCardHeader:hover {
+  background-color: var(--card-header-hover-bg);
+  background-position: right bottom;
+}
+
+.projectCardBody {
+  color: var(--card-body-color);
+  padding: 20px;
+}
+
+.projectCardFooter {
+  font-size: 0.9rem;
+  background-color: var(--card-footer-bg);
+  color: var(--card-footer-color);
+  border-top: 1px solid var(--card-footer-border-color);
+  padding: 20px;
+}

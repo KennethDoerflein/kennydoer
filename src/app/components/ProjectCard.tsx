@@ -6,7 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Card, Spinner } from "react-bootstrap";
 import { useTooltip } from "../hooks/useTooltip";
 import { Project } from "../types";
+import buttonStyles from "../styles/components/buttons.module.css";
 import Credentials from "./Credentials";
+import styles from "./ProjectCard.module.css";
 import TechBadges from "./TechBadges";
 
 const techBadgeContainerVariants = {
@@ -69,8 +71,8 @@ const ProjectCard = ({
   };
 
   return (
-    <Card className="fade-in-up" style={{ maxWidth: "700px" }}>
-      <Card.Header className="text-center" style={{ backgroundColor: "#0F172A" }}>
+    <Card className={`fade-in-up ${styles.projectCard}`} style={{ maxWidth: "700px" }}>
+      <Card.Header className={`${styles.projectCardHeader} text-center`}>
         <div>{title}</div>
         {year !== undefined && year !== null && (
           <small className="text-muted d-block mt-2" style={{ fontSize: "0.7em" }}>
@@ -124,7 +126,7 @@ const ProjectCard = ({
         </div>
       )}
 
-      <Card.Body>
+      <Card.Body className={styles.projectCardBody}>
         <Card.Title>Tech Stack:</Card.Title>
         <motion.div
           className="mb-3"
@@ -136,7 +138,7 @@ const ProjectCard = ({
         <Card.Text style={{ whiteSpace: "pre-line" }}>{description}</Card.Text>
       </Card.Body>
       {(note || github || demo || credentials) && (
-        <Card.Footer className="text-center">
+        <Card.Footer className={`${styles.projectCardFooter} text-center`}>
           {note && (
             <div className="mb-3 text-muted">
               <strong>Note:</strong> {note}
@@ -148,7 +150,7 @@ const ProjectCard = ({
                 href={demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`gradientButton mx-auto`}>
+                className={`${buttonStyles.gradientButton} mx-auto`}>
                 View Demo Site
               </Button>
             )}
@@ -157,7 +159,7 @@ const ProjectCard = ({
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="github-btn mx-auto">
+                className={`${buttonStyles.githubBtn} ${buttonStyles.button} mx-auto`}>
                 <i className="bi bi-github me-2"></i>
                 View on Github
               </Button>

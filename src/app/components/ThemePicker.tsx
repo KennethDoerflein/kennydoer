@@ -4,13 +4,7 @@ import { useTheme } from "../context/ThemeContext";
 import { getTheme } from "./ThemedLayout";
 import { useEffect, useState } from "react";
 import CustomDropdown from "./CustomDropdown";
-
-const themeOptions = {
-  "deep-space": "Deep Space",
-  "glassy-blue": "Ocean Blue",
-  "glassy-light": "Purple Mist",
-  forest: "Forest Green",
-};
+import { themeOptions } from "../data/themes";
 
 const ThemePicker = () => {
   const { theme, setTheme } = useTheme();

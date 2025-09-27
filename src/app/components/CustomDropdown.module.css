@@ -30,6 +30,10 @@
   box-shadow: 0 0 0 3px rgba(13, 202, 240, 0.25);
 }
 
+:global(.can-hover) .control:hover {
+  border-color: var(--sort-select-text);
+}
+
 .chevron {
   width: 16px;
   height: 16px;

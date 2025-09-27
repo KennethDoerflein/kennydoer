@@ -1,0 +1,66 @@
+.badge {
+  margin: 3px 3px 6px 0;
+  padding: 0.45em 0.65em;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  transition: box-shadow var(--transition-duration-normal) var(--timing-function-ease);
+}
+
+:global(.can-hover) .badge:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.techBadgeGlass {
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--tech-badge-color, #fff);
+  padding: 0.45em 0.65em;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  transition:
+    transform var(--transition-duration-fast) var(--timing-function-ease),
+    box-shadow var(--transition-duration-normal) var(--timing-function-ease);
+}
+
+:global(.can-hover) .techBadgeGlass:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.techBadgeGlass.techBadgePrimary {
+  border-color: var(--bs-primary);
+  background-color: rgba(var(--bs-primary-rgb), 0.3);
+}
+
+.techBadgeGlass.techBadgeSecondary {
+  border-color: var(--bs-secondary);
+  background-color: rgba(var(--bs-secondary-rgb), 0.3);
+}
+
+.techBadgeGlass.techBadgeSuccess {
+  border-color: var(--bs-success);
+  background-color: rgba(var(--bs-success-rgb), 0.3);
+}
+
+.techBadgeGlass.techBadgeDanger {
+  border-color: var(--bs-danger);
+  background-color: rgba(var(--bs-danger-rgb), 0.3);
+}
+
+.techBadgeGlass.techBadgeWarning {
+  border-color: var(--bs-warning);
+  background-color: rgba(var(--bs-warning-rgb), 0.3);
+}
+
+.techBadgeGlass.techBadgeInfo {
+  border-color: var(--bs-info);
+  background-color: rgba(var(--bs-info-rgb), 0.3);
+}
+
+:global(.can-hover) .techBadgeHover:hover {
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(13, 110, 253, 0.18);
+  filter: brightness(1.15) saturate(1.2);
+  z-index: 2;
+}
