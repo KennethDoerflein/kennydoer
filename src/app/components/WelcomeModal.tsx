@@ -92,8 +92,7 @@ const WelcomeModal = ({ isOpen, onClose }: WelcomeModalProps) => {
         </div>
         <div className={`${styles.footer} mt-3`}>
           <p>
-            * The theme can be changed at any time in the future from the theme picker in the page
-            footer.
+            * The theme can be changed at any time using the theme picker at the bottom of the page.
           </p>
         </div>
       </div>
