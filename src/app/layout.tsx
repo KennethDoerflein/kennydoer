@@ -19,7 +19,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Project Portfolio",
-  description: "A website to showcase my projects",
+  description:
+    "A dynamic portfolio built with Next.js, React, and TypeScript. Features an adaptive UI, sortable project lists with Framer Motion, and a modular architecture.",
 };
 
 const themeScript = `
