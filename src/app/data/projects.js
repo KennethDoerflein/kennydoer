@@ -129,7 +129,7 @@ export const projects = [
     //intrinsicWidth: 1911,
     //intrinsicHeight: 956,
     year: 2025,
-    complexity: "Advanced",
+    complexity: "Expert",
   },
   {
     title: "Project Server Docker (Production Stack)",
@@ -149,7 +149,7 @@ export const projects = [
     description: `A robust, automated infrastructure-as-code solution for hosting production web applications. Features a containerized microservices architecture with automated SSL (Cloudflare Tunnels), centralized database credential management, nightly backups, and a multi-layered security stack including an OWASP-hardened WAF and edge-level IP banning.`,
     github: "https://github.com/KennethDoerflein/project_server_docker",
     year: 2026,
-    complexity: "Advanced",
+    complexity: "Expert",
   },
   {
     title: "S3-like HTTP Server",
