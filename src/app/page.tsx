@@ -102,7 +102,6 @@ const sortFunctions: Record<string, (a: ProjectData, b: ProjectData) => number> 
 };
 
 const HomePage: NextPage = () => {
-  // Capture the returned boolean state from the hook.
   const isHoverEnabled = useHoverEffect();
 
   const [show, setShow] = useState(false);

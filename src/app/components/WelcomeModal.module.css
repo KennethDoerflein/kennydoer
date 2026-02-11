@@ -100,7 +100,7 @@
     box-shadow 0.2s ease;
 }
 
-.themeOption:hover {
+:global(.can-hover) .themeOption:hover {
   transform: scale(1.1);
 }
 
@@ -119,7 +119,7 @@
   transform: scale(1.1);
 }
 
-.themeOption:hover .themePreview {
+:global(.can-hover) .themeOption:hover .themePreview {
   box-shadow: 0 0 15px var(--primary-color-translucent);
 }
 
@@ -153,8 +153,8 @@
   color: var(--card-header-color);
 }
 
-.confirmButton:hover:not(:disabled),
-.cancelButton:hover:not(:disabled) {
+:global(.can-hover) .confirmButton:hover:not(:disabled),
+:global(.can-hover) .cancelButton:hover:not(:disabled) {
   background-color: var(--primary-hover-color);
   transform: translateY(-5px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);

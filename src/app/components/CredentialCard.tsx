@@ -116,7 +116,7 @@ const CredentialCard = ({
         }}
         variants={buttonVariants}
         animate={isOpen ? "open" : "closed"}
-        whileHover={{ backgroundColor: "#6c5695" }}
+        whileHover={isHoverEnabled ? { backgroundColor: "#6c5695" } : {}}
         {...triggerProps}>
         {isTooltipVisible && (
           <div style={tooltipStyle}>{isOpen ? "Click to collapse" : "Click to expand"}</div>

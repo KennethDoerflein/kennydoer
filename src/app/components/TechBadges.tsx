@@ -7,10 +7,14 @@ import styles from "./TechBadges.module.css";
 // Moved outside the component to prevent re-creation on every render.
 const COLORS = ["primary", "secondary", "success", "danger", "warning", "info"];
 
+import { useHoverEffect } from "../hooks/useHoverEffect";
+
 /**
  * A component that displays a list of technologies as animated badges.
  */
 const TechBadges = ({ tech }: TechBadgesProps) => {
+  const isHoverEnabled = useHoverEffect();
+
   return (
     <>
       {tech.map((t, i) => {
@@ -32,7 +36,7 @@ const TechBadges = ({ tech }: TechBadgesProps) => {
             key={t}
             className={badgeClasses}
             custom={i}
-            whileHover={{ scale: 1.25, rotate: i % 2 === 0 ? 5 : -5 }}>
+            whileHover={isHoverEnabled ? { scale: 1.25, rotate: i % 2 === 0 ? 5 : -5 } : {}}>
             {t}
           </motion.span>
         );

@@ -147,7 +147,7 @@
   font-weight: 500;
 }
 
-.option:hover,
+:global(.can-hover) .option:hover,
 .option.focused {
   background-color: var(--card-header-hover-bg);
   color: var(--card-header-color);
