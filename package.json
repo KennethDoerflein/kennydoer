@@ -1,6 +1,6 @@
 {
   "name": "main-site",
-  "version": "0.2.11-rc.0",
+  "version": "0.2.11",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
