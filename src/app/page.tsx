@@ -24,7 +24,8 @@ const complexityLevels = {
   Advanced_Beginner: 1.5,
   Intermediate: 2,
   Advanced: 3,
-  Proficient: 4,
+  Expert: 4,
+  Proficient: 5,
 } as const;
 
 type ComplexityLabel = keyof typeof complexityLevels;
