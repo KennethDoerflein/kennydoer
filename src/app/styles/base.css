@@ -2,9 +2,6 @@ body {
   min-height: 100%;
   color: var(--body-color);
   background-color: #121212;
-  background-image: var(--body-bg);
-  background-attachment: fixed;
-  background-size: cover;
   overflow-y: scroll; /* Show scrollbar always to prevent layout shift */
   transition: color var(--transition-duration-slow) var(--timing-function-ease-in-out);
   position: relative;
@@ -15,10 +12,10 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: var(--body-bg);
   background-size: cover;
-  background-attachment: fixed;
   z-index: -1;
   transition: opacity var(--transition-duration-slow) var(--timing-function-ease-in-out);
 }
