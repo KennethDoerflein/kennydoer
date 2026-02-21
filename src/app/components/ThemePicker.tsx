@@ -1,14 +1,12 @@
 "use client";
 
 import { useTheme } from "../context/ThemeContext";
-import { getTheme } from "./ThemedLayout";
 import { useEffect, useState } from "react";
 import CustomDropdown from "./CustomDropdown";
-import { themeOptions } from "../data/themes";
+import { themes, themeOptions } from "../data/themes";
 
 const ThemePicker = () => {
   const { theme, setTheme } = useTheme();
-  const themes = getTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

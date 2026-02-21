@@ -2,12 +2,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { themes, themeGradients } from "./ThemedLayout";
 import { useTheme } from "../context/ThemeContext";
 import styles from "./WelcomeModal.module.css";
-import { themeOptions } from "../data/themes";
-
-type Theme = (typeof themes.options)[number];
+import { Theme, themes, themeGradients, themeOptions } from "../data/themes";
 
 interface WelcomeModalProps {
   isOpen: boolean;

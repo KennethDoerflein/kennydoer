@@ -1,10 +1,7 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import { themes } from "../components/ThemedLayout";
-
-// This type is based on the exported themes object
-type Theme = (typeof themes.options)[number];
+import { Theme } from "../data/themes";
 
 interface ThemeContextType {
   theme: Theme;
